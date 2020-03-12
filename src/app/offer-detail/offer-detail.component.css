@@ -1,0 +1,32 @@
+/*center he titles */
+h1, h3 {
+    text-align: center;
+}
+
+/*center the table of list of equipments */
+table {
+    margin:auto;
+}
+
+/* center the list of equipment and give it a 20% width wich is large enough to contain labels of equipment */
+ul {
+    margin : auto;
+
+    width : 20%;
+
+}
+
+li {
+    text-align: left;
+}
+
+.buy-buttons {
+    display: flex;
+    justify-content: center;
+
+}
+
+.buy-choice-button {
+    margin : 1%;
+
+}

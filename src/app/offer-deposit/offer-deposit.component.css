@@ -1,0 +1,48 @@
+/*center the titles */
+h1 {
+    text-align: center;
+}
+
+/*container selector of form items. Items are displayed in column and page centered*/
+.deposit-form {
+    display:flex;
+    flex-direction: column;
+
+    margin : auto;
+    width:30%;
+}
+
+
+/*form items are themselves container selector of their inner elements. Elements are displayed in row
+and label and input at each side */
+.deposit-form-elt {
+    display:flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+   /* width:80%; */
+
+    margin-top:1%;
+}
+
+/*radio buttons are displayed at extreme right of the element */
+.deposit-form-elt-radio {
+    display:flex;
+    flex-direction: row;
+    justify-content: flex-end;
+
+   /* width:80%; */
+   
+}
+
+.submit-button {
+    margin-top:1%;
+   
+}
+
+.image-uploaded {
+    width: 20%;
+    height: 20%;
+}
+
+

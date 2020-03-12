@@ -1,0 +1,61 @@
+<!-- <p>car-description works!</p> -->
+
+<div *ngIf="carDescriptionObs  | async as carDescription">
+
+
+    <table>
+        <tr>
+            <th>Id</th>
+            <th>Année</th>
+            <th>Boite de vitesse</th>
+            <th>Couleur extérieure </th>
+            <th>4 roues motrices</th>
+        </tr>
+
+        <tr>
+            <td>{{carDescription.id}}</td>
+            <td>{{carDescription.year}}</td>
+            <td>{{carDescription.gearbox}}</td>
+            <td>{{carDescription.outerColor}}</td>
+            <td>{{carDescription.fourWheelDrive}}</td>
+        </tr>
+
+    </table>
+
+
+<!--loop on equipment array to print equipement of a car-->
+    <ul *ngFor="let equip of carDescription.equipments">
+        <li>{{equip.label}}</li>
+    </ul>
+
+
+</div>
+
+<!--
+<div *ngIf="carEquipmentObs  | async as carEquipment">
+
+    <table>
+        <tr>
+            <th>Type</th>
+            <th>Label</th>
+        </tr>
+
+        <tr>
+            <td>{{carEquipment.type}}</td>
+            <td>{{carEquipment.label}}</td>
+        </tr>
+
+    </table>
+
+</div>
+    <p>{{carDescription.equipments[0].type}}</p>
+    <p>{{carDescription.equipments[0].label}}</p>
+    <p>{{carDescription.equipments[1].type}}</p>
+    <p>{{carDescription.equipments[1].label}}</p>
+    <p>{{carDescription.equipments[2].type}}</p>
+    <p>{{carDescription.equipments[2].label}}</p>
+
+    <div *ngFor="let equip of carDescription.equipments">
+        <h2>{{equip.label}}</h2>
+    </div>
+-->

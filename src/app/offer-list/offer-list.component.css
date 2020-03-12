@@ -1,0 +1,54 @@
+/*titles are centered */
+h1 {
+    text-align: center;
+}
+
+/*flex to print all offers on a single column */
+#offer-list{
+    display:flex;
+    flex-wrap:wrap;
+    justify-content: center;
+}
+
+/*flex to print 3 parts of an offer on a row : text, consult link, showcase image */
+.offer-list-result {
+    background-color: silver;
+    border : solid grey;
+
+    
+    width: 50%;
+   
+    margin:10px;
+
+    display:flex;
+    flex-wrap:nowrap;
+    justify-content: space-between;
+
+    align-items: center;
+    
+}
+
+.offer-list-text {
+    text-align: left;
+    flex: 1 0 0;
+
+}
+
+.offer-list-link {
+    text-align: center;
+    flex: 1 0 0;
+}
+
+.offer-list-image{
+    flex: 1 0 0;
+   
+    height: 100%; 
+    
+}
+
+.image-showcase {
+    max-width: 100%;
+    max-height: 100%;
+    
+
+}

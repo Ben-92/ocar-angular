@@ -1,0 +1,41 @@
+<!--<p>offer-detail works!</p> -->
+
+<div *ngIf="offerDetailObs  | async as offerDetail">
+
+    <h1>Détail de l'annonce</h1>
+
+    <table>
+        <tr>
+            <th>Id</th>
+            <th>Année</th>
+            <th>Boite de vitesse</th>
+            <th>Couleur extérieure </th>
+            <th>4 roues motrices</th>
+        </tr>
+
+        <tr>
+            <td>{{offerDetail.id}}</td>
+            <td>{{offerDetail.year}}</td>
+            <td>{{offerDetail.gearbox}}</td>
+            <td>{{offerDetail.outerColor}}</td>
+            <td>{{offerDetail.fourWheelDrive}}</td>
+        </tr>
+
+    </table>
+
+    <h3>Options et équipements</h3>
+
+    <!--loop on equipment array to print equipement -->
+    <ul *ngFor="let equip of offerDetail.equipments">
+        <li>{{equip.label}}</li>
+    </ul>
+
+
+    <div class="buy-buttons">
+        <button class="buy-choice-button">Acheter comptant</button>
+        <button class="buy-choice-button">Acheter à crédit</button>
+    </div>
+
+
+
+</div>
