@@ -25,8 +25,6 @@ export class OfferDetailComponent implements OnInit {
       /*get an observable containing the data of a car */
       this.offerDetailObs = this.dataService.getOfferDetail(this.offerIdDetail);
 
-
-
   });
 
   }

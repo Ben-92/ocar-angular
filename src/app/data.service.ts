@@ -69,6 +69,10 @@ export class DataService {
 
   }
 
+  /**
+   * get request to retrieve an image, giving its name
+   * @param imageName name of the image to retrieve
+   */
   getImageFromDb(imageName){
     return this.httpClient.get('http://localhost:8080/api/images/name/' + imageName);
   }
@@ -123,24 +127,4 @@ export class DataService {
 
 }
 
-
-  /**
-   * getting data from a specific car 
-   * @param carToSearch id of the car we want data from
-   */
-  /*
-  getCarDescription(carToSearch) {
-    return this.httpClient.get('http://localhost:8080/api/cars/' + carToSearch );
-  }
-  */
-  /*
-  getAllEquipmentByCarId(carId) {
-    let params = new HttpParams();
-    params = params.append('carToGetEquipment', carId);
-
-    const options = { params: params };
-
-    return this.httpClient.get('http://localhost:8080/api/equipments/getequipmentbycar', options)
-  }
-  */
 

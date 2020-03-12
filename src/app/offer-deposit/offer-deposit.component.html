@@ -1,5 +1,16 @@
 <!--<p>offer-deposit works!</p> -->
 
+<nav class="nav-bar-deposit">
+  <ul>
+      <!--
+        <li><a [routerLink]="['offerEquipment', offer.id]">Equipement et options</a></li>
+        <li><a [routerLink]="['offerDocument', offer.id]">Documents de la voiture</a></li>
+      <li><a [routerLink]="['offerImage', offer.id]">Photos de la voiture</a></li>
+      -->
+  </ul>
+</nav>
+
+<!--deposit form containing basis information and corresponding to Offer entity in the model-->
 <h1>Nouvelle annonce</h1>
 <form [formGroup]="depositForm" (ngSubmit)="onDeposit(depositForm.value)">
 
@@ -14,7 +25,6 @@
       <label class="xxx">Marque :</label>
       <select formControlName="carBrand" class="xxx">
         <option value={{brand.name}} *ngFor="let brand of brandList">{{brand.name}}</option>
-        <!--<option  [Ngvalue]="carBrand" *ngFor="let brand of brandList">{{brand.name}}</option> -->
       </select>
     </div>
 
@@ -85,10 +95,12 @@
 
 <br>
 <br>
+<!-- retrieve an image from database-->
 <input type="text" class="form-control" id="name" placeholder="image name" [(ngModel)]="imageName" name="name">
 <input type="button" (click)="getImage()" value="Get Image">
 
 <br>
+<!--show the image retrieved from the database-->
 <div *ngIf=retrievedImage>
   <img class="image-uploaded" [src]="retrievedImage">
 </div>

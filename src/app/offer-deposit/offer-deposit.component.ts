@@ -70,6 +70,9 @@ export class OfferDepositComponent implements OnInit {
       complete : () => this.message = "Image enregistrée!"});
   }
 
+  /**
+   * retrieving an image from database, giving its name
+   */
   getImage() {
     this.dataService.getImageFromDb(this.imageName)
     .subscribe(
