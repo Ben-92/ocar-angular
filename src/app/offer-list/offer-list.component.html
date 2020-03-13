@@ -4,10 +4,13 @@
 <form [formGroup]="filterForm" (ngSubmit)="onFilter(filterForm.value)">
     <label for="brand">Marque</label>
     <input type="text" id="brand" formControlName="brand">
+    
     <label for="lowest">Prix minimum</label>
     <input type="number" id="lowest" formControlName="lowestPrice">
+    
     <label for="highest">Prix maximum</label>
     <input type="number" id="highest" formControlName="highestPrice">
+    
     <button>Filtrer les annonces</button>
 </form>
 

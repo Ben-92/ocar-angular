@@ -5,6 +5,8 @@ import { Equipment } from './equipment';
 import { Brand } from './brand';
 import { Model } from './model';
 
+import { Offer } from './offer';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -13,7 +15,7 @@ export class DataService {
   constructor(private httpClient: HttpClient) { }
 
 /**
- * getting list of offers in database
+ * getting list of offers in database, without any selection criteria
  */
   getOfferList() {
     return this.httpClient.get('http://localhost:8080/api/offers');
@@ -52,7 +54,7 @@ export class DataService {
    * @param offerDeposit form values containing offer data
    */
   addOfferToSeller(sellerId, offerDeposit) {
-    return this.httpClient.post('http://localhost:8080/api/sellers/' + sellerId + '/offer', offerDeposit);
+    return this.httpClient.post<Offer>('http://localhost:8080/api/sellers/' + sellerId + '/offer', offerDeposit);
   }
 
 

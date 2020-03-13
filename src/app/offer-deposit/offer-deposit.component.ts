@@ -3,6 +3,10 @@ import { Component, OnInit } from '@angular/core';
 import { DataService } from '../data.service';
 import { FormBuilder } from '@angular/forms';
 
+import { Offer } from '../offer';
+
+import {map, tap} from 'rxjs/operators';
+
 @Component({
   selector: 'app-offer-deposit',
   templateUrl: './offer-deposit.component.html',
@@ -19,6 +23,10 @@ export class OfferDepositComponent implements OnInit {
   retrievedImage: any;
   base64Data: any;
   retrieveResponse: any;
+
+  offerIdCreated;
+
+  /*savedOffer : Offer;*/
 
   depositForm = this.formBuilder.group({
     postalCode: 0,
@@ -43,13 +51,30 @@ export class OfferDepositComponent implements OnInit {
    */
   onDeposit(offerDeposit) {
     this.dataService.addOfferToSeller(1, offerDeposit)
+        .pipe(
+          tap ((value:Offer) => {
+          this.offerIdCreated = value.id;
+          console.log(this.offerIdCreated)}) 
+        )
+        .subscribe( {
+          next: savedOffer => console.log(savedOffer),
+          error:err => {console.error(err);
+                        this.message = "Erreur : annonce non enregistrée";},
+          complete : () => this.message = "Annonce " + this.offerIdCreated + " enregistrée!"});
+
+  }
+
+  /*
+  onDeposit(offerDeposit) {
+    this.dataService.addOfferToSeller(1, offerDeposit)
         .subscribe({
-          next:savedOffer => console.log(savedOffer),
+          next: savedOffer => console.log(savedOffer),
           error:err => {console.error(err);
                         this.message = "Erreur : annonce non enregistrée";},
           complete : () => this.message = "Annonce enregistrée!"});
 
   }
+  */
 
   /**
    * getting selected file chosen by the client
