@@ -30,6 +30,12 @@
         <li>{{equip.label}}</li>
     </ul>
 
+    <ul *ngFor="let image of offerDetail.images">
+        <li>{{image.id}}</li>
+        <li>{{image.name}}</li>
+        <li>{{image.type}}</li>
+    </ul>
+
 
     <div class="buy-buttons">
         <button class="buy-choice-button">Acheter comptant</button>

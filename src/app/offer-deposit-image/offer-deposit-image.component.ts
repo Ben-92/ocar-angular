@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { DataService } from '../data.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-offer-deposit-image',
@@ -11,15 +12,22 @@ export class OfferDepositImageComponent implements OnInit {
 
   message:String;
 
+  offerIdOnUse;
+
   selectedFile : File;
   imageName : any;
   retrievedImage: any;
   base64Data: any;
   retrieveResponse: any;
 
-  constructor(private dataService: DataService) { }
+  constructor(private dataService: DataService,private route: ActivatedRoute) { }
 
   ngOnInit() {
+        /* routing - get the param Id of the offer from the url */ 
+        this.route.paramMap
+          .subscribe(params => {
+            this.offerIdOnUse = params.get('offerId');
+          })
   }
 
     /**
@@ -34,7 +42,7 @@ export class OfferDepositImageComponent implements OnInit {
    * adding an uploaded image to database
    */
   onUpload() {
-    this.dataService.addImageToDb(this.selectedFile)
+    this.dataService.addImageToDb(this.offerIdOnUse,  this.selectedFile)
     .subscribe({
       error:err => {console.error(err);
                     this.message = "Erreur : image non enregistrée";},

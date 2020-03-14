@@ -62,14 +62,23 @@ export class DataService {
    * post request to save an image 
    * @param selectedFile ???
    */
-  addImageToDb(selectedFile) {
+  /*addImageToDb(selectedFile) {
 
     const uploadData = new FormData;
     uploadData.append('imageFile',selectedFile, selectedFile.name);
 
     return this.httpClient.post('http://localhost:8080/api/images', uploadData);
 
+  } */
+
+  addImageToDb(offerIdOnUse,selectedFile) {
+
+    const uploadData = new FormData;
+    uploadData.append('imageFile',selectedFile, selectedFile.name);
+
+    return this.httpClient.post('http://localhost:8080/api/offers/' + offerIdOnUse + '/images', uploadData);
   }
+
 
   /**
    * get request to retrieve an image, giving its name
