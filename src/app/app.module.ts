@@ -19,6 +19,7 @@ import { TopBarComponent } from './top-bar/top-bar.component';
 import { CarDescriptionComponent } from './car-description/car-description.component';
 import { OfferDetailComponent } from './offer-detail/offer-detail.component';
 import { OfferDepositComponent } from './offer-deposit/offer-deposit.component';
+import { OfferDepositImageComponent } from './offer-deposit-image/offer-deposit-image.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { OfferDepositComponent } from './offer-deposit/offer-deposit.component';
     TopBarComponent,
     CarDescriptionComponent,
     OfferDetailComponent,
-    OfferDepositComponent
+    OfferDepositComponent,
+    OfferDepositImageComponent
   ],
   imports: [
     FormsModule,
@@ -40,6 +42,7 @@ import { OfferDepositComponent } from './offer-deposit/offer-deposit.component';
       { path: 'deposit', component: OfferDepositComponent },
       /*{ path: 'car/:carId', component: CarDescriptionComponent },*/
       { path: 'offerDetail/:offerId', component: OfferDetailComponent },
+      { path: 'deposit/offerDepositImage/:offerId', component: OfferDepositImageComponent },
     ]),
   ],
   providers: [DataService],

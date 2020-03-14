@@ -1,0 +1,17 @@
+<p>offer-deposit-image works!</p>
+
+<!--selection and upload of an image-->
+<input type="file" (change)="onFileChanged($event)">
+<button (click)="onUpload()">Envoyer la photo</button>
+
+<br>
+<br>
+<!-- retrieve an image from database-->
+<input type="text" class="form-control" id="name" placeholder="image name" [(ngModel)]="imageName" name="name">
+<input type="button" (click)="getImage()" value="Get Image">
+
+<br>
+<!--show the image retrieved from the database-->
+<div *ngIf=retrievedImage>
+  <img class="image-uploaded" [src]="retrievedImage">
+</div>

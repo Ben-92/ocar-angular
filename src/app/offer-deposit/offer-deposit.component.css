@@ -3,7 +3,7 @@ h1 {
     text-align: center;
 }
 
-/*container selector of form items. Items are displayed in column and page centered*/
+/*container selector of deposit form items. Items are displayed in column and page centered*/
 .deposit-form {
     display:flex;
     flex-direction: column;
