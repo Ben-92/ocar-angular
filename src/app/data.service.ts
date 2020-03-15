@@ -59,18 +59,10 @@ export class DataService {
 
 
   /**
-   * post request to save an image 
-   * @param selectedFile ???
+   * post request to save an image associated to an existing offer
+   * @param offerIdOnUse offer associated to which the image will be posted
+   * @param selectedFile image file to be posted
    */
-  /*addImageToDb(selectedFile) {
-
-    const uploadData = new FormData;
-    uploadData.append('imageFile',selectedFile, selectedFile.name);
-
-    return this.httpClient.post('http://localhost:8080/api/images', uploadData);
-
-  } */
-
   addImageToDb(offerIdOnUse,selectedFile) {
 
     const uploadData = new FormData;
@@ -93,20 +85,12 @@ export class DataService {
  * list of brands a client can choose from
  */
   brands : Brand[] = [
-    {
-      "name": "BMW"
-    },
-    {
-      "name": "Renault"
-    }]
+    {"name": "BMW" },
+    {"name": "Renault"}]
 
     models : Model[] = [
-      {
-        "name": "Série 2"
-      },
-      {
-        "name": "clio"
-      }]
+      {"name": "Série 2"},
+      {"name": "clio"}]
 
   /*list of equipments a client can choose from */
   equipments : Equipment[] = [
