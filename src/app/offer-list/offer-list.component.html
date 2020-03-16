@@ -27,9 +27,21 @@
         <div class="offer-list-link">
             <h3><a [routerLink]="['offerDetail', offer.id]">Consulter</a></h3>
         </div>
-        <div class="offer-list-image"> 
+        <div class="offer-list-image" *ngIf="offer.images[0]; else noPhoto"> 
+        <!--<div class="offer-list-image" *ngFor="let image of offer.images; let i = index"> -->
             <!--<h3>test là où je vais mettre une image</h3> -->
-            <img class="image-showcase" src="https://img.autoplus.fr/news/2020/01/28/1545980/dd93e16662b77b72595ac6e8-1200-800.jpg" alt="offer-image"> 
+            <!--<img class="image-showcase" src="https://img.autoplus.fr/news/2020/01/28/1545980/dd93e16662b77b72595ac6e8-1200-800.jpg" alt="offer-image"> -->
+            <!--<img class="image-showcase" src="data:image/jpeg;base64,{{image[0]?.picByte}}"> -->
+            <img class="image-showcase" src="data:image/jpeg;base64,{{offer.images[0].picByte}}"> 
         </div>
+        
+        <ng-template #noPhoto>
+            <div class="offer-list-image">
+                <img class="image-showcase" src="https://img.autoplus.fr/news/2020/01/28/1545980/dd93e16662b77b72595ac6e8-1200-800.jpg" alt="offer-image">
+            </div>
+        </ng-template>
+            <!-- <ng-template #nophoto>test no photo</ng-template> -->
+            <!--<ng-template #nophoto><img class="image-showcase" src="https://img.autoplus.fr/news/2020/01/28/1545980/dd93e16662b77b72595ac6e8-1200-800.jpg" alt="offer-image"></ng-template> -->
+        
     </div>
 </div>

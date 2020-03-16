@@ -36,7 +36,8 @@ and label and input at each side */
 }
 
 .submit-button {
-    margin-top:1%;
+    /* margin-top:1%; */
+    margin: 1% auto;
    
 }
 

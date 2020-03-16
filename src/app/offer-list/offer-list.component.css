@@ -10,7 +10,8 @@ h1 {
     justify-content: center;
 }
 
-/*flex to print 3 parts of an offer on a row : text, consult link, showcase image */
+/*frame which contains 3 parts of an offer in a row */
+/*flex to display the 3 parts : text, consult detail link, showcase image */
 .offer-list-result {
     background-color: silver;
     border : solid grey;
@@ -28,27 +29,37 @@ h1 {
     
 }
 
+/*part one of an offer on the left side: short text description */
+/* flex n allows to adjust the space ratio that each element takes n= 1 for all indicates each takes the same space*/
 .offer-list-text {
     text-align: left;
-    flex: 1 0 0;
+    
+    flex: 1; /*note  :equivalent to flex: 1 0 0; */
 
 }
 
+/*part two of an offer on the center : detail consulting link */
 .offer-list-link {
     text-align: center;
-    flex: 1 0 0;
+    /* flex: 1 0 0; */
+    flex: 1;
 }
 
+/*part three of an offer on the right side : showcase of the first image stored */
 .offer-list-image{
-    flex: 1 0 0;
+    /*flex: 1 0 0; */
+    flex: 1;
    
+    width:100%;                       
     height: 100%; 
-    
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
+
 
 .image-showcase {
     max-width: 100%;
     max-height: 100%;
-    
-
 }
