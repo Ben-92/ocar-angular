@@ -1,17 +1,30 @@
-<p>offer-deposit-image works!</p>
+<!--<p>offer-deposit-image works!</p> -->
 
 <!--selection and upload of an image-->
-<input type="file" (change)="onFileChanged($event)">
-<button (click)="onUpload()">Envoyer la photo</button>
+<div class="image-select">
+  <input type="file" (change)="onFileChanged($event)">
+  <button (click)="onUpload()">Envoyer la photo</button>
+</div>
 
 <br>
 <br>
-<!-- retrieve an image from database-->
+<!-- retrieve an image from database
 <input type="text" class="form-control" id="name" placeholder="image name" [(ngModel)]="imageName" name="name">
-<input type="button" (click)="getImage()" value="Get Image">
+<input type="button" (click)="getImage()" value="Get Image"> -->
 
 <br>
-<!--show the image retrieved from the database-->
+<!--show the image retrieved from the database
 <div *ngIf=retrievedImage>
   <img class="image-uploaded" [src]="retrievedImage">
+</div> -->
+
+<div class="img-container" *ngIf="offerInUseObs  | async as offerInUse">
+  <!--<p>{{offerInUse.carBrand}}</p>
+  <p>{{offerInUse.carModel}}</p>
+  <p>{{offerInUse.images}}</p> -->
+  <div class="img-elt" *ngFor="let image1 of offerInUse.images">
+    <!--<h5>{{image1.name}}</h5> -->
+    <img class="image-uploaded" src="data:image/jpeg;base64,{{image1.picByte}}"> 
+    <button class="suppress-button">Supprimer</button>
+  </div>
 </div>
