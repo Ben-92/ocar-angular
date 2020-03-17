@@ -1,4 +1,3 @@
-<!--<p>offer-detail works!</p> -->
 
 <div *ngIf="offerDetailObs  | async as offerDetail">
 
@@ -23,18 +22,30 @@
 
     </table>
 
-    <h3>Options et équipements</h3>
+    <!--display list of options and equipments if present-->
+    <div *ngIf="offerDetail.equipments[0]">
+        <h3>Options et équipements</h3>
 
-    <!--loop on equipment array to print equipement -->
-    <ul *ngFor="let equip of offerDetail.equipments">
-        <li>{{equip.label}}</li>
-    </ul>
+        <!--loop on equipment array to print equipement -->
+        <ul *ngFor="let equip of offerDetail.equipments">
+            <li>{{equip.label}}</li>
+        </ul>
+    </div>
 
-    <ul *ngFor="let image of offerDetail.images">
-        <li>{{image.id}}</li>
-        <li>{{image.name}}</li>
-        <li>{{image.type}}</li>
-    </ul>
+    <br>
+
+     <!--display images of the car if present-->
+    <div *ngIf="offerDetail.images[0]">
+        <h3>Photos</h3>
+
+        <div class="img-container">
+
+            <div class="img-elt" *ngFor="let image of offerDetail.images">
+                <img class="image-uploaded" src="data:image/jpeg;base64,{{image.picByte}}"> 
+            </div>
+
+         </div>
+    </div>
 
 
     <div class="buy-buttons">
