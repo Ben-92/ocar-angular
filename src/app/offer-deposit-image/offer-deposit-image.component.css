@@ -1,3 +1,7 @@
+/*center the titles */
+h1 {
+    text-align: center;
+}
 
 /*display the select and save button in a row, and center them in their parent element */
 .image-select {

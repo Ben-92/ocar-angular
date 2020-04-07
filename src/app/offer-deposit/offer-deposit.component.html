@@ -1,5 +1,7 @@
 <!--<p>offer-deposit works!</p> -->
 
+<h5 id="advice">Les champs marqués d'un (*) sont obligatoires</h5>
+
 <nav class="nav-bar-deposit">
   <ul>
         <li><a [routerLink]="['offerDepositImage', offerIdCreated]">Ajouter des photos</a></li>
@@ -17,68 +19,128 @@
   <div class="deposit-form">
 
     <div class="deposit-form-elt">
-      <label for="post-code">Code postal :</label>
-      <input type="number" formControlName="postalCode" id="post-code">
+      <label for="post-code">Code postal où se trouve le véhicule (*):</label>
+      <input  type="text"
+              formControlName="postalCode"
+              size="4"
+              maxlength="5"
+              id="post-code">
+    </div>
+
+    <div *ngIf="((depositForm.get('postalCode').errors && (depositForm.get('postalCode').touched || depositForm.get('postalCode').dirty))
+             || (isSubmitted && depositForm.get('postalCode').errors))">
+        <div *ngIf="depositForm.get('postalCode').errors" class="error-effect-title">
+          Le code postal doit être valide
+        </div>
     </div>
 
     <div class="deposit-form-elt">
-      <label class="xxx">Marque :</label>
+      <label class="xxx">Marque (*):</label>
       <select formControlName="carBrand" class="xxx">
         <option value={{brand.name}} *ngFor="let brand of brandList">{{brand.name}}</option>
       </select>
     </div>
+    <div *ngIf="((depositForm.get('carBrand').errors && (depositForm.get('carBrand').touched || depositForm.get('carBrand').dirty))
+      || (isSubmitted && depositForm.get('carBrand').errors))">
+      <div *ngIf="depositForm.get('carBrand').errors" class="error-effect-title">
+          La marque est obligatoire
+      </div>
+    </div>
 
     <div class="deposit-form-elt">
-      <label class="xxx">Modèle :</label>
+      <label class="xxx">Modèle (*):</label>
       <select formControlName="carModel" class="xxx">
         <option value={{model.name}} *ngFor="let model of modelList">{{model.name}}</option>
       </select>
     </div>
+    <div *ngIf="((depositForm.get('carModel').errors && (depositForm.get('carModel').touched || depositForm.get('carModel').dirty))
+      || (isSubmitted && depositForm.get('carModel').errors))">
+      <div *ngIf="depositForm.get('carModel').errors" class="error-effect-title">
+        Le modèle est obligatoire
+      </div>
+    </div>
+
+    <!--
+    <div class="deposit-form-elt">
+      <label for="year">Année (*):</label>
+      <input type="number" formControlName="year" id="year">
+    </div>
+    -->
 
     <div class="deposit-form-elt">
-      <label for="year">Année :</label>
-      <input type="number" formControlName="year" id="year">
+      <label class="xxx">Année du véhicule (*):</label>
+      <select formControlName="year" class="xxx">
+        <option value={{year.yearValue}} *ngFor="let year of yearList">{{year.yearValue}}</option>
+      </select>
+    </div>
+    <div *ngIf="((depositForm.get('year').errors && (depositForm.get('year').touched || depositForm.get('year').dirty))
+      || (isSubmitted && depositForm.get('year').errors))">
+        <div *ngIf="depositForm.get('year').errors" class="error-effect-title">
+           L'année du véhicule est obligatoire
+        </div>
     </div>
 
     <p>Boite de vitesse :</p>
     <div class="deposit-form-elt-radio">
 
-      <input type="radio" id="autoChoice" formControlName="gearbox" value="auto">
-      <label for="autoChoice">Automatique</label>
-
       <input type="radio" id="manualChoice" formControlName="gearbox" value="manual">
       <label for="manualChoice">Manuelle</label>
+
+      <input type="radio" id="autoChoice" formControlName="gearbox" value="auto">
+      <label for="autoChoice">Automatique</label>
 
     </div>
 
     <div class="deposit-form-elt">
       <label for="ext-color">Couleur extérieure :</label>
-      <input type="text" formControlName="outerColor" id="ext-color">
+      <input  type="text"
+              formControlName="outerColor"
+              id="ext-color"
+              placeholder="Exemple : bleu nuit">
+    </div>
+    <div *ngIf="((depositForm.get('outerColor').errors && (depositForm.get('outerColor').touched || depositForm.get('outerColor').dirty))
+      || (isSubmitted && depositForm.get('price').errors))">
+      <div *ngIf="depositForm.get('outerColor').errors" class="error-effect-title">
+        La couleur ne doit comporter que des lettres
+      </div>
     </div>
 
 
     <p>4 roues motrices :</p>
     <div class="deposit-form-elt-radio">
 
+      <input type="radio" id="fwdChoiceNo" formControlName="fourWheelDrive" value=false>
+      <label for="fwdChoiceNo">Non</label>
 
       <input type="radio" id="fwdChoiceYes" formControlName="fourWheelDrive" value=true>
       <label for="fwdChoiceYes">Oui</label>
-
-      <input type="radio" id="fwdChoiceNo" formControlName="fourWheelDrive" value=false>
-      <label for="fwdChoiceNo">Non</label>
 
 
     </div>
 
     <div class="deposit-form-elt">
       <label for="description">Descriptif de l'annonce :</label>
-      <textarea id="description" formControlName="description" rows="5" cols="33">
+      <textarea   id="description"
+                  formControlName="description" 
+                  rows="5" 
+                  cols="33"
+                  placeholder="Détails de l'annonce">
       </textarea>
     </div>
 
     <div class="deposit-form-elt">
-      <label for="price">Prix</label>
-      <input type="number" formControlName="price" id="price">
+      <label for="price">Prix - euros (*): </label>
+      <input  type="text" 
+              formControlName="price"
+              size="5"
+              maxlength="6"
+              id="price">
+    </div>
+    <div *ngIf="((depositForm.get('price').errors && (depositForm.get('price').touched || depositForm.get('price').dirty))
+    || (isSubmitted && depositForm.get('price').errors))">
+      <div *ngIf="depositForm.get('price').errors" class="error-effect-title">
+        Le prix doit être numérique et entier sans virgule
+      </div>
     </div>
 
     <div class="deposit-form-elt">
@@ -88,7 +150,6 @@
   </div>
 
 </form>
-
 
 <!--print a message if a message is generated by one of the functions-->
 <h3 *ngIf="message" class="message">{{message}}</h3>

@@ -120,6 +120,16 @@ export class DataService {
     }
   ]
 
+  /**
+ * list of years for a car model
+ */
+years  = [
+  {"yearValue": "2020" },
+  {"yearValue": "2019"},
+  {"yearValue": "2018"},
+  {"yearValue": "2017"}
+]
+
 }
 
 
