@@ -1,7 +1,8 @@
 /*center the titles */
-h1 {
+h1, #advice {
     text-align: center;
 }
+
 
 /*container selector of deposit form items. Items are displayed in column and page centered*/
 .deposit-form {
@@ -33,6 +34,16 @@ and label and input at each side */
 
    /* width:80%; */
    
+}
+
+
+/*colorisation of input and error messages */
+.error-effect {
+    background-color:lightcoral;
+}
+
+.error-effect-title, .message {
+    color:lightcoral
 }
 
 .submit-button {
