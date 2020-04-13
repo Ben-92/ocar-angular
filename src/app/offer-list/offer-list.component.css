@@ -3,6 +3,55 @@ h1 {
     text-align: center;
 }
 
+
+/*container selector of deposit form items. Items are displayed in column and page centered*/
+.filter-form {
+    display:flex;
+    flex-direction: column;
+
+    margin : auto;
+    width:30%;
+}
+
+
+/*form items are themselves container selector of their inner elements. Elements are displayed in row
+and label and input at each side */
+.filter-form-elt {
+    display:flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+   /* width:80%; */
+
+    margin-top:1%;
+}
+
+/*radio buttons are displayed at extreme right of the element */
+.filter-form-elt-radio {
+    display:flex;
+    flex-direction: row;
+    justify-content: flex-end;
+
+   /* width:80%; */
+   
+}
+
+
+/*colorisation of input and error messages */
+.error-effect {
+    background-color:lightcoral;
+}
+
+.error-effect-title, .message {
+    color:lightcoral
+}
+
+.submit-button {
+    /* margin-top:1%; */
+    margin: 1% auto;
+   
+}
+
 /*flex to print all offers on a single column */
 #offer-list{
     display:flex;

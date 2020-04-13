@@ -37,6 +37,7 @@
     <div class="deposit-form-elt">
       <label class="xxx">Marque (*):</label>
       <select formControlName="carBrand" class="xxx">
+        <option value="">Sélectionner la Marque</option>
         <option value={{brand.name}} *ngFor="let brand of brandList">{{brand.name}}</option>
       </select>
     </div>
@@ -51,6 +52,7 @@
       <label class="xxx">Modèle (*):</label>
       <select formControlName="carModel" class="xxx">
         <option value={{model.name}} *ngFor="let model of modelList">{{model.name}}</option>
+        <option value="">Sélectionner le modèle</option>
       </select>
     </div>
     <div *ngIf="((depositForm.get('carModel').errors && (depositForm.get('carModel').touched || depositForm.get('carModel').dirty))
@@ -60,17 +62,11 @@
       </div>
     </div>
 
-    <!--
-    <div class="deposit-form-elt">
-      <label for="year">Année (*):</label>
-      <input type="number" formControlName="year" id="year">
-    </div>
-    -->
-
     <div class="deposit-form-elt">
       <label class="xxx">Année du véhicule (*):</label>
       <select formControlName="year" class="xxx">
         <option value={{year.yearValue}} *ngFor="let year of yearList">{{year.yearValue}}</option>
+        <option value="">Sélectionner l'année</option>
       </select>
     </div>
     <div *ngIf="((depositForm.get('year').errors && (depositForm.get('year').touched || depositForm.get('year').dirty))
@@ -83,10 +79,10 @@
     <p>Boite de vitesse :</p>
     <div class="deposit-form-elt-radio">
 
-      <input type="radio" id="manualChoice" formControlName="gearbox" value="manual">
+      <input type="radio" id="manualChoice" formControlName="gearbox" value="Manuelle">
       <label for="manualChoice">Manuelle</label>
 
-      <input type="radio" id="autoChoice" formControlName="gearbox" value="auto">
+      <input type="radio" id="autoChoice" formControlName="gearbox" value="Automatique">
       <label for="autoChoice">Automatique</label>
 
     </div>

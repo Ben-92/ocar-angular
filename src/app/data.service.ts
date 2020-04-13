@@ -37,24 +37,43 @@ export class DataService {
  * @param lowest filter on lowest price
  * @param highest filter on highest price
  */
-  getFilteredOfferList(brand, lowest, highest) {
-    let params = new HttpParams();
-    params = params.append('brand', brand);
-    params = params.append('lowestPrice', lowest);
-    params = params.append('highestPrice', highest);
 
-    const options = { params: params };
+ getFilteredOfferList(lowestBrandFilter,
+  highestBrandFilter,
+  lowestModelFilter,
+  highestModelFilter,
+  lowestPostCodeFilter,
+  highestPostCodeFilter,
+  lowestYearFilter,
+  highestYearFilter,
+  gearboxFilter,
+  lowestPriceFilter,
+  highestPriceFilter) {
+  let params = new HttpParams();
+  params = params.append('lowestBrand', lowestBrandFilter);
+  params = params.append('highestBrand', highestBrandFilter);
+  params = params.append('lowestModel', lowestModelFilter);
+  params = params.append('highestModel', highestModelFilter);
+  params = params.append('lowestPostCode', lowestPostCodeFilter);
+  params = params.append('highestPostCode', highestPostCodeFilter);
+  params = params.append('lowestYear', lowestYearFilter);
+  params = params.append('highestYear', highestYearFilter);
+  params = params.append('gearbox', gearboxFilter);
+  params = params.append('lowestPrice', lowestPriceFilter);
+  params = params.append('highestPrice', highestPriceFilter);
 
-    return this.httpClient.get('http://localhost:8080/api/offers/filter', options)
-  }
+  const options = { params: params };
+
+  return this.httpClient.get('http://localhost:8080/api/offers/filter', options)
+ }
 
   /**
    * post request to save a client's new offer deposit
-   * @param sellerId Id of the client who deposit a new offer
+   * @param clientId Id of the client who deposit a new offer
    * @param offerDeposit form values containing offer data
    */
-  addOfferToSeller(sellerId, offerDeposit) {
-    return this.httpClient.post<Offer>('http://localhost:8080/api/sellers/' + sellerId + '/offer', offerDeposit);
+  addOfferToClient(clientId, offerDeposit) {
+    return this.httpClient.post<Offer>('http://localhost:8080/api/clients/' + clientId + '/offer', offerDeposit);
   }
 
 
@@ -90,7 +109,7 @@ export class DataService {
 
     models : Model[] = [
       {"name": "Série 2"},
-      {"name": "clio"}]
+      {"name": "Clio"}]
 
   /*list of equipments a client can choose from */
   equipments : Equipment[] = [
@@ -127,7 +146,34 @@ years  = [
   {"yearValue": "2020" },
   {"yearValue": "2019"},
   {"yearValue": "2018"},
-  {"yearValue": "2017"}
+  {"yearValue": "2017"},
+  {"yearValue": "2016"},
+  {"yearValue": "2015"},
+  {"yearValue": "2014"},
+  {"yearValue": "2013"},
+  {"yearValue": "2012"},
+  {"yearValue": "2011"},
+  {"yearValue": "2010"},
+  {"yearValue": "2009"},
+  {"yearValue": "2008"},
+  {"yearValue": "2007"},
+  {"yearValue": "2006"},
+  {"yearValue": "2005"},
+  {"yearValue": "2004"},
+  {"yearValue": "2003"},
+  {"yearValue": "2002"},
+  {"yearValue": "2001"},
+  {"yearValue": "2000"},
+  {"yearValue": "1999"},
+  {"yearValue": "1998"},
+  {"yearValue": "1997"},
+  {"yearValue": "1996"},
+  {"yearValue": "1995"},
+  {"yearValue": "1994"},
+  {"yearValue": "1993"},
+  {"yearValue": "1992"},
+  {"yearValue": "1991"},
+  {"yearValue": "1990"},
 ]
 
 }

@@ -1,18 +1,120 @@
-<h1>Liste des annonces</h1>
+<h1>Filtrer les annonces</h1>
 
 <!--filter form to select offers on some criteria-->
-<form [formGroup]="filterForm" (ngSubmit)="onFilter(filterForm.value)">
-    <label for="brand">Marque</label>
-    <input type="text" id="brand" formControlName="brand">
+<form [formGroup]="filterForm" (ngSubmit)="onFilter(filterForm.value)">  
     
-    <label for="lowest">Prix minimum</label>
-    <input type="number" id="lowest" formControlName="lowestPrice">
-    
-    <label for="highest">Prix maximum</label>
-    <input type="number" id="highest" formControlName="highestPrice">
-    
-    <button>Filtrer les annonces</button>
+    <div class="filter-form">
+
+            <div class="filter-form-elt">
+              <label for="dpt-code">Département où se trouve le véhicule:</label>
+              <input  type="text"
+                      formControlName="dptCode"
+                      size="3"
+                      maxlength="2"
+                      id="dpt-code">
+            </div>
+        
+            <div *ngIf="((filterForm.get('dptCode').errors && (filterForm.get('dptCode').touched || filterForm.get('dptCode').dirty))
+                     || (isSubmitted && filterForm.get('dptCode').errors))">
+                <div *ngIf="filterForm.get('dptCode').errors" class="error-effect-title">
+                  La région doit être valide
+                </div>
+            </div>
+        
+            <div class="filter-form-elt">
+              <label class="xxx">Marque:</label>
+              <select formControlName="carBrand" class="xxx">
+                <option value="">Sélectionner la Marque</option>
+                <option value={{brand.name}} *ngFor="let brand of brandList">{{brand.name}}</option>
+              </select>
+            </div>
+            <div *ngIf="((filterForm.get('carBrand').errors && (filterForm.get('carBrand').touched || filterForm.get('carBrand').dirty))
+              || (isSubmitted && filterForm.get('carBrand').errors))">
+              <div *ngIf="filterForm.get('carBrand').errors" class="error-effect-title">
+                  La marque est obligatoire
+              </div>
+            </div>
+        
+            <div class="filter-form-elt">
+              <label class="xxx">Modèle:</label>
+              <select formControlName="carModel" class="xxx">
+                <option value={{model.name}} *ngFor="let model of modelList">{{model.name}}</option>
+                <option value="">Sélectionner le modèle</option>
+              </select>
+            </div>
+            <div *ngIf="((filterForm.get('carModel').errors && (filterForm.get('carModel').touched || filterForm.get('carModel').dirty))
+              || (isSubmitted && filterForm.get('carModel').errors))">
+              <div *ngIf="filterForm.get('carModel').errors" class="error-effect-title">
+                Le modèle est obligatoire
+              </div>
+            </div>
+        
+        
+            <div class="filter-form-elt">
+              <label class="xxx">Année du véhicule:</label>
+              <select formControlName="year" class="xxx">
+                <option value={{year.yearValue}} *ngFor="let year of yearList">{{year.yearValue}}</option>
+                <option value="">Sélectionner l'année</option>
+              </select>
+            </div>
+            <div *ngIf="((filterForm.get('year').errors && (filterForm.get('year').touched || filterForm.get('year').dirty))
+              || (isSubmitted && filterForm.get('year').errors))">
+                <div *ngIf="filterForm.get('year').errors" class="error-effect-title">
+                   L'année du véhicule est obligatoire
+                </div>
+            </div>
+        
+            <p>Boite de vitesse :</p>
+            <div class="filter-form-elt-radio">
+        
+              <input type="radio" id="manualChoice" formControlName="gearbox" value="Manuelle">
+              <label for="manualChoice">Manuelle</label>
+              
+              <input type="radio" id="autoChoice" formControlName="gearbox" value="Automatique">
+              <label for="autoChoice">Automatique</label>
+            
+            </div>
+        
+        
+            <div class="filter-form-elt">
+              <label for="lowest">Prix mini- euros: </label>
+              <input  type="text" 
+                      formControlName="lowestPrice"
+                      size="5"
+                      maxlength="6"
+                      id="lowest">
+            </div>
+            <div *ngIf="((filterForm.get('lowestPrice').errors && (filterForm.get('lowestPrice').touched || filterForm.get('lowestPrice').dirty))
+            || (isSubmitted && filterForm.get('lowestPrice').errors))">
+              <div *ngIf="filterForm.get('lowestPrice').errors" class="error-effect-title">
+                Le prix doit être numérique et entier sans virgule
+              </div>
+            </div>
+
+            <div class="filter-form-elt">
+              <label for="highest">Prix maxi- euros: </label>
+              <input  type="text" 
+                      formControlName="highestPrice"
+                      size="5"
+                      maxlength="6"
+                      id="highest">
+            </div>
+            <div *ngIf="((filterForm.get('highestPrice').errors && (filterForm.get('highestPrice').touched || filterForm.get('highestPrice').dirty))
+            || (isSubmitted && filterForm.get('highestPrice').errors))">
+              <div *ngIf="filterForm.get('highestPrice').errors" class="error-effect-title">
+                Le prix doit être numérique et entier sans virgule
+              </div>
+            </div>
+        
+            <div class="filter-form-elt">
+                <button class="submit-button" type="submit">Filtrer les annonces</button> 
+            </div>
+        
+          </div>
+
 </form>
+
+<h1>Liste des annonces</h1>
 
 <!--displaying list of offers retrieved form Offer database-->
 <div id="offer-list">
@@ -28,10 +130,6 @@
             <h3><a [routerLink]="['offerDetail', offer.id]">Consulter</a></h3>
         </div>
         <div class="offer-list-image" *ngIf="offer.images[0]; else noPhoto"> 
-        <!--<div class="offer-list-image" *ngFor="let image of offer.images; let i = index"> -->
-            <!--<h3>test là où je vais mettre une image</h3> -->
-            <!--<img class="image-showcase" src="https://img.autoplus.fr/news/2020/01/28/1545980/dd93e16662b77b72595ac6e8-1200-800.jpg" alt="offer-image"> -->
-            <!--<img class="image-showcase" src="data:image/jpeg;base64,{{image[0]?.picByte}}"> -->
             <img class="image-showcase" src="data:image/jpeg;base64,{{offer.images[0].picByte}}"> 
         </div>
         
@@ -40,8 +138,6 @@
                 <img class="image-showcase" src="https://img.autoplus.fr/news/2020/01/28/1545980/dd93e16662b77b72595ac6e8-1200-800.jpg" alt="offer-image">
             </div>
         </ng-template>
-            <!-- <ng-template #nophoto>test no photo</ng-template> -->
-            <!--<ng-template #nophoto><img class="image-showcase" src="https://img.autoplus.fr/news/2020/01/28/1545980/dd93e16662b77b72595ac6e8-1200-800.jpg" alt="offer-image"></ng-template> -->
         
     </div>
 </div>

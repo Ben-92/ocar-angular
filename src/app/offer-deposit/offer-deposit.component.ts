@@ -24,6 +24,7 @@ export class OfferDepositComponent implements OnInit {
   isSubmitted : boolean;
 
 
+
   /*Id of the Offer created by the http POST request creating an offer for a client*/
   offerIdCreated;
 
@@ -33,18 +34,19 @@ export class OfferDepositComponent implements OnInit {
     carBrand: ['',Validators.required],
     carModel: ['',Validators.required],
     year: ['',Validators.required],
-    gearbox:'manual',
+    gearbox:'Manuelle',
     /*match from the beginning any of the character class : a toz, A to Z, whitespace, -, '*/
     outerColor:['',Validators.pattern('^[-a-zA-Z\\s\']*$')],
     fourWheelDrive:'false',
     description:'',
-    price: ['', [Validators.required, Validators.pattern('[0-9]*')]]
+    price: ['', [Validators.required, Validators.pattern('[0-9]*')]],
+    date:''
   })
   constructor(private dataService: DataService,
               private formBuilder: FormBuilder) { }
 
   ngOnInit() {
-
+    
   }
   
 
@@ -62,7 +64,10 @@ export class OfferDepositComponent implements OnInit {
       return;
     }
 
-    this.dataService.addOfferToSeller(1, offerDeposit)
+    /*adding date time to the submitted offer */
+    offerDeposit.date = new Date();
+
+    this.dataService.addOfferToClient(1, offerDeposit)
         .pipe(
           tap ((value:Offer) => {
           this.offerIdCreated = value.id;
