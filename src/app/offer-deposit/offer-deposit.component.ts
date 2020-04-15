@@ -24,7 +24,6 @@ export class OfferDepositComponent implements OnInit {
   isSubmitted : boolean;
 
 
-
   /*Id of the Offer created by the http POST request creating an offer for a client*/
   offerIdCreated;
 
@@ -55,6 +54,7 @@ export class OfferDepositComponent implements OnInit {
    * @param offerDeposit form value with data of the Offer model
    */
   onDeposit(offerDeposit) {
+
 
     this.isSubmitted = true;
 

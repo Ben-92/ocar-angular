@@ -1,6 +1,7 @@
 <h1>Filtrer les annonces</h1>
 
 <!--filter form to select offers on some criteria-->
+<!--
 <form [formGroup]="filterForm" (ngSubmit)="onFilter(filterForm.value)">  
     
     <div class="filter-form">
@@ -113,12 +114,19 @@
           </div>
 
 </form>
+-->
 
 <h1>Liste des annonces</h1>
 
+<h2>{{contentTotalOffers}} annonces !</h2>
+
 <!--displaying list of offers retrieved form Offer database-->
 <div id="offer-list">
-    <div class="offer-list-result" *ngFor="let offer of offerListObs | async">
+    <!--<div class="offer-list-result" *ngFor="let offer of offerListObs | async"> -->
+     
+      <!-- <div class="offer-list-result" *ngFor="let offer of offerListRetrieved"> -->
+      <!--<div class="offer-list-result" *ngFor="let offer of offerPageRetrieved"> -->
+      <div class="offer-list-result" *ngFor="let offer of pageContent">
         <div class="offer-list-text">
             <h3>Date de l'offre: {{offer.date | date : 'dd/MM/yyyy'}}</h3>
             
@@ -141,3 +149,32 @@
         
     </div>
 </div>
+
+<!--
+<div class="pagination-items-list">
+  <div class="pagination-item">
+      <a (click)="previous">Page précédente</a>
+  </div>
+  <div class="pagination-item">
+    <h4>Page {{actualPageNumber}}</h4>
+  </div>
+  <div class="pagination-item">
+      <a (click)="next">Page suivante</a>
+  </div>
+</div>
+  -->
+
+  <ul class="pagination-items-list">
+      <li class="pagination-item">
+        <a [ngClass]="{'is-disable': isFirstPage}" href=# (click)="displayPage(0)">Première page</a>
+      </li>
+      <li class="pagination-item">
+        <a [ngClass]="{'is-disable': isFirstPage}" href=# (click)="displayPage(actualPageNumber - 1)">Page précédente</a>
+      </li>
+      <li class="pagination-item">Page {{actualPageNumber + 1}}/{{contentTotalPages}}</li>
+      <li class="pagination-item">
+        <a [ngClass]="{'is-disable': isLastPage}" href=# (click)="displayPage(actualPageNumber + 1)">Page suivante</a>
+      </li>
+  </ul>
+
+

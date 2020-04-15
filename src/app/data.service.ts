@@ -17,9 +17,23 @@ export class DataService {
 /**
  * getting list of offers in database, without any selection criteria
  */
+/*
   getOfferList() {
     return this.httpClient.get('http://localhost:8080/api/offers');
   }
+  */
+ getOfferList(pageNumberParam, pageSizeParam, sortParam, directionParam) {
+ 
+  let params = new HttpParams();
+  params = params.append('pageNumber', pageNumberParam);
+  params = params.append('pageSize', pageSizeParam);
+  params = params.append('sort', sortParam);
+  params = params.append('direction', directionParam);
+
+  const options = { params: params };
+
+  return this.httpClient.get('http://localhost:8080/api/offers', options);
+}
 
  
     /**
