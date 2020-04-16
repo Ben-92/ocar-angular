@@ -1,7 +1,7 @@
 <h1>Filtrer les annonces</h1>
 
 <!--filter form to select offers on some criteria-->
-<!--
+
 <form [formGroup]="filterForm" (ngSubmit)="onFilter(filterForm.value)">  
     
     <div class="filter-form">
@@ -106,6 +106,7 @@
                 Le prix doit être numérique et entier sans virgule
               </div>
             </div>
+
         
             <div class="filter-form-elt">
                 <button class="submit-button" type="submit">Filtrer les annonces</button> 
@@ -114,11 +115,40 @@
           </div>
 
 </form>
--->
 
-<h1>Liste des annonces</h1>
 
-<h2>{{contentTotalOffers}} annonces !</h2>
+
+<!--<h1>Liste des annonces</h1> -->
+
+<h2 *ngIf="contentTotalOffers > 0 ; else noOffer">{{contentTotalOffers}} annonce{{singularPluralChar}} !</h2>
+<ng-template #noOffer><h2>Aucune annonce</h2></ng-template>
+
+
+<div class="sort-nb-offer-choices">
+  <div *ngIf="contentTotalOffers > 0" class="sort-choice">
+    <label>Afficher en premier : </label>
+    <select #sortChoice (change)="onSortSelectChange(sortChoice.value)">
+    <!--<option value="">Critère de tri</option> -->
+    <option value="dateDESC">Annonces récentes</option>
+    <option value="dateASC">Annonces anciennes</option>
+    <option value="yearDESC">Véhicules récents</option>
+    <option value="yearASC">Véhicules anciens</option>
+    <option value="priceDESC">les + chères</option>
+    <option value="priceASC">les - chères</option>
+    </select>
+  </div>
+
+  <div *ngIf="contentTotalOffers > 0" class="nb-offers-choice">
+    <label>Annonces par page : </label>
+    <select #offersPerPageChoice (change)="onNbOffersPerPageChange(offersPerPageChoice.value)">
+    <option value="3">3</option>
+    <option value="5">5</option>
+    <option value="10">10</option>
+    <option value="15">15</option>
+    <option value="20">20</option>
+    </select>
+  </div>
+</div>
 
 <!--displaying list of offers retrieved form Offer database-->
 <div id="offer-list">
@@ -164,7 +194,7 @@
 </div>
   -->
 
-  <ul class="pagination-items-list">
+  <ul *ngIf="contentTotalOffers > 0" class="pagination-items-list">
       <li class="pagination-item">
         <a [ngClass]="{'is-disable': isFirstPage}" href=# (click)="displayPage(0)">Première page</a>
       </li>

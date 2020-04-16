@@ -6,6 +6,7 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { Offer } from '../offer';
 
 import {map, tap} from 'rxjs/operators';
+import { concat } from 'rxjs';
 
 @Component({
   selector: 'app-offer-deposit',
@@ -47,6 +48,8 @@ export class OfferDepositComponent implements OnInit {
   ngOnInit() {
     
   }
+
+
   
 
   /**

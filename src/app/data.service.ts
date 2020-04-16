@@ -62,7 +62,12 @@ export class DataService {
   highestYearFilter,
   gearboxFilter,
   lowestPriceFilter,
-  highestPriceFilter) {
+  highestPriceFilter,
+  pageNumberParam,
+  pageSizeParam,
+  sortParam, 
+  directionParam
+  ) {
   let params = new HttpParams();
   params = params.append('lowestBrand', lowestBrandFilter);
   params = params.append('highestBrand', highestBrandFilter);
@@ -75,6 +80,11 @@ export class DataService {
   params = params.append('gearbox', gearboxFilter);
   params = params.append('lowestPrice', lowestPriceFilter);
   params = params.append('highestPrice', highestPriceFilter);
+
+  params = params.append('pageNumber', pageNumberParam);
+  params = params.append('pageSize', pageSizeParam);
+  params = params.append('sort', sortParam);
+  params = params.append('direction', directionParam);
 
   const options = { params: params };
 
@@ -119,11 +129,15 @@ export class DataService {
  */
   brands : Brand[] = [
     {"name": "BMW" },
-    {"name": "Renault"}]
+    {"name": "Renault"},
+    {"name": "Ferrari"}
+  ]
 
     models : Model[] = [
       {"name": "Série 2"},
-      {"name": "Clio"}]
+      {"name": "Clio"},
+      {"name": "Testarossa"},
+    ]
 
   /*list of equipments a client can choose from */
   equipments : Equipment[] = [
