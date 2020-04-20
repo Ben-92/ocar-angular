@@ -1,7 +1,6 @@
 <h1>Filtrer les annonces</h1>
 
 <!--filter form to select offers on some criteria-->
-
 <form [formGroup]="filterForm" (ngSubmit)="onFilter(filterForm.value)">  
     
     <div class="filter-form">
@@ -14,17 +13,20 @@
                       maxlength="2"
                       id="dpt-code">
             </div>
-        
+            <!--check error on field : 
+              -when a user click on the field (touched) or modifies it (dirty)
+               -or when the user submits the form  -->
             <div *ngIf="((filterForm.get('dptCode').errors && (filterForm.get('dptCode').touched || filterForm.get('dptCode').dirty))
                      || (isSubmitted && filterForm.get('dptCode').errors))">
                 <div *ngIf="filterForm.get('dptCode').errors" class="error-effect-title">
                   La région doit être valide
                 </div>
             </div>
-        
+            
+            <!--displaying Brand choices retrieved from the service brand list-->
             <div class="filter-form-elt">
-              <label class="xxx">Marque:</label>
-              <select formControlName="carBrand" class="xxx">
+              <label>Marque:</label>
+              <select formControlName="carBrand">
                 <option value="">Sélectionner la Marque</option>
                 <option value={{brand.name}} *ngFor="let brand of brandList">{{brand.name}}</option>
               </select>
@@ -37,8 +39,8 @@
             </div>
         
             <div class="filter-form-elt">
-              <label class="xxx">Modèle:</label>
-              <select formControlName="carModel" class="xxx">
+              <label>Modèle:</label>
+              <select formControlName="carModel">
                 <option value={{model.name}} *ngFor="let model of modelList">{{model.name}}</option>
                 <option value="">Sélectionner le modèle</option>
               </select>
@@ -52,8 +54,8 @@
         
         
             <div class="filter-form-elt">
-              <label class="xxx">Année du véhicule:</label>
-              <select formControlName="year" class="xxx">
+              <label>Année du véhicule:</label>
+              <select formControlName="year">
                 <option value={{year.yearValue}} *ngFor="let year of yearList">{{year.yearValue}}</option>
                 <option value="">Sélectionner l'année</option>
               </select>
@@ -116,14 +118,11 @@
 
 </form>
 
-
-
-<!--<h1>Liste des annonces</h1> -->
-
+<!--displaying specific message if no offer retrieved-->
 <h2 *ngIf="contentTotalOffers > 0 ; else noOffer">{{contentTotalOffers}} annonce{{singularPluralChar}} !</h2>
 <ng-template #noOffer><h2>Aucune annonce</h2></ng-template>
 
-
+<!--displaying sort choices-->
 <div class="sort-nb-offer-choices">
   <div *ngIf="contentTotalOffers > 0" class="sort-choice">
     <label>Afficher en premier : </label>
@@ -138,6 +137,7 @@
     </select>
   </div>
 
+  <!--displaying number of offer per page choices-->
   <div *ngIf="contentTotalOffers > 0" class="nb-offers-choice">
     <label>Annonces par page : </label>
     <select #offersPerPageChoice (change)="onNbOffersPerPageChange(offersPerPageChoice.value)">
@@ -150,19 +150,16 @@
   </div>
 </div>
 
-<!--displaying list of offers retrieved form Offer database-->
+<!--displaying list of offers retrieved from database-->
 <div id="offer-list">
-    <!--<div class="offer-list-result" *ngFor="let offer of offerListObs | async"> -->
-     
-      <!-- <div class="offer-list-result" *ngFor="let offer of offerListRetrieved"> -->
-      <!--<div class="offer-list-result" *ngFor="let offer of offerPageRetrieved"> -->
+
       <div class="offer-list-result" *ngFor="let offer of pageContent">
         <div class="offer-list-text">
             <h3>Date de l'offre: {{offer.date | date : 'dd/MM/yyyy'}}</h3>
             
             <h3>Marque: {{offer.carBrand}}</h3>
             <h3>Modèle: {{offer.carModel}}</h3>
-            <h3>Prix: {{offer.price}} euros</h3>
+            <h3>Prix: {{offer.price | currency:'EUR':'symbol':'1.0-0'}}</h3>
         </div>
         <div class="offer-list-link">
             <h3><a [routerLink]="['offerDetail', offer.id]">Consulter</a></h3>
@@ -180,20 +177,7 @@
     </div>
 </div>
 
-<!--
-<div class="pagination-items-list">
-  <div class="pagination-item">
-      <a (click)="previous">Page précédente</a>
-  </div>
-  <div class="pagination-item">
-    <h4>Page {{actualPageNumber}}</h4>
-  </div>
-  <div class="pagination-item">
-      <a (click)="next">Page suivante</a>
-  </div>
-</div>
-  -->
-
+  <!--Pagination menu-->
   <ul *ngIf="contentTotalOffers > 0" class="pagination-items-list">
       <li class="pagination-item">
         <a [ngClass]="{'is-disable': isFirstPage}" href=# (click)="displayPage(0)">Première page</a>

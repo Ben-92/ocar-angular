@@ -3,7 +3,7 @@ h1 {
     text-align: center;
 }
 
-/*display the select and save button in a row, and center them in their parent element */
+/*display the select and upload button on a row, and center them in their parent element */
 .image-select {
     display:flex;
     flex-direction: row;
@@ -24,7 +24,6 @@ h1 {
 
 
 /*frame containing the image and the suppress button */
-/*1 frame takes 1/3 of its parent element */ 
 .img-elt {
     
     background-color: grey;

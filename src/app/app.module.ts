@@ -1,5 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, LOCALE_ID } from '@angular/core';
+import { registerLocaleData } from '@angular/common';
+import localeFr from '@angular/common/locales/fr';
+registerLocaleData(localeFr);
 
 import { HttpClientModule } from '@angular/common/http';
 
@@ -20,6 +23,8 @@ import { CarDescriptionComponent } from './car-description/car-description.compo
 import { OfferDetailComponent } from './offer-detail/offer-detail.component';
 import { OfferDepositComponent } from './offer-deposit/offer-deposit.component';
 import { OfferDepositImageComponent } from './offer-deposit-image/offer-deposit-image.component';
+
+
 
 @NgModule({
   declarations: [
@@ -45,7 +50,9 @@ import { OfferDepositImageComponent } from './offer-deposit-image/offer-deposit-
       { path: 'deposit/offerDepositImage/:offerId', component: OfferDepositImageComponent },
     ]),
   ],
-  providers: [DataService],
+  providers: [DataService,
+    {provide: LOCALE_ID,
+    useValue: 'fr-FR'}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

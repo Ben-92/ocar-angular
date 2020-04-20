@@ -1,8 +1,110 @@
 
-<div *ngIf="offerDetailObs  | async as offerDetail">
+<!--for each Offer retrieved in dabatabe, display the attributes-->
+<div *ngIf="offerDetailObs  | async as offerDetail" class="offer-detail">
 
-    <h1>Détail de l'annonce</h1>
+    <!-- <h1>Détail de l'annonce</h1> -->
 
+    <div class="offer-date-price">
+            <p>Annonce du {{offerDetail.date | date : 'dd/MM/yyyy'}}</p>
+            <p><strong>{{offerDetail.price | currency:'EUR':'symbol':'1.0-0'}}</strong></p>
+    </div>
+
+    <br *ngIf="offerDetail.images[0]">
+
+    <!--display images of the car if present-->
+    <div *ngIf="offerDetail.images[0]">
+        <!-- <h3>Photos</h3> -->
+
+        <div class="img-container">
+
+            <div class="img-elt" *ngFor="let image of offerDetail.images">
+                <img class="image-uploaded" src="data:image/jpeg;base64,{{image.picByte}}"> 
+            </div>
+
+        </div>
+    </div>
+
+    <br>
+
+    <!--table display of general details of an offer-->
+    <div class="item-container">
+        <h3 class="item-title">Détails :</h3>
+        <div class="offer-summary">
+            <table>
+                <tr>
+                    <th>Marque</th>
+                    <th>Modèle</th>
+                    <th>Année</th>
+                    <th>Boite de vitesse</th>
+                    <th>4 roues motrices</th>
+                </tr>
+        
+                <tr>
+                    <td>{{offerDetail.carBrand}}</td>
+                    <td>{{offerDetail.carModel}}</td>
+                    <td>{{offerDetail.year}}</td>
+                    <td>{{offerDetail.gearbox}}</td>
+                    <td *ngIf="offerDetail.fourWheelDrive==false">Non</td>
+                    <ng-template><td>Oui</td></ng-template>
+                </tr>
+            </table>
+            <!-- <h3>{{offerDetail.carBrand}} {{offerDetail.carModel}} de {{offerDetail.year}}</h3> -->
+        </div>
+    </div>
+
+
+    <br *ngIf="offerDetail.description">
+    <!--
+    <h3>Prix</h3>
+    <div class="offer-price">
+            <h3>{{offerDetail.price}} euros</h3>
+    </div>
+    -->
+
+    <!--if a description is present in database, displaying it-->
+    <div *ngIf="offerDetail.description" class="item-container">
+        <h3 class="item-title">Description :</h3>
+        <div  class="offer-description">
+                <p>{{offerDetail.description}}</p>
+        </div>
+    </div>
+
+    <br *ngIf="offerDetail.equipments[0]">
+
+    <!--display list of options and equipments if present-->
+    <div *ngIf="offerDetail.equipments[0]" class="item-container">
+        <h3 class="item-title">Options et équipements : </h3>
+        <div  class="offer-option-equipment">
+            <!--loop on equipment array to print equipement -->
+            <ul *ngFor="let equip of offerDetail.equipments">
+                <li>{{equip.label}}</li>
+            </ul>
+        </div>
+    </div>
+
+    <br>
+
+    <!--display information about the client who submitted the offer-->
+    <div class="item-container">
+        <h3 class="item-title">Informations sur le vendeur :</h3>
+        <div class="offer-seller-infos">
+                <p>Email: <strong>{{offerDetail.client.email}}</strong></p>
+        </div>
+    </div>
+
+    <br>
+
+
+    <div class="buy-buttons">
+        <button class="buy-choice-button">Acheter au comptant</button>
+        <button class="buy-choice-button">Acheter à crédit</button>
+    </div>
+
+
+
+</div>
+
+    <!--
     <table>
         <tr>
             <th>Id</th>
@@ -22,37 +124,4 @@
 
     </table>
 
-    <!--display list of options and equipments if present-->
-    <div *ngIf="offerDetail.equipments[0]">
-        <h3>Options et équipements</h3>
-
-        <!--loop on equipment array to print equipement -->
-        <ul *ngFor="let equip of offerDetail.equipments">
-            <li>{{equip.label}}</li>
-        </ul>
-    </div>
-
-    <br>
-
-     <!--display images of the car if present-->
-    <div *ngIf="offerDetail.images[0]">
-        <h3>Photos</h3>
-
-        <div class="img-container">
-
-            <div class="img-elt" *ngFor="let image of offerDetail.images">
-                <img class="image-uploaded" src="data:image/jpeg;base64,{{image.picByte}}"> 
-            </div>
-
-         </div>
-    </div>
-
-
-    <div class="buy-buttons">
-        <button class="buy-choice-button">Acheter comptant</button>
-        <button class="buy-choice-button">Acheter à crédit</button>
-    </div>
-
-
-
-</div>
+    -->

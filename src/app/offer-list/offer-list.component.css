@@ -1,10 +1,18 @@
-/*titles are centered */
+/*******************************************************************/
+/***************** General rules for the whole template ************/
+/*******************************************************************/
+
+/*titles h1 and h2 are page centered */
 h1, h2 {
     text-align: center;
 }
 
 
-/*container selector of deposit form items. Items are displayed in column and page centered*/
+/*******************************************************************/
+/***************** Form filter specific rules **********************/
+/*******************************************************************/
+
+/*container selector of deposit form items. Content form items are displayed in column and page centered*/
 .filter-form {
     display:flex;
     flex-direction: column;
@@ -14,7 +22,7 @@ h1, h2 {
 }
 
 
-/*form items are themselves container selector of their inner elements. Elements are displayed in row
+/*form content items are themselves container selector of their inner elements. Inner Elements are displayed in row
 and label and input at each side */
 .filter-form-elt {
     display:flex;
@@ -38,20 +46,27 @@ and label and input at each side */
 
 
 /*colorisation of input and error messages */
-.error-effect {
+/*.error-effect {
     background-color:lightcoral;
-}
+} */
 
+/*colorisation of input and informational/error messages */
 .error-effect-title, .message {
     color:lightcoral
 }
 
+/* the submit button "Filtrer les annonces" is page centered */
 .submit-button {
     /* margin-top:1%; */
     margin: 1% auto;
    
 }
 
+/*******************************************************************/
+/***************** Paging and sorting specific rules ***************/
+/*******************************************************************/
+
+/* sort choice and nb offer/page choice are diaplayed in row and page centered */ 
 .sort-nb-offer-choices {
     display: flex;
     flex-direction: row;
@@ -72,20 +87,22 @@ and label and input at each side */
     margin:auto;
 }
 
-/*flex to print all offers on a single column */
+/*******************************************************************/
+/***************** Displaying offer list specific rules ************/
+/*******************************************************************/
+
+/* offers are displayed on a single column */
 #offer-list{
     display:flex;
     flex-wrap:wrap;
     justify-content: center;
 }
 
-/*frame which contains 3 parts of an offer in a row */
-/*flex to display the 3 parts : text, consult detail link, showcase image */
+/* one frame contains 3 parts of an offer in a row : text, consult detail link, showcase image */
 .offer-list-result {
     background-color: silver;
     border : solid grey;
 
-    
     width: 50%;
    
     margin:10px;
@@ -99,7 +116,7 @@ and label and input at each side */
 }
 
 /*part one of an offer on the left side: short text description */
-/* flex n allows to adjust the space ratio that each element takes n= 1 for all indicates each takes the same space*/
+/* flex 1 allows to adjust the space ratio that each element takes n= 1 for all indicates each takes the same space*/
 .offer-list-text {
     text-align: left;
     
@@ -108,15 +125,17 @@ and label and input at each side */
 }
 
 /*part two of an offer on the center : detail consulting link */
+/* flex 1 allows to adjust the space ratio that each element takes n= 1 for all indicates each takes the same space*/
 .offer-list-link {
     text-align: center;
-    /* flex: 1 0 0; */
+
     flex: 1;
 }
 
 /*part three of an offer on the right side : showcase of the first image stored */
+/* flex 1 allows to adjust the space ratio that each element takes n= 1 for all indicates each takes the same space*/
 .offer-list-image{
-    /*flex: 1 0 0; */
+
     flex: 1;
    
     width:100%;                       
@@ -127,22 +146,17 @@ and label and input at each side */
     justify-content: center;
 }
 
-
+/* image takes full space of parent div and respecting image proportions */
 .image-showcase {
     max-width: 100%;
     max-height: 100%;
 }
 
-/*pagination list */
-ul {
-    list-style-type: none;
-}
+/*******************************************************************/
+/***************** Displaying offer list specific rules ************/
+/*******************************************************************/
 
-li {
-    border : 1px solid black;
-    border-collapse: collapse;
-}
-
+/* Pagination menu is displayed in a row */
 .pagination-items-list {
     display: flex;
     flex-direction: row;
@@ -150,13 +164,24 @@ li {
     justify-content: center;
 }
 
+/*pagination list items : no specific mark*/
+ul {
+    list-style-type: none;
+}
+
+
+li {
+    border : 1px solid black;
+    border-collapse: collapse;
+
+    padding-left: 1.5%;
+    padding-right: 1.5%;
+}
+
+
+/*the pagination choices which are not selectable are shown a bit less opaque */
 .is-disable {
    /* cursor: no-drop; */
     pointer-events: none;
     opacity: 0.3;
-}
-
-li {
-    padding-left: 1.5%;
-    padding-right: 1.5%;
 }

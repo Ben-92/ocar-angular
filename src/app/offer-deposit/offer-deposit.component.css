@@ -1,8 +1,16 @@
-/*center the titles */
+/*******************************************************************/
+/***************** General rules for the whole template ************/
+/*******************************************************************/
+
+/*center the h1 titles and the advice at the beginning of the page */
 h1, #advice {
     text-align: center;
 }
 
+
+/*******************************************************************/
+/***************** Specific rules **********************************/
+/*******************************************************************/
 
 /*container selector of deposit form items. Items are displayed in column and page centered*/
 .deposit-form {
@@ -33,15 +41,15 @@ and label and input at each side */
     justify-content: flex-end;
 
    /* width:80%; */
-   
+    
 }
 
 
-/*colorisation of input and error messages */
-.error-effect {
+/*.error-effect {
     background-color:lightcoral;
-}
+}*/
 
+/*colorisation of input and error/informationnal messages */
 .error-effect-title, .message {
     color:lightcoral
 }
@@ -52,9 +60,10 @@ and label and input at each side */
    
 }
 
+/*
 .image-uploaded {
     width: 20%;
     height: 20%;
-}
+} */
 
 

@@ -15,9 +15,6 @@ export class OfferListComponent implements OnInit {
 offerListObs;
 filteredOfferListObs;
 
-/*offerListRetrieved;
-offerPageRetrieved; */
-
 pageContent;
 contentTotalPages;
 contentTotalOffers;
@@ -33,16 +30,15 @@ orderCriteria;
 
 pageToDisplayChoice;
 
-test;
+/*test; */
 
 isFilterRequested;
 
-/*items : Array<any>; */
 
 brandList  =this.dataService.brands;
 modelList = this.dataService.models;
 yearList = this.dataService.years;
-/*offersPerPageList = this.dataService.offersPerPage;*/
+
 
 lowestBrandFilter;
 highestBrandFilter;
@@ -72,14 +68,10 @@ filterForm = this.formBuilder.group({
   constructor(private dataService: DataService, 
               private formBuilder: FormBuilder) { 
               }
-
-
    
   ngOnInit() {
 
     console.log('onInit');
-
-    /* fonctionnaliser cette fn et ajouter dans nginit l'init des sortcriteria 'date' et ordercriteria 'DESC'*/
     
     this.pageToDisplayChoice = 0;
     this.offersPerPage = 3;
@@ -96,10 +88,6 @@ filterForm = this.formBuilder.group({
     console.log('fiter: ' + this.isFilterRequested );
 
     this.determineSortAndOrder(sortCriteriaSelected);
-
-    /*ici tester si on est en filtre ou non et appeler la bonne méthode (filter ou full) */
-    /*pas besoin de rappeler la fn isFilterSelected : plutot tester une variable de classe que j'aurais positionné dans cette fn
-    appelée lorsque j'appuie sur le bouton filtrer*/
     
     this.pageToDisplayChoice = 0;
 
@@ -109,7 +97,6 @@ filterForm = this.formBuilder.group({
       this.getFullListOfOffers();
     }
 
-    /* this.ngOnInit(); */
   }
 
   onNbOffersPerPageChange(offersPerPageCriteria){
@@ -118,10 +105,6 @@ filterForm = this.formBuilder.group({
     console.log('fiter: ' + this.isFilterRequested );
 
     this.offersPerPage = offersPerPageCriteria;
-
-    /*ici tester si on est en filtre ou non et appeler la bonne méthode (filter ou full) */
-    /*pas besoin de rappeler la fn isFilterSelected : plutot tester une variable de classe que j'aurais positionné dans cette fn
-    appelée lorsque j'appuie sur le bouton filtrer*/
     
     this.pageToDisplayChoice = 0;
 
@@ -138,6 +121,17 @@ filterForm = this.formBuilder.group({
 
     console.log('displayPage');
     console.log('fiter: ' + this.isFilterRequested );
+
+    this.pageToDisplayChoice = pageToDisplay;
+
+
+    if (this.isFilterRequested){
+      this.getFilteredListOfOffers();
+    } else {
+      this.getFullListOfOffers();
+    }
+
+  } 
     
 
 /*displayPage
@@ -155,26 +149,12 @@ et dans ce cas là, je laisse par défaut un radio coché (manuel par exemple...
 commencer par l'option A/
 */
 
-this.pageToDisplayChoice = pageToDisplay;
-
-
-if (this.isFilterRequested){
-  this.getFilteredListOfOffers();
-} else {
-  this.getFullListOfOffers();
-}
-
-  } 
-
 
   onFilter(filteringValues) {
 
     console.log('onFilter');
 
     this.populateCriterias(filteringValues);
-
-    /*appeler isfilter car on peut ne pas avoir saisi de critères
-    en fait, ne l'appeler qu'ici, et sauvegarder en classe une variable qui indique si on a saisi un filtre */
 
     this.pageToDisplayChoice = 0;
     this.getFilteredListOfOffers();
@@ -355,174 +335,7 @@ if (this.isFilterRequested){
           this.orderCriteria = 'ASC';
           break;
     }
-    }
+  }
 
 
 }
-
-
-
-/*
-function isFilterSelected(){
-  console.log('isFilterSelected');
-  return false;
-} */
-
-
-
-              /*
-  ngOnInit() {
-
-    this.dataService.getOfferList()
-    .subscribe( {
-      next: (offerList) => {console.log(offerList);
-        this.offerListRetrieved = offerList;
-     },
-      error:err => {console.error(err);},        
-      complete : () => console.log('complete')});  
-  } */
-
-    /*
-    this.dataService.getOfferList(0, 4, this.sortCriteria, this.orderCriteria)
-    .pipe(
-      tap ((value:OfferPage) => {
-        this.actualPageNumber = value.number;
-        this.pageContent = value.content;
-
-        this.isFirstPage = value.first;
-        this.isLastPage = value.last;
-        
-        this.contentTotalPages = value.totalPages;
-        this.contentTotalOffers = value.totalElements;
-      }),
-    )
-    .subscribe( {
-      next: (offerPage) => {
-        console.log(offerPage);
-        console.log('next');
-     },
-      error:err => {console.error(err);},        
-      complete : () => console.log('complete')});  */
-
-    /*this.offerListObs = this.dataService.getOfferList(); */
-
-    /*
-this.getFullListOfOffers();
-*/
-
-   /* this.dataService.getOfferList(this.pageToDisplayChoice, 4, this.sortCriteria, this.orderCriteria)
-    .pipe(
-      tap ((value:OfferPage) => {
-        this.actualPageNumber = value.number;
-        this.pageContent = value.content;
-
-        this.isFirstPage = value.first;
-        this.isLastPage = value.last;
-        
-        this.contentTotalPages = value.totalPages;
-        this.contentTotalOffers = value.totalElements;
-      }),
-    )
-    .subscribe( {
-      next: (offerPage) => {
-        console.log(offerPage);
-        console.log('next');
-     },
-      error:err => {console.error(err);},        
-      complete : () => console.log('complete')});  */
-
-        /*
-    if (filteringValues.dptCode > '' ){
-      this.lowestPostCodeFilter = filteringValues.dptCode + '000';
-      this.highestPostCodeFilter = filteringValues.dptCode + '999';
-    } else {
-      this.lowestPostCodeFilter = '00000';
-      this.highestPostCodeFilter = '99999';
-    }
-
-    if (filteringValues.carBrand > '' ){
-      this.lowestBrandFilter = filteringValues.carBrand;
-      this.highestBrandFilter = filteringValues.carBrand;
-    } else {
-      this.lowestBrandFilter = '';
-      this.highestBrandFilter = 'zzz';
-    }
-
-    if (filteringValues.carModel > '' ){
-      this.lowestModelFilter = filteringValues.carModel;
-      this.highestModelFilter = filteringValues.carModel;
-    } else {
-      this.lowestModelFilter = '';
-      this.highestModelFilter = 'zzz';
-    }
-
-    if (filteringValues.year > '' ){
-      this.lowestYearFilter = filteringValues.year;
-      this.highestYearFilter = filteringValues.year;
-    } else {
-      this.lowestYearFilter = '0';
-      this.highestYearFilter = '9999';
-    }
-
-    this.gearboxFilter = filteringValues.gearbox;
-
-    if (filteringValues.lowestPrice > '' ){
-      this.lowestPriceFilter = filteringValues.lowestPrice;
-    } else {
-      this.lowestPriceFilter = '0';
-    }
-
-    if (filteringValues.highestPrice > '' ){
-      this.highestPriceFilter = filteringValues.highestPrice;
-    } else {
-      this.highestPriceFilter = '999999999';
-    } */
-
- /*   this.offerListObs = this.dataService.getFilteredOfferList(
-      this.lowestBrandFilter,
-      this.highestBrandFilter,
-      this.lowestModelFilter,
-      this.highestModelFilter,
-      this.lowestPostCodeFilter,
-      this.highestPostCodeFilter,
-      this.lowestYearFilter,
-      this.highestYearFilter,
-      this.gearboxFilter,
-      this.lowestPriceFilter,
-      this.highestPriceFilter); */
-
-      
-
-      /*
-      this.dataService.getFilteredOfferList(
-      this.lowestBrandFilter,
-      this.highestBrandFilter,
-      this.lowestModelFilter,
-      this.highestModelFilter,
-      this.lowestPostCodeFilter,
-      this.highestPostCodeFilter,
-      this.lowestYearFilter,
-      this.highestYearFilter,
-      this.gearboxFilter,
-      this.lowestPriceFilter,
-      this.highestPriceFilter,
-      this.pageToDisplayChoice, 4, this.sortCriteria, this.orderCriteria)
-      .pipe(
-        tap ((value:OfferPage) => {
-          this.actualPageNumber = value.number;
-          this.pageContent = value.content;
-  
-          this.isFirstPage = value.first;
-          this.isLastPage = value.last;
-          
-          this.contentTotalPages = value.totalPages;
-          this.contentTotalOffers = value.totalElements;
-        }),
-      )
-      .subscribe( {
-        next: (offerPage) => {
-          console.log(offerPage);
-          console.log('next');
-       },
-        error:err => {console.error(err);},        
-        complete : () => console.log('complete')});  */
