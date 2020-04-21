@@ -3,10 +3,6 @@
 /***************** General rules for the whole template ************/
 /*******************************************************************/
 
-/*center he titles 
-h1 {
-    text-align: center;
-} */
 
 /***************** general container **********************************/
 .offer-detail {
@@ -19,10 +15,6 @@ h1 {
 
 .img-container, .offer-summary, .offer-description, .offer-option-equipment, .offer-seller-infos {
     border : 1px solid black;
-    /* border-collapse: collapse; */
-
-   /* width:100%;
-    margin : auto; */
 }
 
 /***************** relative width for all details content ******************************/
@@ -49,14 +41,9 @@ h1 {
 p {
     font-size: 1.2em;
 
-    /*font-size: x-large; */
 }
 
 
-/*
-h3.item-title {
-    text-align: left;
-} */
 
 /*******************************************************************/
 /***************** Specific rules **********************************/
@@ -70,9 +57,6 @@ h3.item-title {
     flex-direction: row;
     justify-content: space-between;
 
-   /* width:100%;
-    margin : auto; */
-
 }
 
 /***************** offer description **********************************/
@@ -83,7 +67,6 @@ h3.item-title {
 
     line-height: normal;
 
-    /*margin: 1%;*/
 }
 
 /***************** seller information **********************************/
@@ -110,9 +93,7 @@ table {
 
 th, td {
     text-align: center;
-    /*margin:auto; */
-    /*min-width: 15% ;
-    padding-right : 15%; */
+
 }
 
 
@@ -124,10 +105,6 @@ th, td {
     align-items: center;
 
     overflow: scroll;
-
-    /*border: 5px solid blue; */
-    /*flex-wrap:wrap; suppressed to manage scroll */
-    /*justify-content: flex-start; replace by margin auto in children elements*/
 
 }
 
@@ -145,10 +122,6 @@ th, td {
     flex-direction: column;
     justify-content: center;
 
-    /*background-color: grey; */
-   /* border: 1px solid green; */
-    /*width : 30%; */
-    /* margin:1%; */
 } 
 
 /*reducing image size into parent div and center image */
@@ -160,7 +133,6 @@ th, td {
 
     margin:auto;
 
-    /*border: 5px solid red;*/
 }
 
 /*****************  choice buttons **********************************/
@@ -173,14 +145,3 @@ th, td {
     margin : 1%;
 
 }
-
-
-/* center the list of equipment and give it a 20% width wich is large enough to contain labels of equipment */
-/* ul {
-    margin : auto;
-    width : 20%;
-}
-
-li {
-    text-align: left;
-} */

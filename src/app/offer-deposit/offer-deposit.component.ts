@@ -50,8 +50,6 @@ export class OfferDepositComponent implements OnInit {
   }
 
 
-  
-
   /**
    * adding an offer to a client and retrieving its id
    * @param offerDeposit form value with data of the Offer model
@@ -83,8 +81,6 @@ export class OfferDepositComponent implements OnInit {
           complete : () => this.message = "Annonce " + this.offerIdCreated + " enregistrée!"});
 
   }
-
-
 
 
 }

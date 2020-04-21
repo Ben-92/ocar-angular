@@ -12,34 +12,46 @@ import { OfferPage } from '../offer-page';
 })
 export class OfferListComponent implements OnInit {
 
+  /*
 offerListObs;
-filteredOfferListObs;
+filteredOfferListObs; */
 
+/* full data content of one Offer Page */  
 pageContent;
+/* total number of pages retrieved */
 contentTotalPages;
+/* total number of offers retrieved */
 contentTotalOffers;
+
+/* the actual page index displayed */
 actualPageNumber;
+
+/* indicates if it's the first page displayed */
 isFirstPage;
+/* indicates if it's the last page displayed */
 isLastPage;
 
+/* last character which indicates plural or singular */ 
 singularPluralChar;
 
+/* actual nb offers per page at instant i */
 offersPerPage;
+/* actual sort criteria at instant i */
 sortCriteria;
+/* actual order criteria at instant i */
 orderCriteria;
+/* actual page to display */
+pageToDisplay;
 
-pageToDisplayChoice;
-
-/*test; */
-
+/* indicates if a filter criteria is selected in the filter form */
 isFilterRequested;
 
-
+/* retrieving service data : list of brands, models, years */
 brandList  =this.dataService.brands;
 modelList = this.dataService.models;
 yearList = this.dataService.years;
 
-
+/* list of possible filter boundaries */
 lowestBrandFilter;
 highestBrandFilter;
 lowestModelFilter;
@@ -73,15 +85,20 @@ filterForm = this.formBuilder.group({
 
     console.log('onInit');
     
-    this.pageToDisplayChoice = 0;
+    /* initialize the paging and sort criteria for the first time display */
+    this.pageToDisplay = 0;
     this.offersPerPage = 3;
     this.sortCriteria = 'date';
     this.orderCriteria = 'DESC';
 
-    this.getFullListOfOffers();
+    this.getPageOfOffers();
 
   } 
 
+  /**
+   * new page display after sort criteria change 
+   * @param sortCriteriaSelected form value with sort criteria selected by user
+   */
   onSortSelectChange(sortCriteriaSelected){
 
     console.log('onSortSelectChange');
@@ -89,16 +106,20 @@ filterForm = this.formBuilder.group({
 
     this.determineSortAndOrder(sortCriteriaSelected);
     
-    this.pageToDisplayChoice = 0;
+    this.pageToDisplay = 0;
 
     if (this.isFilterRequested){
-      this.getFilteredListOfOffers();
+      this.getFilteredPageOfOffers();
     } else {
-      this.getFullListOfOffers();
+      this.getPageOfOffers();
     }
 
   }
 
+  /**
+   * new page display after nb of offer per page change
+   * @param offersPerPageCriteria number of offers per parge choice
+   */
   onNbOffersPerPageChange(offersPerPageCriteria){
 
     console.log('onNbOffersPerPageChange');
@@ -106,71 +127,66 @@ filterForm = this.formBuilder.group({
 
     this.offersPerPage = offersPerPageCriteria;
     
-    this.pageToDisplayChoice = 0;
+    this.pageToDisplay = 0;
 
     if (this.isFilterRequested){
-      this.getFilteredListOfOffers();
+      this.getFilteredPageOfOffers();
     } else {
-      this.getFullListOfOffers();
+      this.getPageOfOffers();
     }
 
   }
 
-
-  displayPage(pageToDisplay){
+/**
+ * new page display after click on pagination choice
+ * @param pageToDisplayChoice number of the page to display
+ */
+  displayPaginationPage(pageToDisplayChoice){
 
     console.log('displayPage');
     console.log('fiter: ' + this.isFilterRequested );
 
-    this.pageToDisplayChoice = pageToDisplay;
+    this.pageToDisplay = pageToDisplayChoice;
 
 
     if (this.isFilterRequested){
-      this.getFilteredListOfOffers();
+      this.getFilteredPageOfOffers();
     } else {
-      this.getFullListOfOffers();
+      this.getPageOfOffers();
     }
 
   } 
-    
-
-/*displayPage
-A/ ici ajouter : si un filtre est saisi dans le formulaire de filtre, passer par le http Filter, sinon par le get 
-0/d'abord modifier le form en désactivant par défaut un choix de radio button et créer une requète filter+page en incluant une clause radio between
-1/tester si l'un des critères du formfilter est saisi (tester champ par champ, ce qui veut dire même le radio, ie il ne faut pas préchecker
-  ie il faut modifier la requète en incluant le radio between)
-2/ si modifié alors lanver la requète filter+page
-3/ sinon lancer la requète page
-
-B/
-autre option : lancer la requète filter+page dans tous les cas, même si pas de filtre, même en arrivant sur l'écran
-je pense que c'est le mieux car de toute façon, les gens mettront un filtre nécessairement
-et dans ce cas là, je laisse par défaut un radio coché (manuel par exemple...non je décoche et je modifie la requète)
-commencer par l'option A/
-*/
 
 
+/**
+ * new page display after submitting criteria filter form
+ * @param filteringValues filter form values
+ */
   onFilter(filteringValues) {
 
     console.log('onFilter');
 
     this.populateCriterias(filteringValues);
 
-    this.pageToDisplayChoice = 0;
-    this.getFilteredListOfOffers();
+    this.pageToDisplay = 0;
+    this.getFilteredPageOfOffers();
 
   }
 
-  getFullListOfOffers(){
+  /**
+   * retrieving a non filtered page of offers
+   */
+  getPageOfOffers(){
 
-    console.log('getFullListOfOffers');
-    console.log(this.pageToDisplayChoice);
+    console.log('getPageOfOffers');
+    console.log(this.pageToDisplay);
     console.log(this.sortCriteria);
     console.log(this.orderCriteria);
 
 
-    this.dataService.getOfferList(this.pageToDisplayChoice, this.offersPerPage, this.sortCriteria, this.orderCriteria)
+    this.dataService.getOfferPage(this.pageToDisplay, this.offersPerPage, this.sortCriteria, this.orderCriteria)
     .pipe(
+      /* retrieving page informations before displaying it */
       tap ((value:OfferPage) => {
         this.actualPageNumber = value.number;
         this.pageContent = value.content;
@@ -191,20 +207,23 @@ commencer par l'option A/
     .subscribe( {
       next: (offerPage) => {
         console.log(offerPage);
-        /*console.log('next');*/
+
      },
       error:err => {console.error(err);}});        
       /*complete : () => console.log('complete')}); */ 
   }
 
-  getFilteredListOfOffers(){
+  /**
+   * retrieving a filtered page of offers
+   */
+  getFilteredPageOfOffers(){
 
     console.log('getFilteredOffers'); 
-    console.log(this.pageToDisplayChoice);
+    console.log(this.pageToDisplay);
     console.log(this.sortCriteria);
     console.log(this.orderCriteria);
 
-    this.dataService.getFilteredOfferList(
+    this.dataService.getFilteredOfferPage(
     this.lowestBrandFilter,
     this.highestBrandFilter,
     this.lowestModelFilter,
@@ -216,10 +235,11 @@ commencer par l'option A/
     this.gearboxFilter,
     this.lowestPriceFilter,
     this.highestPriceFilter,
-    this.pageToDisplayChoice, this.offersPerPage, this.sortCriteria, this.orderCriteria)
+    this.pageToDisplay, this.offersPerPage, this.sortCriteria, this.orderCriteria)
     .pipe(
+      /* retrieving page informations before displaying it */
       tap ((value:OfferPage) => {
-        this.actualPageNumber = value.number;
+        this.actualPageNumber = value.number; 
         this.pageContent = value.content;
   
         this.isFirstPage = value.first;
@@ -238,12 +258,16 @@ commencer par l'option A/
     .subscribe( {
       next: (offerPage) => {
         console.log(offerPage);
-        /*console.log('next');*/
+
      },
       error:err => {console.error(err);}});        
       /*complete : () => console.log('complete')});  */
   }
 
+  /**
+   * populating criterias for the http GET filtered request, from the filter form values
+   * @param filteringValues filter form values
+   */
   populateCriterias(filteringValues){
 
     console.log('populateCriterias'); 
@@ -304,6 +328,10 @@ commencer par l'option A/
   
   }
 
+  /**
+   * determining sort criteria and order criteria from template field selected
+   * @param sortCriteriaSelected 
+   */
   determineSortAndOrder(sortCriteriaSelected){
 
     console.log('determineSortAndOrder'); 

@@ -2,7 +2,6 @@
 <!--for each Offer retrieved in dabatabe, display the attributes-->
 <div *ngIf="offerDetailObs  | async as offerDetail" class="offer-detail">
 
-    <!-- <h1>Détail de l'annonce</h1> -->
 
     <div class="offer-date-price">
             <p>Annonce du {{offerDetail.date | date : 'dd/MM/yyyy'}}</p>
@@ -13,7 +12,6 @@
 
     <!--display images of the car if present-->
     <div *ngIf="offerDetail.images[0]">
-        <!-- <h3>Photos</h3> -->
 
         <div class="img-container">
 
@@ -48,18 +46,12 @@
                     <ng-template><td>Oui</td></ng-template>
                 </tr>
             </table>
-            <!-- <h3>{{offerDetail.carBrand}} {{offerDetail.carModel}} de {{offerDetail.year}}</h3> -->
         </div>
     </div>
 
 
     <br *ngIf="offerDetail.description">
-    <!--
-    <h3>Prix</h3>
-    <div class="offer-price">
-            <h3>{{offerDetail.price}} euros</h3>
-    </div>
-    -->
+
 
     <!--if a description is present in database, displaying it-->
     <div *ngIf="offerDetail.description" class="item-container">
@@ -103,25 +95,3 @@
 
 
 </div>
-
-    <!--
-    <table>
-        <tr>
-            <th>Id</th>
-            <th>Année</th>
-            <th>Boite de vitesse</th>
-            <th>Couleur extérieure </th>
-            <th>4 roues motrices</th>
-        </tr>
-
-        <tr>
-            <td>{{offerDetail.id}}</td>
-            <td>{{offerDetail.year}}</td>
-            <td>{{offerDetail.gearbox}}</td>
-            <td>{{offerDetail.outerColor}}</td>
-            <td>{{offerDetail.fourWheelDrive}}</td>
-        </tr>
-
-    </table>
-
-    -->

@@ -180,14 +180,14 @@
   <!--Pagination menu-->
   <ul *ngIf="contentTotalOffers > 0" class="pagination-items-list">
       <li class="pagination-item">
-        <a [ngClass]="{'is-disable': isFirstPage}" href=# (click)="displayPage(0)">Première page</a>
+        <a [ngClass]="{'is-disable': isFirstPage}" href=# (click)="displayPaginationPage(0)">Première page</a>
       </li>
       <li class="pagination-item">
-        <a [ngClass]="{'is-disable': isFirstPage}" href=# (click)="displayPage(actualPageNumber - 1)">Page précédente</a>
+        <a [ngClass]="{'is-disable': isFirstPage}" href=# (click)="displayPaginationPage(actualPageNumber - 1)">Page précédente</a>
       </li>
       <li class="pagination-item">Page {{actualPageNumber + 1}}/{{contentTotalPages}}</li>
       <li class="pagination-item">
-        <a [ngClass]="{'is-disable': isLastPage}" href=# (click)="displayPage(actualPageNumber + 1)">Page suivante</a>
+        <a [ngClass]="{'is-disable': isLastPage}" href=# (click)="displayPaginationPage(actualPageNumber + 1)">Page suivante</a>
       </li>
   </ul>
 

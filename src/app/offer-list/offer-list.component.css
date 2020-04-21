@@ -29,8 +29,6 @@ and label and input at each side */
     flex-direction: row;
     justify-content: space-between;
 
-   /* width:80%; */
-
     margin-top:1%;
 }
 
@@ -39,16 +37,9 @@ and label and input at each side */
     display:flex;
     flex-direction: row;
     justify-content: flex-end;
-
-   /* width:80%; */
    
 }
 
-
-/*colorisation of input and error messages */
-/*.error-effect {
-    background-color:lightcoral;
-} */
 
 /*colorisation of input and informational/error messages */
 .error-effect-title, .message {
@@ -57,7 +48,7 @@ and label and input at each side */
 
 /* the submit button "Filtrer les annonces" is page centered */
 .submit-button {
-    /* margin-top:1%; */
+
     margin: 1% auto;
    
 }
@@ -181,7 +172,7 @@ li {
 
 /*the pagination choices which are not selectable are shown a bit less opaque */
 .is-disable {
-   /* cursor: no-drop; */
+
     pointer-events: none;
     opacity: 0.3;
 }

@@ -7,9 +7,7 @@ registerLocaleData(localeFr);
 import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
-/*
-import { AdListComponent } from './ad-list/ad-list.component';
-*/
+
 
 import { RouterModule } from '@angular/router';
 
@@ -29,7 +27,6 @@ import { OfferDepositImageComponent } from './offer-deposit-image/offer-deposit-
 @NgModule({
   declarations: [
     AppComponent,
-    /*AdListComponent,*/
     OfferListComponent,
     TopBarComponent,
     CarDescriptionComponent,
@@ -45,7 +42,6 @@ import { OfferDepositImageComponent } from './offer-deposit-image/offer-deposit-
     RouterModule.forRoot([
       { path: '', component: OfferListComponent },
       { path: 'deposit', component: OfferDepositComponent },
-      /*{ path: 'car/:carId', component: CarDescriptionComponent },*/
       { path: 'offerDetail/:offerId', component: OfferDetailComponent },
       { path: 'deposit/offerDepositImage/:offerId', component: OfferDepositImageComponent },
     ]),

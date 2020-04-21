@@ -41,17 +41,6 @@ export class OfferDepositImageComponent implements OnInit {
     this.selectedFile = event.target.files[0]
   }
 
-  /**
-   * adding an uploaded image to database
-   */
-  /*
-  onUpload() {
-    this.dataService.addImageToDb(this.offerIdOnUse,  this.selectedFile)
-    .subscribe({
-      error:err => {console.error(err);
-                    this.message = "Erreur : image non enregistrée";},
-      complete : () => this.message = "Image enregistrée!"});
-  } */
 
   /**
    * adding an uploaded image to database and get offer 

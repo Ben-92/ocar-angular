@@ -29,8 +29,6 @@ and label and input at each side */
     flex-direction: row;
     justify-content: space-between;
 
-   /* width:80%; */
-
     margin-top:1%;
 }
 
@@ -40,14 +38,9 @@ and label and input at each side */
     flex-direction: row;
     justify-content: flex-end;
 
-   /* width:80%; */
     
 }
 
-
-/*.error-effect {
-    background-color:lightcoral;
-}*/
 
 /*colorisation of input and error/informationnal messages */
 .error-effect-title, .message {
@@ -55,15 +48,9 @@ and label and input at each side */
 }
 
 .submit-button {
-    /* margin-top:1%; */
+
     margin: 1% auto;
    
 }
-
-/*
-.image-uploaded {
-    width: 20%;
-    height: 20%;
-} */
 
 

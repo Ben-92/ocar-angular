@@ -14,15 +14,15 @@ export class DataService {
 
   constructor(private httpClient: HttpClient) { }
 
-/**
- * getting list of offers in database, without any selection criteria
- */
-/*
-  getOfferList() {
-    return this.httpClient.get('http://localhost:8080/api/offers');
-  }
-  */
- getOfferList(pageNumberParam, pageSizeParam, sortParam, directionParam) {
+
+  /**
+   * GET request to retrieve a non filtered Offer Page
+   * @param pageNumberParam   the number of the page to display
+   * @param pageSizeParam     number of offers per page
+   * @param sortParam         sort criteria
+   * @param directionParam    sort direction
+   */
+ getOfferPage(pageNumberParam, pageSizeParam, sortParam, directionParam) {
  
   let params = new HttpParams();
   params = params.append('pageNumber', pageNumberParam);
@@ -46,13 +46,24 @@ export class DataService {
 
 
 /**
- * getting filtered list of offers
- * @param brand filter on brand
- * @param lowest filter on lowest price
- * @param highest filter on highest price
+ * GET request to retrieve a filtered Offer Page
+ * @param lowestBrandFilter     Brand min value 
+ * @param highestBrandFilter    Brand max value 
+ * @param lowestModelFilter     Model min value 
+ * @param highestModelFilter    Model max value 
+ * @param lowestPostCodeFilter  PostCode min value 
+ * @param highestPostCodeFilter PostCode max value
+ * @param lowestYearFilter      Vehicle Year min value
+ * @param highestYearFilter     Vehicle Year max value 
+ * @param gearboxFilter         gearbox value
+ * @param lowestPriceFilter     Vehicle price min value
+ * @param highestPriceFilter    Vehicle price max value
+ * @param pageNumberParam       number of the Page to retrieve 
+ * @param pageSizeParam         number of Offers per page
+ * @param sortParam             sort criteria
+ * @param directionParam        direction of sorting
  */
-
- getFilteredOfferList(lowestBrandFilter,
+ getFilteredOfferPage(lowestBrandFilter,
   highestBrandFilter,
   lowestModelFilter,
   highestModelFilter,
@@ -168,7 +179,7 @@ export class DataService {
   ]
 
   /**
- * list of years for a car model
+ * list of years for a vehicle
  */
 years  = [
   {"yearValue": "2020" },
