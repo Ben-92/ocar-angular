@@ -33,6 +33,10 @@ export class OfferDepositComponent implements OnInit {
   /*Id of the Offer created by the http POST request creating an offer for a client*/
   offerIdCreated;
 
+  currentUser: any;
+
+  userIdCreatingOffer;
+
 
   depositForm = this.formBuilder.group({
     postalCode: ['',[Validators.required, Validators.minLength(5), Validators.maxLength(5), Validators.pattern('[0-9]*')]],
@@ -51,7 +55,8 @@ export class OfferDepositComponent implements OnInit {
               private formBuilder: FormBuilder,
               private tokenStorageService: TokenStorageService,
               private router: Router,
-              private route: ActivatedRoute) { }
+              private route: ActivatedRoute,
+              ) { }
 
   ngOnInit() {
 
@@ -81,10 +86,16 @@ export class OfferDepositComponent implements OnInit {
       return;
     }
 
+    /* retrieving User id*/
+    this.currentUser = this.tokenStorageService.getUser();
+    this.userIdCreatingOffer = this.currentUser.id;
+    console.log(this.userIdCreatingOffer);
+
+
     /*adding date time to the submitted offer */
     offerDeposit.date = new Date();
 
-    this.dataService.addOfferToClient(1, offerDeposit)
+    this.dataService.addOfferToUser(this.userIdCreatingOffer, offerDeposit)
         .pipe(
           tap ((value:Offer) => {
           this.offerIdCreated = value.id;

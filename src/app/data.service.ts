@@ -107,8 +107,13 @@ export class DataService {
    * @param clientId Id of the client who deposit a new offer
    * @param offerDeposit form values containing offer data
    */
+  /*
   addOfferToClient(clientId, offerDeposit) {
     return this.httpClient.post<Offer>('http://localhost:8080/api/clients/' + clientId + '/offer', offerDeposit);
+  } */
+
+  addOfferToUser(userId, offerDeposit) {
+    return this.httpClient.post<Offer>('http://localhost:8080/api/users/' + userId + '/offer', offerDeposit);
   }
 
 
