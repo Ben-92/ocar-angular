@@ -13,12 +13,22 @@ h1, #advice {
 /*******************************************************************/
 
 /*container selector of deposit form items. Items are displayed in column and page centered*/
+
 .deposit-form {
     display:flex;
     flex-direction: column;
 
     margin : auto;
     width:30%;
+
+   /* pointer-events: none;
+    opacity: 0.3; */
+} 
+
+.is-disable {
+
+    pointer-events: none;
+    opacity: 0.3;
 }
 
 

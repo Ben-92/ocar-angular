@@ -8,6 +8,10 @@ import { Offer } from '../offer';
 import {map, tap} from 'rxjs/operators';
 import { concat } from 'rxjs';
 
+import { TokenStorageService } from '../_services/token-storage.service';
+
+import { Router, ActivatedRoute } from '@angular/router'; 
+
 @Component({
   selector: 'app-offer-deposit',
   templateUrl: './offer-deposit.component.html',
@@ -15,6 +19,7 @@ import { concat } from 'rxjs';
 })
 export class OfferDepositComponent implements OnInit {
   
+  isLoggedIn = false;
 
   brandList  =this.dataService.brands;
   modelList = this.dataService.models;
@@ -43,19 +48,30 @@ export class OfferDepositComponent implements OnInit {
     date:''
   })
   constructor(private dataService: DataService,
-              private formBuilder: FormBuilder) { }
+              private formBuilder: FormBuilder,
+              private tokenStorageService: TokenStorageService,
+              private router: Router,
+              private route: ActivatedRoute) { }
 
   ngOnInit() {
+
+    console.log('offer-deposit component');
+
+    this.isLoggedIn = !!this.tokenStorageService.getToken();
+
+    /*window.location.reload();*/
     
   }
 
+  onLoginchoice(){
+    this.router.navigate(['/login'], {queryParams : {sourceURL:'/deposit'}})
+  }
 
   /**
    * adding an offer to a client and retrieving its id
    * @param offerDeposit form value with data of the Offer model
    */
   onDeposit(offerDeposit) {
-
 
     this.isSubmitted = true;
 

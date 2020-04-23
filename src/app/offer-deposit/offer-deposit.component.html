@@ -1,5 +1,5 @@
 
-<h5 id="advice">Les champs marqués d'un (*) sont obligatoires</h5>
+
 
 <nav class="nav-bar-deposit">
   <ul>
@@ -11,11 +11,22 @@
   </ul>
 </nav>
 
+<div *ngIf="!isLoggedIn">
+  <p>Connectez-vous ou enregistrez-vous pour déposer une annonce</p>
+
+  <!--<a routerLink="/login" queryParams="{redirectURL:/deposit}">Se connecter</a> -->
+  <button (click)="onLoginchoice()">Se connecter</button> 
+  <button routerLink="/register">S'enregistrer</button>
+
+</div>
+
 <!--deposit form containing basis information and corresponding to Offer entity in the model-->
-<h1>Nouvelle annonce</h1>
 <form [formGroup]="depositForm" (ngSubmit)="onDeposit(depositForm.value)">
 
   <div class="deposit-form">
+
+      <h1>Nouvelle annonce</h1>
+      <h5 id="advice">Les champs marqués d'un (*) sont obligatoires</h5>
 
     <div class="deposit-form-elt">
       <label for="post-code">Code postal où se trouve le véhicule (*):</label>

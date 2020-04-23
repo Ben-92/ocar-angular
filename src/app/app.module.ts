@@ -56,7 +56,7 @@ import { BoardUserComponent } from './board-user/board-user.component';
     BrowserModule,
     HttpClientModule,
     RouterModule.forRoot([
-      { path: '', component: OfferListComponent },
+      { path: '', component: OfferListComponent }, 
       { path: 'deposit', component: OfferDepositComponent },
       { path: 'offerDetail/:offerId', component: OfferDetailComponent },
       { path: 'deposit/offerDepositImage/:offerId', component: OfferDepositImageComponent },
@@ -67,7 +67,7 @@ import { BoardUserComponent } from './board-user/board-user.component';
       { path: 'user', component: BoardUserComponent },
       { path: 'mod', component: BoardModeratorComponent },
       { path: 'admin', component: BoardAdminComponent },
-      { path: '', redirectTo: 'home', pathMatch: 'full' }
+      { path: '', redirectTo: 'home', pathMatch: 'full' } 
     ]),
   ],
   providers: [DataService,

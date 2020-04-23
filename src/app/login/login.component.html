@@ -73,6 +73,9 @@
       <div class="alert alert-success" *ngIf="isLoggedIn">
         Logged in as {{ roles }}.
       </div>
+     
+        <button *ngIf="isLoggedIn && autoDisplayLoginForm" (click)="onGoBack()">Continuer</button>
+      
     </div>
   </div>
   
