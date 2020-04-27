@@ -3,11 +3,35 @@
 
 <nav class="nav-bar">
     <ul>
+      <li><a href="/home" routerLink="home">Home </a></li>
+      <li *ngIf="showAdminBoard">
+          <a href="/admin" routerLink="admin">Admin Board</a>
+      </li>
+      <li *ngIf="showModeratorBoard">
+          <a href="/mod" routerLink="mod">Moderator Board</a>
+      </li>
+      <li *ngIf="isLoggedIn">
+          <a href="/user" routerLink="user">User</a>
+      </li>
+    </ul>
+
+    <ul>
         <li><a routerLink="/deposit">Déposer une annonce</a></li>
         <li><a routerLink="">Liste des annonces</a></li>
+      </ul>
+
+    <ul *ngIf="!isLoggedIn">
+      <li><a href="/register" routerLink="register">S'inscrire</a></li>
+      <li><a href="/login" routerLink="login">Se connecter</a></li>
+    </ul>
+
+    <ul *ngIf="isLoggedIn">
+        <li><a href="/profile" routerLink="profile">{{ username }}</a></li>
+        <li><a href (click)="logout()">LogOut</a></li>
     </ul>
 </nav>
 
+<!--
 <div id="app">
     <nav class="navbar navbar-expand navbar-dark bg-dark">
       <a href="#" class="navbar-brand">bezKoder</a>
@@ -45,8 +69,10 @@
       </ul>
     </nav>
   
+    
     <div class="container">
       <router-outlet></router-outlet>
-    </div>
+    </div> 
   </div>
+  -->
   

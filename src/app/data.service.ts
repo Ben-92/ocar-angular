@@ -130,6 +130,11 @@ export class DataService {
     return this.httpClient.post('http://localhost:8080/api/offers/' + offerIdOnUse + '/images', uploadData);
   }
 
+  addEquipmentToDb(offerIdOnUse, equipmentList) {
+
+    return this.httpClient.post('http://localhost:8080/api/offers/' + offerIdOnUse + '/equipments', equipmentList);
+  }
+
 
   /**
    * get request to retrieve an image, giving its name
@@ -156,7 +161,21 @@ export class DataService {
     ]
 
   /*list of equipments a client can choose from */
-  equipments : Equipment[] = [
+  /* ! do not change the first label of each type*/
+  /* ! labels of the same type must be grouped*/
+  equipments : Equipment[] = 
+  [
+    { "type": "interior", "label": "Sièges cuir"},
+    { "type": "interior", "label": "Volant Alcantara" },
+    { "type": "exterior", "label": "Jantes Alu 17"   },
+    { "type": "exterior", "label": "Peinture métallisée" },
+    { "type": "comfort", "label": "Suspensions adaptables"},
+    { "type": "comfort", "label": "Sièges chauffants" },
+    { "type": "comfort", "label": "rétros dorés" },
+    { "type": "comfort", "label": "rétros argentés" },
+    { "type": "comfort", "label": "rétros platine" },
+  ]
+  /*[
     {
       "type": "interior",
       "label": "Sièges cuir"
@@ -181,7 +200,7 @@ export class DataService {
       "type": "Comfort",
       "label": "Sièges chauffants"
     }
-  ]
+  ] */
 
   /**
  * list of years for a vehicle

@@ -86,12 +86,14 @@ constructor(private authService: AuthService,
     window.location.reload();
   }
 
+  
   onGoBack() {
     console.log(this.sourceURL);
     this.router.navigate([this.sourceURL]);
 
-  }
+  } 
 
+  /*
   goBack() {
 
     setTimeout(function(){
@@ -99,14 +101,14 @@ constructor(private authService: AuthService,
 
     console.log('goBack');
     console.log(this.sourceURL);
-    this.router.navigate([this.sourceURL]);
+    this.router.navigate([this.sourceURL]); */
 
     /*setTimeout(function(){
       console.log('goBack');
       console.log(this.sourceURL);
       this.router.navigate([this.sourceURL])},4000)*/
  
-    /*this.router.navigate([this.sourceURL]); */
-  }
+    /*this.router.navigate([this.sourceURL]); 
+  } */
 
 }

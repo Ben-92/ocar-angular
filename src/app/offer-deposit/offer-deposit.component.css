@@ -14,12 +14,21 @@ h1, #advice {
 
 /*container selector of deposit form items. Items are displayed in column and page centered*/
 
+.if-not-connected {
+    text-align: center;
+}
+.if-not-connected-button {
+/*display: inline;*/
+margin:1%;
+
+}
+
 .deposit-form {
     display:flex;
     flex-direction: column;
 
     margin : auto;
-    width:30%;
+    width:33%;
 
    /* pointer-events: none;
     opacity: 0.3; */
@@ -32,6 +41,8 @@ h1, #advice {
 }
 
 
+
+
 /*form items are themselves container selector of their inner elements. Elements are displayed in row
 and label and input at each side */
 .deposit-form-elt {
@@ -41,6 +52,12 @@ and label and input at each side */
 
     margin-top:1%;
 }
+
+/* simulating h3 font size and font weight for deposit-form element label style */
+/*.deposit-form-elt-label { 
+    font-size: 1.13em;
+    font-weight: bold;
+} */
 
 /*radio buttons are displayed at extreme right of the element */
 .deposit-form-elt-radio {

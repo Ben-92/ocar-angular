@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { DataService } from '../data.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 import { Offer } from '../offer';
 
@@ -23,9 +23,16 @@ export class OfferDepositImageComponent implements OnInit {
   base64Data: any;
   retrieveResponse: any;
 
-  constructor(private dataService: DataService,private route: ActivatedRoute) { }
+  textButton : String;
+
+  constructor(private dataService: DataService,
+              private route: ActivatedRoute,
+              private router: Router) { }
 
   ngOnInit() {
+
+    this.textButton = 'Je ne souhaite pas déposer de photo';
+
         /* routing - get the param Id of the offer from the url */ 
         this.route.paramMap
           .subscribe(params => {
@@ -41,6 +48,12 @@ export class OfferDepositImageComponent implements OnInit {
     this.selectedFile = event.target.files[0]
   }
 
+  onClickNavigate(){
+
+    this.router.navigate(['/offerDepositEquipment', this.offerIdOnUse]);
+
+  }
+
 
   /**
    * adding an uploaded image to database and get offer 
@@ -48,8 +61,9 @@ export class OfferDepositImageComponent implements OnInit {
   onUpload() {
     this.dataService.addImageToDb(this.offerIdOnUse,  this.selectedFile)
     .subscribe({
-      next : img => { console.log('next: post image')
-                      this.offerInUseObs = this.dataService.getOfferDetail(this.offerIdOnUse)
+      next : img => { console.log('next: post image');
+                      this.textButton = "Passer à l'étape suivante";
+                      this.offerInUseObs = this.dataService.getOfferDetail(this.offerIdOnUse);
                       /*.subscribe({
                           next : (offerS:Offer) => {console.log('next : retour get offerdetail');
                                             console.log(offerS);}, 

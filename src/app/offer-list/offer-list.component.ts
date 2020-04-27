@@ -188,7 +188,7 @@ filterForm = this.formBuilder.group({
     .pipe(
       /* retrieving page informations before displaying it */
       tap ((value:OfferPage) => {
-        this.actualPageNumber = value.number;
+        this.actualPageNumber = value.number; 
         this.pageContent = value.content;
   
         this.isFirstPage = value.first;

@@ -83,7 +83,7 @@ export class OfferDepositComponent implements OnInit {
     /*not going further if not all the input fields have succeeded the Validator controls */
     if (this.depositForm.invalid){
       this.message = "Veuillez vérifier les champs en erreur"
-      return;
+      return; 
     }
 
     /* retrieving User id*/
@@ -102,10 +102,11 @@ export class OfferDepositComponent implements OnInit {
           console.log(this.offerIdCreated)}) 
         )
         .subscribe( {
-          next: savedOffer => console.log(savedOffer),
+          next: savedOffer => {console.log(savedOffer);
+                              this.router.navigate(['/offerDepositImage', this.offerIdCreated]);},
           error:err => {console.error(err);
-                        this.message = "Erreur : annonce non enregistrée";},
-          complete : () => this.message = "Annonce " + this.offerIdCreated + " enregistrée!"});
+                        this.message = "Erreur : annonce non enregistrée";}});
+          /*complete : () => this.message = "Annonce " + this.offerIdCreated + " enregistrée!"});*/
 
   }
 
