@@ -5,6 +5,8 @@ import {map, tap} from 'rxjs/operators';
 
 import { OfferPage } from '../offer-page';
 
+import { Router } from '@angular/router'; 
+
 @Component({
   selector: 'app-offer-list',
   templateUrl: './offer-list.component.html',
@@ -78,7 +80,9 @@ filterForm = this.formBuilder.group({
 })
 
   constructor(private dataService: DataService, 
-              private formBuilder: FormBuilder) { 
+              private formBuilder: FormBuilder,
+              private router: Router
+              ) { 
               }
    
   ngOnInit() {
@@ -114,6 +118,10 @@ filterForm = this.formBuilder.group({
       this.getPageOfOffers();
     }
 
+  }
+
+  onConsult(offerId){
+    this.router.navigate(['/offerDetail', offerId]);
   }
 
   /**

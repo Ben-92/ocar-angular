@@ -65,6 +65,13 @@ export class OfferDepositComponent implements OnInit {
     this.isLoggedIn = !!this.tokenStorageService.getToken();
 
     /*window.location.reload();*/
+
+    /*
+    this.depositForm.get('carBrand').setValue('Ferrari');
+    this.depositForm.get('description').setValue('test');
+    this.depositForm.get('gearbox').setValue('Automatique');
+    */
+    
     
   }
 
@@ -94,6 +101,8 @@ export class OfferDepositComponent implements OnInit {
 
     /*adding date time to the submitted offer */
     offerDeposit.date = new Date();
+
+    console.log(offerDeposit.year);
 
     this.dataService.addOfferToUser(this.userIdCreatingOffer, offerDeposit)
         .pipe(

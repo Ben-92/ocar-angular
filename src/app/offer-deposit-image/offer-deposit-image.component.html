@@ -26,7 +26,7 @@
 <!--selection and upload of an image-->
 <div class="image-select">
   <input  type="file" (change)="onFileChanged($event)">
-  <button (click)="onUpload()">Envoyer la photo</button>
+  <!-- <button (click)="onUpload()">Envoyer la photo</button> -->
 </div>
 
 <br>
@@ -36,7 +36,7 @@
 
   <div class="img-elt" *ngFor="let imageInUse of offerInUse.images">
     <img class="image-uploaded" src="data:image/jpeg;base64,{{imageInUse.picByte}}"> 
-    <button class="suppress-button">Supprimer</button>
+    <!-- <button class="suppress-button">Supprimer</button> -->
   </div>
 
 </div>

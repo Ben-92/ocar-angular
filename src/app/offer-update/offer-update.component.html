@@ -1,0 +1,183 @@
+<!-- <p>offer-update works!</p> -->
+
+<!--deposit form containing basis information and corresponding to Offer entity in the model-->
+<form [formGroup]="depositForm"  (ngSubmit)="onUpdate(depositForm.value)">
+
+    <div class="deposit-form">
+  
+        <h1>Modification d'une annonce</h1>
+        <h5 id="advice">Les champs marqués d'un (*) sont obligatoires</h5>
+  
+      <div class="deposit-form-elt">
+        <label class="deposit-form-elt-label" for="post-code">Code postal où se trouve le véhicule (*):</label>
+        <input  type="text"
+                formControlName="postalCode"
+                size="4"
+                maxlength="5"
+                id="post-code">
+      </div>
+  
+      <div *ngIf="((depositForm.get('postalCode').errors && (depositForm.get('postalCode').touched || depositForm.get('postalCode').dirty))
+               || (isSubmitted && depositForm.get('postalCode').errors))">
+          <div *ngIf="depositForm.get('postalCode').errors" class="error-effect-title">
+            Le code postal doit être valide
+          </div>
+      </div>
+  
+      <div class="deposit-form-elt">
+        <label class="deposit-form-elt-label">Marque (*):</label>
+        <select formControlName="carBrand">
+          <option value="">Sélectionner la Marque</option> 
+          <option value={{brand.name}} *ngFor="let brand of brandList">{{brand.name}}</option>
+        </select>
+      </div>
+      <div *ngIf="((depositForm.get('carBrand').errors && (depositForm.get('carBrand').touched || depositForm.get('carBrand').dirty))
+        || (isSubmitted && depositForm.get('carBrand').errors))">
+        <div *ngIf="depositForm.get('carBrand').errors" class="error-effect-title">
+            La marque est obligatoire
+        </div>
+      </div>
+  
+      <div class="deposit-form-elt">
+        <label class="deposit-form-elt-label">Modèle (*):</label>
+        <select formControlName="carModel">
+          <option value={{model.name}} *ngFor="let model of modelList">{{model.name}}</option>
+          <option value="">Sélectionner le modèle</option>
+        </select>
+      </div>
+      <div *ngIf="((depositForm.get('carModel').errors && (depositForm.get('carModel').touched || depositForm.get('carModel').dirty))
+        || (isSubmitted && depositForm.get('carModel').errors))">
+        <div *ngIf="depositForm.get('carModel').errors" class="error-effect-title">
+          Le modèle est obligatoire
+        </div>
+      </div>
+  
+      <div class="deposit-form-elt">
+        <label class="deposit-form-elt-label">Année du véhicule (*):</label>
+        <select formControlName="year">
+          <option value={{year.yearValue}} *ngFor="let year of yearList">{{year.yearValue}}</option>
+          <option value="">Sélectionner l'année</option>
+        </select>
+      </div>
+      <div *ngIf="((depositForm.get('year').errors && (depositForm.get('year').touched || depositForm.get('year').dirty))
+        || (isSubmitted && depositForm.get('year').errors))">
+          <div *ngIf="depositForm.get('year').errors" class="error-effect-title">
+             L'année du véhicule est obligatoire
+          </div>
+      </div>
+  
+      <p class="deposit-form-elt-label">Boite de vitesse :</p>
+      <div class="deposit-form-elt-radio">
+  
+        <input type="radio" id="manualChoice" formControlName="gearbox" value="Manuelle">
+        <label for="manualChoice">Manuelle</label>
+  
+        <input type="radio" id="autoChoice" formControlName="gearbox" value="Automatique">
+        <label for="autoChoice">Automatique</label>
+  
+      </div>
+  
+      <div class="deposit-form-elt">
+        <label class="deposit-form-elt-label" for="ext-color">Couleur extérieure :</label>
+        <input  type="text"
+                formControlName="outerColor"
+                id="ext-color"
+                placeholder="Exemple : bleu nuit">
+      </div>
+      <div *ngIf="((depositForm.get('outerColor').errors && (depositForm.get('outerColor').touched || depositForm.get('outerColor').dirty))
+        || (isSubmitted && depositForm.get('price').errors))">
+        <div *ngIf="depositForm.get('outerColor').errors" class="error-effect-title">
+          La couleur ne doit comporter que des lettres
+        </div>
+      </div>
+  
+  
+      <p class="deposit-form-elt-label">4 roues motrices :</p>
+      <div class="deposit-form-elt-radio">
+  
+        <input type="radio" id="fwdChoiceNo" formControlName="fourWheelDrive" value=false>
+        <label for="fwdChoiceNo">Non</label>
+  
+        <input type="radio" id="fwdChoiceYes" formControlName="fourWheelDrive" value=true>
+        <label for="fwdChoiceYes">Oui</label>
+  
+  
+      </div>
+  
+      <div class="deposit-form-elt">
+        <label class="deposit-form-elt-label" for="description">Descriptif de l'annonce :</label>
+        <textarea   id="description"
+                    formControlName="description" 
+                    rows="10" 
+                    cols="45"
+                    placeholder="Détails de l'annonce">
+        </textarea>
+      </div>
+  
+      <div class="deposit-form-elt">
+        <label class="deposit-form-elt-label" for="price">Prix - euros (*): </label>
+        <input  type="text" 
+                formControlName="price"
+                size="5"
+                maxlength="6"
+                id="price">
+      </div>
+      <div *ngIf="((depositForm.get('price').errors && (depositForm.get('price').touched || depositForm.get('price').dirty))
+      || (isSubmitted && depositForm.get('price').errors))">
+        <div *ngIf="depositForm.get('price').errors" class="error-effect-title">
+          Le prix doit être numérique et entier sans virgule
+        </div>
+      </div>
+  
+      <div class="deposit-form-elt">
+        <button class="submit-button" type="submit">Modifier mon annonce !</button>
+        <!--<button class="submit-button" type="submit" [disabled]="!depositForm.dirty">Enregistrer l'annonce</button> -->
+      </div>
+  
+    </div>
+  
+  </form>
+
+  <!--displaying live images uploaded, in a flex and wrap way-->
+<div class="img-container" *ngIf="offerToUpdate">
+
+  <div class="img-elt" *ngFor="let imageInUse of offerToUpdate.images">
+    <img class="image-uploaded" src="data:image/jpeg;base64,{{imageInUse.picByte}}"> 
+    <button class="suppress-button" (click)="onDeleteImage(imageInUse.id)">Supprimer</button> 
+  </div>
+
+</div>
+
+<!--selection and upload of an image-->
+<div class="image-select">
+  <input  type="file" (change)="onFileChanged($event)">
+  <!-- <button (click)="onUpload()">Envoyer la photo</button> -->
+</div>
+
+
+
+<h1>Equipements et options</h1>
+
+<p id="advice">Le choix des options est facultatif</p>
+
+<form [formGroup]="equipmentForm" [ngClass]="{'is-disable': isDepositComplete}" (ngSubmit)="submit(equipmentForm.value)">
+
+    <div class="check-form">
+        <div class=check-list>
+            <label  formArrayName="equipments" 
+                    *ngFor="let equipmentCheck of equipmentForm.controls.equipments.controls; let i = index">
+                    <h3 *ngIf="(equipmentList[i].type == 'comfort') && (equipmentList[i].label == 'Suspensions adaptables')">Confort</h3>
+                    <h3 *ngIf="(equipmentList[i].type == 'exterior') && (equipmentList[i].label == 'Jantes Alu 17')">Extérieur</h3>
+                    <h3 *ngIf="(equipmentList[i].type == 'interior') && (equipmentList[i].label == 'Sièges cuir')">Intérieur</h3>
+                    
+                    <input type="checkbox" [formControlName]="i">
+                    
+            {{equipmentList[i].label}}
+            </label>
+        </div>
+        <br>
+        <button id="submit-button">Modifier l'équipement !</button>
+    </div>
+
+</form>
+

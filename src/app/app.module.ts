@@ -31,6 +31,7 @@ import { BoardAdminComponent } from './board-admin/board-admin.component';
 import { BoardModeratorComponent } from './board-moderator/board-moderator.component';
 import { BoardUserComponent } from './board-user/board-user.component';
 import { OfferDepositEquipmentComponent } from './offer-deposit-equipment/offer-deposit-equipment.component';
+import { OfferUpdateComponent } from './offer-update/offer-update.component';
 
 
 
@@ -50,7 +51,8 @@ import { OfferDepositEquipmentComponent } from './offer-deposit-equipment/offer-
     BoardAdminComponent,
     BoardModeratorComponent,
     BoardUserComponent,
-    OfferDepositEquipmentComponent
+    OfferDepositEquipmentComponent,
+    OfferUpdateComponent
   ],
   imports: [
     FormsModule,
@@ -64,7 +66,9 @@ import { OfferDepositEquipmentComponent } from './offer-deposit-equipment/offer-
       /*{ path: 'deposit/offerDepositImage/:offerId', component: OfferDepositImageComponent },*/
       { path: 'offerDepositImage/:offerId', component: OfferDepositImageComponent },
       { path: 'offerDepositEquipment/:offerId', component: OfferDepositEquipmentComponent },
-      { path: 'home', component: HomeComponent },
+      /*{ path: 'home', component: HomeComponent }, */
+      { path: 'update/:offerId', component: OfferUpdateComponent },
+      { path: 'home', component: OfferListComponent },
       { path: 'login', component: LoginComponent },
       { path: 'register', component: RegisterComponent },
       { path: 'profile', component: ProfileComponent },

@@ -40,8 +40,13 @@ export class DataService {
    * getting data from a specific offer
    * @param offerId id of the offer we want data from
    */
+
   getOfferDetail(offerId) {
     return this.httpClient.get('http://localhost:8080/api/offers/' + offerId );
+  }
+
+  getUserDetail(userId) {
+    return this.httpClient.get('http://localhost:8080/api/users/' + userId );
   }
 
 
@@ -116,6 +121,10 @@ export class DataService {
     return this.httpClient.post<Offer>('http://localhost:8080/api/users/' + userId + '/offer', offerDeposit);
   }
 
+  updateOffer(offerIdOnUse, offerToSendToBack) {
+    return this.httpClient.put<Offer>('http://localhost:8080/api/offers/' + offerIdOnUse, offerToSendToBack);
+  }
+
 
   /**
    * post request to save an image associated to an existing offer
@@ -135,6 +144,11 @@ export class DataService {
     return this.httpClient.post('http://localhost:8080/api/offers/' + offerIdOnUse + '/equipments', equipmentList);
   }
 
+  updateEquipmentToDb(offerIdOnUse, equipmentList) {
+
+    return this.httpClient.put('http://localhost:8080/api/offers/' + offerIdOnUse + '/equipments', equipmentList);
+  }
+
 
   /**
    * get request to retrieve an image, giving its name
@@ -144,6 +158,14 @@ export class DataService {
     return this.httpClient.get('http://localhost:8080/api/images/name/' + imageName);
   }
 
+
+  deleteOffer(offerIdToDelete) {
+    return this.httpClient.delete('http://localhost:8080/api/offers/' + offerIdToDelete );
+  }
+
+  deleteImage(imageIdToDelete) {
+    return this.httpClient.delete('http://localhost:8080/api/images/' + imageIdToDelete );
+  }
 
 /**
  * list of brands a client can choose from
