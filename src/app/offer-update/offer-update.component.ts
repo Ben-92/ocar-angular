@@ -243,8 +243,7 @@ export class OfferUpdateComponent implements OnInit {
     this.offerToSendToBack.price = offerUpdated.price;
 
     /*adding date time to the submitted offer */
-    //offerUpdated.date = new Date();
-    this.offerToSendToBack.date = new Date();
+    /*this.offerToSendToBack.date = new Date();*/
 
     //console.log(offerDeposit.year);
 
@@ -292,12 +291,7 @@ export class OfferUpdateComponent implements OnInit {
     console.log(selectedEquipmentLabels);
 
     console.log(this.offerToUpdate);
-    /* retrieving the offer to update (before any updates) including images and equipments */
-    /*this.offerToSendToBack = this.offerToUpdate; */
 
-    /*console.log(this.offerToSendToBack.equipments); */
-
-    /*this.offerToSendToBack.equipments = selectedEquipmentLabels; */
 
     this.dataService.updateEquipmentToDb(this.offerIdOnUse,  selectedEquipmentLabels)
     .subscribe({
@@ -309,14 +303,8 @@ export class OfferUpdateComponent implements OnInit {
                         this.reloadPage();} 
     });
 
-    /*
-    this.dataService.updateOffer(this.offerIdOnUse, this.offerToSendToBack)
-    .subscribe( {
-      next: savedOffer => {console.log(savedOffer);
-                          },
-      error:err => {console.error(err);
-                    this.message = "Erreur : annonce non mise à jour";},
-      complete : () => {this.reloadPage();}});*/
+
+  }
 }
 
     /*
@@ -332,7 +320,7 @@ export class OfferUpdateComponent implements OnInit {
 
   }*/
 
-}
+    //offerUpdated.date = new Date();
 
   /*
   private addCheckboxes() {
@@ -344,3 +332,19 @@ export class OfferUpdateComponent implements OnInit {
       (this.equipmentForm.controls.equipments as FormArray).push(control); 
     });
   } */
+
+      /* retrieving the offer to update (before any updates) including images and equipments */
+    /*this.offerToSendToBack = this.offerToUpdate; */
+
+    /*console.log(this.offerToSendToBack.equipments); */
+
+    /*this.offerToSendToBack.equipments = selectedEquipmentLabels; */
+
+        /*
+    this.dataService.updateOffer(this.offerIdOnUse, this.offerToSendToBack)
+    .subscribe( {
+      next: savedOffer => {console.log(savedOffer);
+                          },
+      error:err => {console.error(err);
+                    this.message = "Erreur : annonce non mise à jour";},
+      complete : () => {this.reloadPage();}});*/

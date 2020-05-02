@@ -78,15 +78,21 @@ export class OfferDepositEquipmentComponent implements OnInit {
       .filter(value => value !== null); /*new array with all non null elements */
     console.log(selectedEquipmentLabels);
 
-    this.dataService.addEquipmentToDb(this.offerIdOnUse,  selectedEquipmentLabels)
-    .subscribe({
-      next : img => { console.log('next: post equipment') },
-      error:err => {console.error(err);
-                    this.message = "Erreur : equipement non enregistré";},
-      complete : () => {console.log('complete: post equipment');
-                        this.message = "Le dépôt d'annonce est terminé, merci !";
-                        this.isDepositComplete = true;} 
-    });
+    if (selectedEquipmentLabels.length > 0) {
+
+      this.dataService.addEquipmentToDb(this.offerIdOnUse,  selectedEquipmentLabels)
+      .subscribe({
+        next : img => { console.log('next: post equipment') },
+        error:err => {console.error(err);
+                      this.message = "Erreur : equipement non enregistré";},
+        complete : () => {console.log('complete: post equipment');
+                          this.message = "Le dépôt d'annonce est terminé, merci !";
+                          this.isDepositComplete = true;} 
+      });
+    } else {
+      this.message = "Le dépôt d'annonce est terminé, merci !";
+      this.isDepositComplete = true; 
+    }
 
   }
 
