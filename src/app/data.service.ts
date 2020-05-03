@@ -40,8 +40,13 @@ export class DataService {
    * getting data from a specific offer
    * @param offerId id of the offer we want data from
    */
+
   getOfferDetail(offerId) {
     return this.httpClient.get('http://localhost:8080/api/offers/' + offerId );
+  }
+
+  getUserDetail(userId) {
+    return this.httpClient.get('http://localhost:8080/api/users/' + userId );
   }
 
 
@@ -107,8 +112,17 @@ export class DataService {
    * @param clientId Id of the client who deposit a new offer
    * @param offerDeposit form values containing offer data
    */
+  /*
   addOfferToClient(clientId, offerDeposit) {
     return this.httpClient.post<Offer>('http://localhost:8080/api/clients/' + clientId + '/offer', offerDeposit);
+  } */
+
+  addOfferToUser(userId, offerDeposit) {
+    return this.httpClient.post<Offer>('http://localhost:8080/api/users/' + userId + '/offer', offerDeposit);
+  }
+
+  updateOffer(offerIdOnUse, offerToSendToBack) {
+    return this.httpClient.put<Offer>('http://localhost:8080/api/offers/' + offerIdOnUse, offerToSendToBack);
   }
 
 
@@ -125,6 +139,16 @@ export class DataService {
     return this.httpClient.post('http://localhost:8080/api/offers/' + offerIdOnUse + '/images', uploadData);
   }
 
+  addEquipmentToDb(offerIdOnUse, equipmentList) {
+
+    return this.httpClient.post('http://localhost:8080/api/offers/' + offerIdOnUse + '/equipments', equipmentList);
+  }
+
+  updateEquipmentToDb(offerIdOnUse, equipmentList) {
+
+    return this.httpClient.put('http://localhost:8080/api/offers/' + offerIdOnUse + '/equipments', equipmentList);
+  }
+
 
   /**
    * get request to retrieve an image, giving its name
@@ -134,6 +158,14 @@ export class DataService {
     return this.httpClient.get('http://localhost:8080/api/images/name/' + imageName);
   }
 
+
+  deleteOffer(offerIdToDelete) {
+    return this.httpClient.delete('http://localhost:8080/api/offers/' + offerIdToDelete );
+  }
+
+  deleteImage(imageIdToDelete) {
+    return this.httpClient.delete('http://localhost:8080/api/images/' + imageIdToDelete );
+  }
 
 /**
  * list of brands a client can choose from
@@ -151,7 +183,21 @@ export class DataService {
     ]
 
   /*list of equipments a client can choose from */
-  equipments : Equipment[] = [
+  /* ! do not change the first label of each type*/
+  /* ! labels of the same type must be grouped*/
+  equipments : Equipment[] = 
+  [
+    { "type": "interior", "label": "Sièges cuir"},
+    { "type": "interior", "label": "Volant Alcantara" },
+    { "type": "exterior", "label": "Jantes Alu 17"   },
+    { "type": "exterior", "label": "Peinture métallisée" },
+    { "type": "comfort", "label": "Suspensions adaptables"},
+    { "type": "comfort", "label": "Sièges chauffants" },
+    { "type": "comfort", "label": "rétros dorés" },
+    { "type": "comfort", "label": "rétros argentés" },
+    { "type": "comfort", "label": "rétros platine" },
+  ]
+  /*[
     {
       "type": "interior",
       "label": "Sièges cuir"
@@ -176,7 +222,7 @@ export class DataService {
       "type": "Comfort",
       "label": "Sièges chauffants"
     }
-  ]
+  ] */
 
   /**
  * list of years for a vehicle

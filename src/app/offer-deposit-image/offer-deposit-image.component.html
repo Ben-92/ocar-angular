@@ -1,10 +1,32 @@
 
+<!--adding a '/' means it's an absolute route : http://localhost:4200/offerDepositEquipment/{offerIdOnUse}-->
+<!--
+<nav class="nav-bar-deposit">
+  <ul> 
+        <li><a [routerLink]="['/offerDepositEquipment', offerIdOnUse]">Ajouter des options et équipements</a></li>
+        <li><a [routerLink]="['offerEquipment', offer.id]">Equipement et options</a></li>
+        <li><a [routerLink]="['offerDocument', offer.id]">Documents de la voiture</a></li>
+      
+  </ul>
+</nav> -->
+
+
+<!-- <p>L'annonce est enregistrée, vous pouvez déposer des photos si vous le souhaitez</p>  -->
+
 <h1>Déposer des photos</h1>
+
+<br>
+
+<div>
+    <button class="navigate-button" (click)="onClickNavigate()">{{textButton}}</button>
+</div>
+
+<br>
 
 <!--selection and upload of an image-->
 <div class="image-select">
-  <input type="file" (change)="onFileChanged($event)">
-  <button (click)="onUpload()">Envoyer la photo</button>
+  <input  type="file" (change)="onFileChanged($event)">
+  <!-- <button (click)="onUpload()">Envoyer la photo</button> -->
 </div>
 
 <br>
@@ -14,7 +36,7 @@
 
   <div class="img-elt" *ngFor="let imageInUse of offerInUse.images">
     <img class="image-uploaded" src="data:image/jpeg;base64,{{imageInUse.picByte}}"> 
-    <button class="suppress-button">Supprimer</button>
+    <!-- <button class="suppress-button">Supprimer</button> -->
   </div>
 
 </div>

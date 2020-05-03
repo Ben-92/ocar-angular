@@ -1,0 +1,139 @@
+/*center the h1 titles and the advice at the beginning of the page */
+h1, #advice {
+    text-align: center;
+}
+
+
+
+.deposit-form {
+    display:flex;
+    flex-direction: column;
+
+    margin : auto;
+    width:33%;
+
+   /* pointer-events: none;
+    opacity: 0.3; */
+} 
+
+.is-disable {
+
+    pointer-events: none;
+    opacity: 0.3;
+}
+
+
+
+
+/*form items are themselves container selector of their inner elements. Elements are displayed in row
+and label and input at each side */
+.deposit-form-elt {
+    display:flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    margin-top:1%;
+}
+
+/* simulating h3 font size and font weight for deposit-form element label style */
+/*.deposit-form-elt-label { 
+    font-size: 1.13em;
+    font-weight: bold;
+} */
+
+/*radio buttons are displayed at extreme right of the element */
+.deposit-form-elt-radio {
+    display:flex;
+    flex-direction: row;
+    justify-content: flex-end;
+
+    
+}
+
+
+/*colorisation of input and error/informationnal messages */
+.error-effect-title, .message {
+    color:lightcoral
+}
+
+.submit-button {
+
+    margin: 1% auto;
+   
+}
+
+/**** Images ************************************/
+
+/*display the select and upload button on a row, and center them in their parent element */
+.image-select {
+    display:flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+/*all the frame containing result elements are in row and applies th wrap display */
+/*this wrap display is centerd in its parent element via justify-content */
+.img-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap:wrap;
+
+    justify-content: center;
+
+}
+
+
+/*frame containing the image and the suppress button */
+.img-elt {
+    
+    background-color: grey;
+
+    border: 1px solid green;
+  
+    width : 30%;
+    height: 100%;
+    margin:1%;
+
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+} 
+
+/*reducing image size into parent div and center image */
+.image-uploaded {
+    width: 80%;
+    height: 80%;
+
+     border: 2px solid darkgray;
+
+    margin:auto;
+}
+
+/*center the button in its parent element */
+.suppress-button {
+
+    width:20%;
+    margin:1% auto;
+
+}
+
+/**** Equipment ************************************/
+
+.check-form {
+    margin:auto;
+    width:30%;
+}
+
+.check-list {
+  
+    border : 1px solid blue;
+
+    display: flex;
+    flex-direction: column;
+}
+
+#submit-button {
+  
+    margin : auto;
+    display:block;
+}

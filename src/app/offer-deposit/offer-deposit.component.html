@@ -1,24 +1,36 @@
 
-<h5 id="advice">Les champs marqués d'un (*) sont obligatoires</h5>
 
+
+<!--adding a '/' means it's an absolute route : http://localhost:4200/offerDepositImage/{offerIdCreated}-->
+<!--
 <nav class="nav-bar-deposit">
-  <ul>
-        <li><a [routerLink]="['offerDepositImage', offerIdCreated]">Ajouter des photos</a></li>
-      <!--
+  <ul> 
+        <li><a [routerLink]="['/offerDepositImage', offerIdCreated]">Ajouter des photos</a></li>
         <li><a [routerLink]="['offerEquipment', offer.id]">Equipement et options</a></li>
         <li><a [routerLink]="['offerDocument', offer.id]">Documents de la voiture</a></li>
-      -->
+    
   </ul>
-</nav>
+</nav> -->
+
+<div *ngIf="!isLoggedIn" class="if-not-connected">
+  <p>Connectez-vous ou inscrivez-vous pour déposer une annonce</p>
+
+  <!--<a routerLink="/login" queryParams="{redirectURL:/deposit}">Se connecter</a> -->
+  <button (click)="onLoginchoice()" class="if-not-connected-button">Se connecter</button> 
+  <button routerLink="/register" class="if-not-connected-button">S'inscrire</button>
+
+</div>
 
 <!--deposit form containing basis information and corresponding to Offer entity in the model-->
-<h1>Nouvelle annonce</h1>
-<form [formGroup]="depositForm" (ngSubmit)="onDeposit(depositForm.value)">
+<form [formGroup]="depositForm" [ngClass]="{'is-disable': !isLoggedIn}" (ngSubmit)="onDeposit(depositForm.value)">
 
   <div class="deposit-form">
 
+      <h1>Nouvelle annonce</h1>
+      <h5 id="advice">Les champs marqués d'un (*) sont obligatoires</h5>
+
     <div class="deposit-form-elt">
-      <label for="post-code">Code postal où se trouve le véhicule (*):</label>
+      <label class="deposit-form-elt-label" for="post-code">Code postal où se trouve le véhicule (*):</label>
       <input  type="text"
               formControlName="postalCode"
               size="4"
@@ -34,9 +46,9 @@
     </div>
 
     <div class="deposit-form-elt">
-      <label class="xxx">Marque (*):</label>
-      <select formControlName="carBrand" class="xxx">
-        <option value="">Sélectionner la Marque</option>
+      <label class="deposit-form-elt-label">Marque (*):</label>
+      <select formControlName="carBrand">
+        <option value="">Sélectionner la Marque</option> 
         <option value={{brand.name}} *ngFor="let brand of brandList">{{brand.name}}</option>
       </select>
     </div>
@@ -48,8 +60,8 @@
     </div>
 
     <div class="deposit-form-elt">
-      <label class="xxx">Modèle (*):</label>
-      <select formControlName="carModel" class="xxx">
+      <label class="deposit-form-elt-label">Modèle (*):</label>
+      <select formControlName="carModel">
         <option value={{model.name}} *ngFor="let model of modelList">{{model.name}}</option>
         <option value="">Sélectionner le modèle</option>
       </select>
@@ -62,8 +74,8 @@
     </div>
 
     <div class="deposit-form-elt">
-      <label class="xxx">Année du véhicule (*):</label>
-      <select formControlName="year" class="xxx">
+      <label class="deposit-form-elt-label">Année du véhicule (*):</label>
+      <select formControlName="year">
         <option value={{year.yearValue}} *ngFor="let year of yearList">{{year.yearValue}}</option>
         <option value="">Sélectionner l'année</option>
       </select>
@@ -75,7 +87,7 @@
         </div>
     </div>
 
-    <p>Boite de vitesse :</p>
+    <p class="deposit-form-elt-label">Boite de vitesse :</p>
     <div class="deposit-form-elt-radio">
 
       <input type="radio" id="manualChoice" formControlName="gearbox" value="Manuelle">
@@ -87,7 +99,7 @@
     </div>
 
     <div class="deposit-form-elt">
-      <label for="ext-color">Couleur extérieure :</label>
+      <label class="deposit-form-elt-label" for="ext-color">Couleur extérieure :</label>
       <input  type="text"
               formControlName="outerColor"
               id="ext-color"
@@ -101,7 +113,7 @@
     </div>
 
 
-    <p>4 roues motrices :</p>
+    <p class="deposit-form-elt-label">4 roues motrices :</p>
     <div class="deposit-form-elt-radio">
 
       <input type="radio" id="fwdChoiceNo" formControlName="fourWheelDrive" value=false>
@@ -114,7 +126,7 @@
     </div>
 
     <div class="deposit-form-elt">
-      <label for="description">Descriptif de l'annonce :</label>
+      <label class="deposit-form-elt-label" for="description">Descriptif de l'annonce :</label>
       <textarea   id="description"
                   formControlName="description" 
                   rows="10" 
@@ -124,7 +136,7 @@
     </div>
 
     <div class="deposit-form-elt">
-      <label for="price">Prix - euros (*): </label>
+      <label class="deposit-form-elt-label" for="price">Prix - euros (*): </label>
       <input  type="text" 
               formControlName="price"
               size="5"
@@ -139,7 +151,7 @@
     </div>
 
     <div class="deposit-form-elt">
-      <button class="submit-button" type="submit">Enregistrer l'annonce</button>
+      <button class="submit-button" type="submit">Enregistrer mon annonce !</button>
       <!--<button class="submit-button" type="submit" [disabled]="!depositForm.dirty">Enregistrer l'annonce</button> -->
     </div>
 

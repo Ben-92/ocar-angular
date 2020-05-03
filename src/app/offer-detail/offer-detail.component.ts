@@ -22,7 +22,7 @@ export class OfferDetailComponent implements OnInit {
     this.route.paramMap.subscribe(params => {
       this.offerIdDetail = params.get('offerId');
 
-      /*get an observable containing the data of a car */
+      /*get an observable containing the data of an offer */
       this.offerDetailObs = this.dataService.getOfferDetail(this.offerIdDetail);
 
   });

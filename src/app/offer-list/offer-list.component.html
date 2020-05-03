@@ -155,14 +155,18 @@
 
       <div class="offer-list-result" *ngFor="let offer of pageContent">
         <div class="offer-list-text">
-            <h3>Date de l'offre: {{offer.date | date : 'dd/MM/yyyy'}}</h3>
-            
-            <h3>Marque: {{offer.carBrand}}</h3>
-            <h3>Modèle: {{offer.carModel}}</h3>
-            <h3>Prix: {{offer.price | currency:'EUR':'symbol':'1.0-0'}}</h3>
+            <!-- <h3>Date de l'offre: {{offer.date | date : 'dd/MM/yyyy'}}</h3> -->
+            <p><strong>Date de l'offre:</strong> {{offer.date | date : 'dd/MM/yyyy'}}</p>
+            <!-- <h3>Marque: {{offer.carBrand}}</h3> -->
+            <p><strong>Marque:</strong> {{offer.carBrand}}</p> 
+            <!-- <h3>Modèle: {{offer.carModel}}</h3> -->
+            <p><strong>Modèle:</strong> {{offer.carModel}}</p>
+            <!-- <h3>Prix: {{offer.price | currency:'EUR':'symbol':'1.0-0'}}</h3> -->
+            <p><strong>Prix:</strong> {{offer.price | currency:'EUR':'symbol':'1.0-0'}}</p>
         </div>
         <div class="offer-list-link">
-            <h3><a [routerLink]="['offerDetail', offer.id]">Consulter</a></h3>
+            <!-- <h3><a [routerLink]="['offerDetail', offer.id]">Consulter</a></h3> -->
+            <button (click)="onConsult(offer.id)">Consulter</button>
         </div>
         <div class="offer-list-image" *ngIf="offer.images[0]; else noPhoto"> 
             <img class="image-showcase" src="data:image/jpeg;base64,{{offer.images[0].picByte}}"> 

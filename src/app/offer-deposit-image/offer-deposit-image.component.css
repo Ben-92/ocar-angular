@@ -1,6 +1,12 @@
 /*center the titles */
-h1 {
+h1, p {
     text-align: center;
+}
+
+
+.navigate-button {
+    display:block;
+    margin:auto;
 }
 
 /*display the select and upload button on a row, and center them in their parent element */

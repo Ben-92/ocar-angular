@@ -64,15 +64,35 @@
     <br *ngIf="offerDetail.equipments[0]">
 
     <!--display list of options and equipments if present-->
+     <!--loop on equipment array to print equipement -->
     <div *ngIf="offerDetail.equipments[0]" class="item-container">
         <h3 class="item-title">Options et équipements : </h3>
         <div  class="offer-option-equipment">
-            <!--loop on equipment array to print equipement -->
             <ul *ngFor="let equip of offerDetail.equipments">
                 <li>{{equip.label}}</li>
             </ul>
         </div>
-    </div>
+    </div> 
+
+    <!--
+    <div *ngIf="offerDetail.equipments[0]" class="item-container">
+        <h3 class="item-title">Options et équipements : </h3>
+        <div  class="offer-option-equipment">
+            <p>Intérieur</p>
+            <ul *ngFor="let equip of offerDetail.equipments">
+                <li *ngIf="(equip.type=='interior')">{{equip.label}}</li>
+            </ul>
+
+            <p>Extérieur</p>
+            <ul *ngFor="let equip of offerDetail.equipments">
+                <li *ngIf="equip.type=='exterior'">{{equip.label}}</li>
+            </ul>
+            <p>Confort</p>
+            <ul *ngFor="let equip of offerDetail.equipments">
+                <li *ngIf="equip.type=='comfort'">{{equip.label}}</li>
+            </ul> 
+        </div>
+    </div> -->
 
     <br>
 
@@ -80,7 +100,7 @@
     <div class="item-container">
         <h3 class="item-title">Informations sur le vendeur :</h3>
         <div class="offer-seller-infos">
-                <p>Email: <strong>{{offerDetail.client.email}}</strong></p>
+                <p>Email: <strong>{{offerDetail.user.email}}</strong></p>
         </div>
     </div>
 

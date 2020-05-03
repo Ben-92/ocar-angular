@@ -5,6 +5,8 @@ import {map, tap} from 'rxjs/operators';
 
 import { OfferPage } from '../offer-page';
 
+import { Router } from '@angular/router'; 
+
 @Component({
   selector: 'app-offer-list',
   templateUrl: './offer-list.component.html',
@@ -78,12 +80,14 @@ filterForm = this.formBuilder.group({
 })
 
   constructor(private dataService: DataService, 
-              private formBuilder: FormBuilder) { 
+              private formBuilder: FormBuilder,
+              private router: Router
+              ) { 
               }
    
   ngOnInit() {
 
-    console.log('onInit');
+    console.log('offer-list component');
     
     /* initialize the paging and sort criteria for the first time display */
     this.pageToDisplay = 0;
@@ -101,8 +105,8 @@ filterForm = this.formBuilder.group({
    */
   onSortSelectChange(sortCriteriaSelected){
 
-    console.log('onSortSelectChange');
-    console.log('fiter: ' + this.isFilterRequested );
+    /*console.log('onSortSelectChange');
+    console.log('fiter: ' + this.isFilterRequested );*/
 
     this.determineSortAndOrder(sortCriteriaSelected);
     
@@ -116,14 +120,18 @@ filterForm = this.formBuilder.group({
 
   }
 
+  onConsult(offerId){
+    this.router.navigate(['/offerDetail', offerId]);
+  }
+
   /**
    * new page display after nb of offer per page change
    * @param offersPerPageCriteria number of offers per parge choice
    */
   onNbOffersPerPageChange(offersPerPageCriteria){
 
-    console.log('onNbOffersPerPageChange');
-    console.log('fiter: ' + this.isFilterRequested );
+    /*console.log('onNbOffersPerPageChange');
+    console.log('fiter: ' + this.isFilterRequested );*/
 
     this.offersPerPage = offersPerPageCriteria;
     
@@ -143,8 +151,8 @@ filterForm = this.formBuilder.group({
  */
   displayPaginationPage(pageToDisplayChoice){
 
-    console.log('displayPage');
-    console.log('fiter: ' + this.isFilterRequested );
+   /* console.log('displayPage');
+    console.log('fiter: ' + this.isFilterRequested );*/
 
     this.pageToDisplay = pageToDisplayChoice;
 
@@ -164,7 +172,7 @@ filterForm = this.formBuilder.group({
  */
   onFilter(filteringValues) {
 
-    console.log('onFilter');
+    /*console.log('onFilter');*/
 
     this.populateCriterias(filteringValues);
 
@@ -178,17 +186,17 @@ filterForm = this.formBuilder.group({
    */
   getPageOfOffers(){
 
-    console.log('getPageOfOffers');
+    /*console.log('getPageOfOffers');
     console.log(this.pageToDisplay);
     console.log(this.sortCriteria);
-    console.log(this.orderCriteria);
+    console.log(this.orderCriteria);*/
 
 
     this.dataService.getOfferPage(this.pageToDisplay, this.offersPerPage, this.sortCriteria, this.orderCriteria)
     .pipe(
       /* retrieving page informations before displaying it */
       tap ((value:OfferPage) => {
-        this.actualPageNumber = value.number;
+        this.actualPageNumber = value.number; 
         this.pageContent = value.content;
   
         this.isFirstPage = value.first;
@@ -218,10 +226,10 @@ filterForm = this.formBuilder.group({
    */
   getFilteredPageOfOffers(){
 
-    console.log('getFilteredOffers'); 
+   /* console.log('getFilteredOffers'); 
     console.log(this.pageToDisplay);
     console.log(this.sortCriteria);
-    console.log(this.orderCriteria);
+    console.log(this.orderCriteria);*/
 
     this.dataService.getFilteredOfferPage(
     this.lowestBrandFilter,
@@ -270,7 +278,7 @@ filterForm = this.formBuilder.group({
    */
   populateCriterias(filteringValues){
 
-    console.log('populateCriterias'); 
+   /* console.log('populateCriterias'); */
   
     this.isFilterRequested = false;
   
@@ -334,8 +342,8 @@ filterForm = this.formBuilder.group({
    */
   determineSortAndOrder(sortCriteriaSelected){
 
-    console.log('determineSortAndOrder'); 
-    console.log(sortCriteriaSelected);
+    /*console.log('determineSortAndOrder'); 
+    console.log(sortCriteriaSelected);*/
 
     switch (sortCriteriaSelected){
       case 'dateDESC':

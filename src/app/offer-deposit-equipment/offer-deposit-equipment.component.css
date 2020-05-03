@@ -1,0 +1,34 @@
+h1, p {
+    text-align: center;
+}
+
+
+.check-form {
+    margin:auto;
+    width:30%;
+}
+
+.check-list {
+  
+    border : 1px solid blue;
+
+    display: flex;
+    flex-direction: column;
+}
+
+#submit-button {
+  
+    margin : auto;
+    display:block;
+}
+
+.navigate-button {
+    display:block;
+    margin:auto;
+}
+
+.is-disable {
+
+    pointer-events: none;
+    opacity: 0.3;
+}

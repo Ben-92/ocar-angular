@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { DataService } from '../data.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 import { Offer } from '../offer';
 
@@ -23,9 +23,16 @@ export class OfferDepositImageComponent implements OnInit {
   base64Data: any;
   retrieveResponse: any;
 
-  constructor(private dataService: DataService,private route: ActivatedRoute) { }
+  textButton : String;
+
+  constructor(private dataService: DataService,
+              private route: ActivatedRoute,
+              private router: Router) { }
 
   ngOnInit() {
+
+    this.textButton = 'Je ne souhaite pas déposer de photo';
+
         /* routing - get the param Id of the offer from the url */ 
         this.route.paramMap
           .subscribe(params => {
@@ -38,33 +45,49 @@ export class OfferDepositImageComponent implements OnInit {
    * @param event ????
    */
   onFileChanged(event) {
-    this.selectedFile = event.target.files[0]
+    this.selectedFile = event.target.files[0];
+
+    console.log(this.selectedFile);
+    if (this.selectedFile != null){
+      this.dataService.addImageToDb(this.offerIdOnUse,  this.selectedFile)
+      .subscribe({
+        next : img => { console.log('next: post image');
+                        this.textButton = "Passer à l'étape suivante";
+                        this.offerInUseObs = this.dataService.getOfferDetail(this.offerIdOnUse);
+        },
+        error:err => {console.error(err);
+                      this.message = "Erreur : image non enregistrée";},
+        complete : () => {console.log('complete: post image')
+                          this.message = "Image enregistrée!"}
+      }); 
+    }
+  }
+
+  onClickNavigate(){
+
+    this.router.navigate(['/offerDepositEquipment', this.offerIdOnUse]);
+
   }
 
 
   /**
    * adding an uploaded image to database and get offer 
    */
+  /*
   onUpload() {
     this.dataService.addImageToDb(this.offerIdOnUse,  this.selectedFile)
     .subscribe({
-      next : img => { console.log('next: post image')
-                      this.offerInUseObs = this.dataService.getOfferDetail(this.offerIdOnUse)
-                      /*.subscribe({
-                          next : (offerS:Offer) => {console.log('next : retour get offerdetail');
-                                            console.log(offerS);}, 
-                          error: errget => console.log(errget),
-                          complete: () => console.log('complete : get offerdetail')
-                      });*/
-          console.log('ici 1');
+      next : img => { console.log('next: post image');
+                      this.textButton = "Passer à l'étape suivante";
+                      this.offerInUseObs = this.dataService.getOfferDetail(this.offerIdOnUse);
       },
       error:err => {console.error(err);
                     this.message = "Erreur : image non enregistrée";},
       complete : () => {console.log('complete: post image')
                         this.message = "Image enregistrée!"}
     });
-  console.log('ici 2');
-  } 
+ 
+  } */
 
   /**
    * retrieving an image from database, giving its name
@@ -81,3 +104,10 @@ export class OfferDepositImageComponent implements OnInit {
   }
 
 }
+
+                      /*.subscribe({
+                          next : (offerS:Offer) => {console.log('next : retour get offerdetail');
+                                            console.log(offerS);}, 
+                          error: errget => console.log(errget),
+                          complete: () => console.log('complete : get offerdetail')
+                      });*/
