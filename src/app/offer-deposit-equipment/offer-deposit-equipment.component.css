@@ -2,22 +2,31 @@ h1, p {
     text-align: center;
 }
 
-
-.check-form {
-    margin:auto;
-    width:30%;
+/* h2 titles are undelined */
+h2 {
+    border-bottom: solid 0.3rem #8C2B53;
 }
 
+.title {
+    margin : auto;
+    width:33%;
+}
+
+/* the form takes 1/3 width of the page and is page centered */
+.check-form {
+    margin:auto;
+    width:33%;
+}
+
+/* displaying check choices in column */
 .check-list {
-  
-    border : 1px solid blue;
+    border : 1px solid darkgray;
 
     display: flex;
     flex-direction: column;
 }
 
 #submit-button {
-  
     margin : auto;
     display:block;
 }
@@ -27,8 +36,8 @@ h1, p {
     margin:auto;
 }
 
+/* disable a specific part of the template when user not connected */
 .is-disable {
-
     pointer-events: none;
     opacity: 0.3;
 }

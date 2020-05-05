@@ -1,11 +1,15 @@
-<!-- <p>offer-update works!</p> -->
+
+ <h1>Modification d'une annonce</h1>
+
+ <div class="title">
+  <h2>Informations générales</h2>
+</div>
 
 <!--deposit form containing basis information and corresponding to Offer entity in the model-->
 <form [formGroup]="depositForm"  (ngSubmit)="onUpdate(depositForm.value)">
 
     <div class="deposit-form">
-  
-        <h1>Modification d'une annonce</h1>
+       
         <h5 id="advice">Les champs marqués d'un (*) sont obligatoires</h5>
   
       <div class="deposit-form-elt">
@@ -130,13 +134,28 @@
       </div>
   
       <div class="deposit-form-elt">
-        <button class="submit-button" type="submit">Modifier mon annonce !</button>
+        <button class="submit-button" type="submit">Enregistrer les modifications</button>
         <!--<button class="submit-button" type="submit" [disabled]="!depositForm.dirty">Enregistrer l'annonce</button> -->
       </div>
   
     </div>
   
   </form>
+
+<p *ngIf="generalInfoMessage" class="message">{{generalInfoMessage}}</p>
+
+<br>
+
+<div class="title">
+  <h2>Photographies</h2>
+</div>
+
+<!--selection and upload of an image-->
+<div class="image-select">
+    <input  type="file" (change)="onFileChanged($event)">
+</div>
+
+<br>
 
   <!--displaying live images uploaded, in a flex and wrap way-->
 <div class="img-container" *ngIf="offerToUpdate">
@@ -148,15 +167,14 @@
 
 </div>
 
-<!--selection and upload of an image-->
-<div class="image-select">
-  <input  type="file" (change)="onFileChanged($event)">
-  <!-- <button (click)="onUpload()">Envoyer la photo</button> -->
+<p *ngIf="imageMessage" class="message">{{imageMessage}}</p>
+
+
+<br>
+
+<div class="title">
+  <h2>Equipements et options</h2>
 </div>
-
-
-
-<h1>Equipements et options</h1>
 
 <p id="advice">Le choix des options est facultatif</p>
 
@@ -176,8 +194,10 @@
             </label>
         </div>
         <br>
-        <button id="submit-button">Modifier l'équipement !</button>
+        <button id="submit-button">Enregistrer les modifications</button>
     </div>
 
 </form>
+
+<p *ngIf="equipmentMessage" class="message">{{equipmentMessage}}</p>
 

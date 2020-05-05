@@ -1,4 +1,44 @@
+/*center the div containing the login form */
 .login-form {
-    width : 20%;
-    margin : auto;
+    width : 18%;
+    margin : 5% auto;
+
+    border: solid 1px black; 
+    padding:2%; 
+}
+
+/*login form fields displayed in column */
+.global-form{
+    display: flex;
+    flex-direction: column;
+}
+
+/* centering the input fields */
+.form-item {
+    display:flex;
+    flex-direction: row;
+    /*justify-content: space-between; when label displayed*/
+    justify-content: center;
+
+    margin-top:4%;
+}
+
+#connect-button{
+    margin: 4% auto;
+}
+
+/*colorisation of input and error/informationnal messages */
+.error-effect-title {
+    color:lightcoral;
+    text-align: center; /*when no label displayed */
+}
+
+.message {
+    margin : 3%;
+    text-align: center;
+}
+
+#continue-button {
+    width : 3%;
+    margin: 3% auto;
 }

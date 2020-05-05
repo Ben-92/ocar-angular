@@ -1,19 +1,10 @@
 
-<!--adding a '/' means it's an absolute route : http://localhost:4200/offerDepositEquipment/{offerIdOnUse}-->
-<!--
-<nav class="nav-bar-deposit">
-  <ul> 
-        <li><a [routerLink]="['/offerDepositEquipment', offerIdOnUse]">Ajouter des options et équipements</a></li>
-        <li><a [routerLink]="['offerEquipment', offer.id]">Equipement et options</a></li>
-        <li><a [routerLink]="['offerDocument', offer.id]">Documents de la voiture</a></li>
-      
-  </ul>
-</nav> -->
 
+<h1>Nouvelle annonce</h1>
 
-<!-- <p>L'annonce est enregistrée, vous pouvez déposer des photos si vous le souhaitez</p>  -->
-
-<h1>Déposer des photos</h1>
+<div class="title">
+    <h2>Déposer des photos</h2>
+</div>
 
 <br>
 
@@ -26,7 +17,7 @@
 <!--selection and upload of an image-->
 <div class="image-select">
   <input  type="file" (change)="onFileChanged($event)">
-  <!-- <button (click)="onUpload()">Envoyer la photo</button> -->
+
 </div>
 
 <br>

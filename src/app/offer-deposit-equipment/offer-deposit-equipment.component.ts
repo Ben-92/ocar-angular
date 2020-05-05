@@ -12,28 +12,19 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class OfferDepositEquipmentComponent implements OnInit {
 
-  /*equipmentList  =this.dataService.equipments; */
-
+ /*Id of th offer created on the first deposit page*/
   offerIdOnUse;
 
+  /*informational/error message */
   message:String;
 
+  /* true if the form has been successfully upfated in database */
   isDepositComplete : Boolean;
 
   equipmentForm: FormGroup;
-  equipmentList = this.dataService.equipments;
-  /*   [
-    { "type": "interior", "label": "Sièges cuir"},
-    { "type": "interior", "label": "Volant Alcantara" },
-    { "type": "exterior", "label": "Jantes Alu 17"   },
-    { "type": "exterior", "label": "Peinture métallisée" },
-    { "type": "Comfort", "label": "Suspensions adaptables"},
-    { "type": "Comfort", "label": "Sièges chauffants" }
-  ]; */
 
-  /*
-  isFirst : Boolean;
-  text:String; */
+   /* equipment list retrieved from data service */
+  equipmentList = this.dataService.equipments;
 
   constructor(private formBuilder: FormBuilder,
     private dataService: DataService,
@@ -48,9 +39,12 @@ export class OfferDepositEquipmentComponent implements OnInit {
 
      }
 
+
+  /**
+  * retrieve offer id
+  */
   ngOnInit() {
 
-    /*this.isFirst = true;*/
     this.isDepositComplete = false;
 
     this.route.paramMap
@@ -60,27 +54,33 @@ export class OfferDepositEquipmentComponent implements OnInit {
   }
 
 
+  /**
+   * each equipment correspond to one formcontrol, each formcontrol is an element of the formarray
+   */
   private addCheckboxes() {
     this.equipmentList.forEach((equipmentItem, equipmentIndex) => {
       console.log(equipmentItem);
       const control = new FormControl();
-      /*const control = new FormControl(equipmentIndex === 0); */ // if first item set to true, else false
-      /*console.log(control); */
       (this.equipmentForm.controls.equipments as FormArray).push(control); 
     });
   }
 
+  /**
+   * PUT equipment list and updating it to the offer in database
+   * @param equipmentDeposit formarray of user choices (check or not check for each equipment item)
+   */
   submit(equipmentDeposit) {
 
-    console.log(this.equipmentForm.value.equipments);
     const selectedEquipmentLabels = equipmentDeposit.equipments /* retrieve equipments FormArray from equipmentForm: true (if checked) or null */
-      .map((value, i) => value ? this.equipmentList[i] : null) /* nouveau tableau : rapprochement entre les checked (qui sont à true) et les valeurs du tableau de données*/                                                    
+      .map((value, i) => value ? this.equipmentList[i] : null) /* new array : rapprochement between the checked boxes (at true) and the values of the data array*/                                                    
       .filter(value => value !== null); /*new array with all non null elements */
-    console.log(selectedEquipmentLabels);
 
+
+    /* http call is made only if at least one box is checked */
     if (selectedEquipmentLabels.length > 0) {
 
-      this.dataService.addEquipmentToDb(this.offerIdOnUse,  selectedEquipmentLabels)
+      /*this.dataService.addEquipmentToDb(this.offerIdOnUse,  selectedEquipmentLabels)*/
+      this.dataService.updateEquipmentToDb(this.offerIdOnUse,  selectedEquipmentLabels)
       .subscribe({
         next : img => { console.log('next: post equipment') },
         error:err => {console.error(err);
@@ -93,62 +93,13 @@ export class OfferDepositEquipmentComponent implements OnInit {
       this.message = "Le dépôt d'annonce est terminé, merci !";
       this.isDepositComplete = true; 
     }
-
   }
 
+  /**
+   * navigate towards home at the end of the deposit process
+   */
   onClickNavigate(){
-
     this.router.navigate(['']);
-
   }
-
-  /*
-  shouldBeDisplay(textToDisplay) {
-    console.log(textToDisplay);
-    
-    if ((textToDisplay == 'interior') && this.isFirst){
-      this.text = 'Intérieur';
-      this.isFirst = false;
-      return true;
-    } else {
-      return false;
-    }
-  } */
-
-
 }
 
-/*  onDeposit(depositEquipmentForm){
-    console.log(depositEquipmentForm);
-    console.log(depositEquipmentForm.value);
-  } */
-
-  /*getOrders() {
-    return 
-      [
-        {
-          "type": "interior",
-          "label": "Sièges cuir"
-        },
-        {
-          "type": "interior",
-          "label": "Volant Alcantara"
-        },
-        {
-          "type": "exterior",
-          "label": "Jantes Alu 17"
-        },
-        {
-          "type": "exterior",
-          "label": "Peinture métallisée"
-        },
-        {
-          "type": "Comfort",
-          "label": "Suspensions adaptables"
-        },
-        {
-          "type": "Comfort",
-          "label": "Sièges chauffants"
-        }
-      ];
-  } */

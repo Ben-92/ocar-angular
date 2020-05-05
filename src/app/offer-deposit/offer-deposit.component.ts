@@ -19,25 +19,32 @@ import { Router, ActivatedRoute } from '@angular/router';
 })
 export class OfferDepositComponent implements OnInit {
   
+  /* true if user is logged in */
   isLoggedIn = false;
 
+  /* data lists retrieved from data service */
   brandList  =this.dataService.brands;
   modelList = this.dataService.models;
   yearList = this.dataService.years;
 
+  /*informational/error message */
   message:String;
 
+  /* true if form submitted */
   isSubmitted : boolean;
 
 
   /*Id of the Offer created by the http POST request creating an offer for a client*/
   offerIdCreated;
 
+  /* user Object connected */
   currentUser: any;
 
+ /*user Id retrieved from user Object connected */
   userIdCreatingOffer;
 
 
+  /* deposit formgroup */ 
   depositForm = this.formBuilder.group({
     postalCode: ['',[Validators.required, Validators.minLength(5), Validators.maxLength(5), Validators.pattern('[0-9]*')]],
     carBrand: ['',Validators.required],
@@ -55,32 +62,22 @@ export class OfferDepositComponent implements OnInit {
               private formBuilder: FormBuilder,
               private tokenStorageService: TokenStorageService,
               private router: Router,
-              private route: ActivatedRoute,
+              /*private route: ActivatedRoute,*/
               ) { }
 
   ngOnInit() {
-
-    console.log('offer-deposit component');
-
-    this.isLoggedIn = !!this.tokenStorageService.getToken();
-
-    /*window.location.reload();*/
-
-    /*
-    this.depositForm.get('carBrand').setValue('Ferrari');
-    this.depositForm.get('description').setValue('test');
-    this.depositForm.get('gearbox').setValue('Automatique');
-    */
-    
-    
+    this.isLoggedIn = !!this.tokenStorageService.getToken();    
   }
 
   onLoginchoice(){
+
+    /* route towards login form with return URL in parameter */
     this.router.navigate(['/login'], {queryParams : {sourceURL:'/deposit'}})
   }
 
   /**
    * adding an offer to a client and retrieving its id
+   * when terminate ok --> route towards image deposit component
    * @param offerDeposit form value with data of the Offer model
    */
   onDeposit(offerDeposit) {
@@ -96,14 +93,12 @@ export class OfferDepositComponent implements OnInit {
     /* retrieving User id*/
     this.currentUser = this.tokenStorageService.getUser();
     this.userIdCreatingOffer = this.currentUser.id;
-    console.log(this.userIdCreatingOffer);
 
 
-    /*adding date time to the submitted offer */
+    /*adding date time now of offer creation to the submitted offer */
     offerDeposit.date = new Date();
 
-    console.log(offerDeposit.year);
-
+    /* POST new offer to user */
     this.dataService.addOfferToUser(this.userIdCreatingOffer, offerDeposit)
         .pipe(
           tap ((value:Offer) => {

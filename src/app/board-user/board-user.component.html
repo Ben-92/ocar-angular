@@ -1,11 +1,3 @@
-<!-- <p>board-user works!</p> -->
-<!--
-<div class="container">
-    <header class="jumbotron">
-      <p>{{ content }}</p>
-    </header>
-  </div> -->
-
 
   <div id="personal-info" *ngIf="userDetailObs  | async as userDetail">
   
@@ -26,17 +18,12 @@
 
       <div class="offer-list-result" *ngFor="let offer of userDetail.offers">
         <div class="offer-list-text">
-            <!-- <h3>Date de l'offre: {{offer.date | date : 'dd/MM/yyyy'}}</h3>
-            <h3>Marque: {{offer.carBrand}}</h3>
-            <h3>Modèle: {{offer.carModel}}</h3>
-            <h3>Prix: {{offer.price | currency:'EUR':'symbol':'1.0-0'}}</h3> -->
             <p><strong>Date de l'offre:</strong> {{offer.date | date : 'dd/MM/yyyy'}}</p>
             <p><strong>Marque:</strong> {{offer.carBrand}}</p> 
             <p><strong>Modèle:</strong> {{offer.carModel}}</p>
             <p><strong>Prix:</strong> {{offer.price | currency:'EUR':'symbol':'1.0-0'}}</p>
         </div>
         <div class="offer-list-link">
-            <!-- <h3><a [routerLink]="['/offerDetail', offer.id]">Consulter</a></h3> -->
             <!-- <button (click)="onConsult(offer.id)">Consulter</button> -->
             <button (click)="onUpdate(offer.id)">Modifier</button>
             <button (click)="onDelete(offer.id)">Supprimer</button>

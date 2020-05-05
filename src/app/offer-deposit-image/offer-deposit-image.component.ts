@@ -66,28 +66,8 @@ export class OfferDepositImageComponent implements OnInit {
   onClickNavigate(){
 
     this.router.navigate(['/offerDepositEquipment', this.offerIdOnUse]);
-
   }
 
-
-  /**
-   * adding an uploaded image to database and get offer 
-   */
-  /*
-  onUpload() {
-    this.dataService.addImageToDb(this.offerIdOnUse,  this.selectedFile)
-    .subscribe({
-      next : img => { console.log('next: post image');
-                      this.textButton = "Passer à l'étape suivante";
-                      this.offerInUseObs = this.dataService.getOfferDetail(this.offerIdOnUse);
-      },
-      error:err => {console.error(err);
-                    this.message = "Erreur : image non enregistrée";},
-      complete : () => {console.log('complete: post image')
-                        this.message = "Image enregistrée!"}
-    });
- 
-  } */
 
   /**
    * retrieving an image from database, giving its name
@@ -105,9 +85,3 @@ export class OfferDepositImageComponent implements OnInit {
 
 }
 
-                      /*.subscribe({
-                          next : (offerS:Offer) => {console.log('next : retour get offerdetail');
-                                            console.log(offerS);}, 
-                          error: errget => console.log(errget),
-                          complete: () => console.log('complete : get offerdetail')
-                      });*/

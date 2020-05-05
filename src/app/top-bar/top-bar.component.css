@@ -1,6 +1,12 @@
+#top-bar {
+    border : 1px solid darkgray;
+}
+
 h1 {
     text-align: center;
-    border : 1px solid green;
+    /*color: forestgreen; */
+    color: #3A913F;
+    /*border : 1px solid green; */
 }
 
 .nav-bar {
@@ -8,4 +14,8 @@ h1 {
     flex-direction: row;
 
     justify-content: center;
+}
+
+ul {
+    list-style-type: none;
 }

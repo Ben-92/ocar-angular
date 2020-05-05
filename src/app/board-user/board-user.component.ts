@@ -41,16 +41,6 @@ export class BoardUserComponent implements OnInit {
 
   /*get an observable containing the data of a car */
   this.userDetailObs = this.dataService.getUserDetail(this.userId);
-
-  /*
-    this.userService.getUserBoard().subscribe(
-      data => {
-        this.content = data;
-      },
-      err => {
-        this.content = JSON.parse(err.error).message;
-      }
-    );*/
   } 
 
   onConsult(offerId){
@@ -71,7 +61,6 @@ export class BoardUserComponent implements OnInit {
                 this.userDetailObs = this.dataService.getUserDetail(this.userId);},
       error:err => {console.error(err);
                     this.message = "Erreur lors de la suppression de l'annonce";}});
-      /*complete : () => this.message = "Annonce " + this.offerIdCreated + " enregistrée!"});*/
   }
 
 }

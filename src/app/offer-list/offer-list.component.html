@@ -1,4 +1,8 @@
-<h1>Filtrer les annonces</h1>
+<h1>Annonces en ligne</h1>
+
+<div class="title">
+  <h2>Filtrer les annonces</h2>
+</div>
 
 <!--filter form to select offers on some criteria-->
 <form [formGroup]="filterForm" (ngSubmit)="onFilter(filterForm.value)">  
@@ -119,8 +123,14 @@
 </form>
 
 <!--displaying specific message if no offer retrieved-->
-<h2 *ngIf="contentTotalOffers > 0 ; else noOffer">{{contentTotalOffers}} annonce{{singularPluralChar}} !</h2>
-<ng-template #noOffer><h2>Aucune annonce</h2></ng-template>
+<div id="offer-number">
+  <p *ngIf="contentTotalOffers > 0 ; else noOffer">{{contentTotalOffers}} annonce{{singularPluralChar}} !</p>
+  <ng-template #noOffer><p>Aucune annonce</p></ng-template>
+</div>
+
+<div *ngIf="contentTotalOffers > 0" class="title">
+  <h2>Liste des annonces</h2>
+</div>
 
 <!--displaying sort choices-->
 <div class="sort-nb-offer-choices">
@@ -155,17 +165,13 @@
 
       <div class="offer-list-result" *ngFor="let offer of pageContent">
         <div class="offer-list-text">
-            <!-- <h3>Date de l'offre: {{offer.date | date : 'dd/MM/yyyy'}}</h3> -->
             <p><strong>Date de l'offre:</strong> {{offer.date | date : 'dd/MM/yyyy'}}</p>
-            <!-- <h3>Marque: {{offer.carBrand}}</h3> -->
             <p><strong>Marque:</strong> {{offer.carBrand}}</p> 
-            <!-- <h3>Modèle: {{offer.carModel}}</h3> -->
             <p><strong>Modèle:</strong> {{offer.carModel}}</p>
-            <!-- <h3>Prix: {{offer.price | currency:'EUR':'symbol':'1.0-0'}}</h3> -->
             <p><strong>Prix:</strong> {{offer.price | currency:'EUR':'symbol':'1.0-0'}}</p>
         </div>
         <div class="offer-list-link">
-            <!-- <h3><a [routerLink]="['offerDetail', offer.id]">Consulter</a></h3> -->
+           
             <button (click)="onConsult(offer.id)">Consulter</button>
         </div>
         <div class="offer-list-image" *ngIf="offer.images[0]; else noPhoto"> 
@@ -184,14 +190,14 @@
   <!--Pagination menu-->
   <ul *ngIf="contentTotalOffers > 0" class="pagination-items-list">
       <li class="pagination-item">
-        <a [ngClass]="{'is-disable': isFirstPage}" href=# (click)="displayPaginationPage(0)">Première page</a>
+        <a [ngClass]="{'is-disable': isFirstPage}" href='#offer-list' (click)="displayPaginationPage(0)">Première page</a>
       </li>
       <li class="pagination-item">
-        <a [ngClass]="{'is-disable': isFirstPage}" href=# (click)="displayPaginationPage(actualPageNumber - 1)">Page précédente</a>
+        <a [ngClass]="{'is-disable': isFirstPage}" href='#offer-list' (click)="displayPaginationPage(actualPageNumber - 1)">Page précédente</a>
       </li>
       <li class="pagination-item">Page {{actualPageNumber + 1}}/{{contentTotalPages}}</li>
       <li class="pagination-item">
-        <a [ngClass]="{'is-disable': isLastPage}" href=# (click)="displayPaginationPage(actualPageNumber + 1)">Page suivante</a>
+        <a [ngClass]="{'is-disable': isLastPage}" href='#offer-list' (click)="displayPaginationPage(actualPageNumber + 1)">Page suivante</a>
       </li>
   </ul>
 

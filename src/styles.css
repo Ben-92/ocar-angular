@@ -1,6 +1,27 @@
 /* You can add global styles to this file, and also import other style files */
 
 .message {
-    color:red;
+
     text-align:center;
+}
+
+button {
+    background-color: #3A913F;
+    border-color: #2e7432;
+    color:#fff;
+    border-radius: 0.3rem;
+    transition-duration: 0.2s;
+    height: 1.5rem;
+}
+
+button:hover{
+    /*background-color: darkgray; */
+    box-shadow: 0.3rem 0.3rem 0.5rem dimgray;
+    cursor: pointer;
+  
+}
+
+body {
+    /*background-color: #C9C9C9;*/
+   background-color: whitesmoke; 
 }

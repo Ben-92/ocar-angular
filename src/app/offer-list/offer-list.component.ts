@@ -87,7 +87,7 @@ filterForm = this.formBuilder.group({
    
   ngOnInit() {
 
-    console.log('offer-list component');
+    console.log('ngoninit')
     
     /* initialize the paging and sort criteria for the first time display */
     this.pageToDisplay = 0;
@@ -104,9 +104,6 @@ filterForm = this.formBuilder.group({
    * @param sortCriteriaSelected form value with sort criteria selected by user
    */
   onSortSelectChange(sortCriteriaSelected){
-
-    /*console.log('onSortSelectChange');
-    console.log('fiter: ' + this.isFilterRequested );*/
 
     this.determineSortAndOrder(sortCriteriaSelected);
     
@@ -130,9 +127,6 @@ filterForm = this.formBuilder.group({
    */
   onNbOffersPerPageChange(offersPerPageCriteria){
 
-    /*console.log('onNbOffersPerPageChange');
-    console.log('fiter: ' + this.isFilterRequested );*/
-
     this.offersPerPage = offersPerPageCriteria;
     
     this.pageToDisplay = 0;
@@ -151,9 +145,6 @@ filterForm = this.formBuilder.group({
  */
   displayPaginationPage(pageToDisplayChoice){
 
-   /* console.log('displayPage');
-    console.log('fiter: ' + this.isFilterRequested );*/
-
     this.pageToDisplay = pageToDisplayChoice;
 
 
@@ -163,6 +154,9 @@ filterForm = this.formBuilder.group({
       this.getPageOfOffers();
     }
 
+    /*document.getElementById('offer-list').scrollIntoView();*/
+    /*document.getElementById('offer-list').scrollTo();*/
+
   } 
 
 
@@ -171,8 +165,6 @@ filterForm = this.formBuilder.group({
  * @param filteringValues filter form values
  */
   onFilter(filteringValues) {
-
-    /*console.log('onFilter');*/
 
     this.populateCriterias(filteringValues);
 
@@ -185,11 +177,6 @@ filterForm = this.formBuilder.group({
    * retrieving a non filtered page of offers
    */
   getPageOfOffers(){
-
-    /*console.log('getPageOfOffers');
-    console.log(this.pageToDisplay);
-    console.log(this.sortCriteria);
-    console.log(this.orderCriteria);*/
 
 
     this.dataService.getOfferPage(this.pageToDisplay, this.offersPerPage, this.sortCriteria, this.orderCriteria)
@@ -215,7 +202,6 @@ filterForm = this.formBuilder.group({
     .subscribe( {
       next: (offerPage) => {
         console.log(offerPage);
-
      },
       error:err => {console.error(err);}});        
       /*complete : () => console.log('complete')}); */ 
@@ -225,11 +211,6 @@ filterForm = this.formBuilder.group({
    * retrieving a filtered page of offers
    */
   getFilteredPageOfOffers(){
-
-   /* console.log('getFilteredOffers'); 
-    console.log(this.pageToDisplay);
-    console.log(this.sortCriteria);
-    console.log(this.orderCriteria);*/
 
     this.dataService.getFilteredOfferPage(
     this.lowestBrandFilter,
@@ -277,9 +258,7 @@ filterForm = this.formBuilder.group({
    * @param filteringValues filter form values
    */
   populateCriterias(filteringValues){
-
-   /* console.log('populateCriterias'); */
-  
+ 
     this.isFilterRequested = false;
   
     if (filteringValues.dptCode > '' ){
@@ -341,9 +320,6 @@ filterForm = this.formBuilder.group({
    * @param sortCriteriaSelected 
    */
   determineSortAndOrder(sortCriteriaSelected){
-
-    /*console.log('determineSortAndOrder'); 
-    console.log(sortCriteriaSelected);*/
 
     switch (sortCriteriaSelected){
       case 'dateDESC':

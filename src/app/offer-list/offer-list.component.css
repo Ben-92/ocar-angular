@@ -2,15 +2,35 @@
 /***************** General rules for the whole template ************/
 /*******************************************************************/
 
+
+
 /*titles h1 and h2 are page centered */
-h1, h2 {
-    text-align: center;
+h1 {
+    text-align: center;  
 }
 
 p {
     font-size: 1.2em;
 
 }
+
+h2 {
+    /*border-bottom: solid 0.3rem darkgray; */
+    border-bottom: solid 0.3rem #8C2B53;
+    /*color:#8C2B53; */
+    
+}
+
+.title {
+    margin : auto;
+    width:33%;
+}
+
+#offer-number p {
+    text-align: center;
+}
+
+
 
 /*******************************************************************/
 /***************** Form filter specific rules **********************/
@@ -22,7 +42,7 @@ p {
     flex-direction: column;
 
     margin : auto;
-    width:30%;
+    width:33%;
 }
 
 

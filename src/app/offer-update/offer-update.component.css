@@ -1,6 +1,16 @@
 /*center the h1 titles and the advice at the beginning of the page */
-h1, #advice {
+h1, #advice, .message {
     text-align: center;
+}
+
+h2 {
+    /*border-bottom: solid 0.3rem darkgray; */
+    border-bottom: solid 0.3rem #8C2B53;
+}
+
+.title {
+    margin : auto;
+    width:33%;
 }
 
 
@@ -80,6 +90,11 @@ and label and input at each side */
 
     justify-content: center;
 
+    width : 33%;
+    margin:auto;
+
+    /*border : solid 1px darkgray;*/
+
 }
 
 
@@ -87,10 +102,8 @@ and label and input at each side */
 .img-elt {
     
     background-color: grey;
-
-    border: 1px solid green;
   
-    width : 30%;
+    /*width : 30%; */
     height: 100%;
     margin:1%;
 
@@ -121,12 +134,13 @@ and label and input at each side */
 
 .check-form {
     margin:auto;
-    width:30%;
+    width:33%;
+
 }
 
 .check-list {
   
-    border : 1px solid blue;
+    border : 1px solid darkgray;
 
     display: flex;
     flex-direction: column;
