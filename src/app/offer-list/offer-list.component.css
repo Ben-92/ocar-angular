@@ -9,15 +9,15 @@ h1 {
     text-align: center;  
 }
 
-p {
-    font-size: 1.2em;
 
-}
-
+/*undeline h2 title with swooosh effect */
 h2 {
     /*border-bottom: solid 0.3rem darkgray; */
     border-bottom: solid 0.3rem #8C2B53;
-    /*color:#8C2B53; */
+ 
+    border-bottom-left-radius: 0.5rem;
+    border-bottom-right-radius: 0.2rem;
+
     
 }
 
@@ -35,6 +35,10 @@ h2 {
 /*******************************************************************/
 /***************** Form filter specific rules **********************/
 /*******************************************************************/
+
+.filter-form select {
+    width:20%;
+}
 
 /*container selector of deposit form items. Content form items are displayed in column and page centered*/
 .filter-form {
@@ -88,7 +92,7 @@ and label and input at each side */
 
     justify-content: space-between;
 
-    width : 30%;
+    width : 33%;
     margin:auto;
 }
 
@@ -116,7 +120,8 @@ and label and input at each side */
 /* one frame contains 3 parts of an offer in a row : text, consult detail link, showcase image */
 .offer-list-result {
     background-color: silver;
-    border : solid grey;
+    border : solid dimgrey;
+    border-radius: 0.4rem;
 
     width: 50%;
    
@@ -177,15 +182,100 @@ and label and input at each side */
 /*******************************************************************/
 
 /* Pagination menu is displayed in a row */
-.pagination-items-list {
+/*.pagination-items-list {
     display: flex;
     flex-direction: row;
 
     justify-content: center;
-}
+} */
 
 /*pagination list items : no specific mark*/
 ul {
+
+    padding : 0; /* a left padding exists by default on ul */
+   
+    width: 33%;
+    list-style-type: none;
+
+    margin : auto; /*center the list in the nav bar */
+
+    list-style-type: none;
+}
+
+
+li {
+
+   display: inline; /* <li> are block by default ("list-item"), which means 1 <li> takes one line which we don't want */
+
+    /*border : 1px solid black;
+    border-collapse: collapse;
+
+    padding-left: 1.5%;
+    padding-right: 1.5%; */
+}
+
+/* <a> elements decide for appearance (not the <li> decide) */
+a {
+    display: inline-block;  /*in order to modify its dimensions - allow to set width and height */
+
+    outline: none;
+    text-align: center;
+    text-decoration: none; /* no undelined link */
+
+    color:black;
+
+    /*border : solid whitesmoke 1px; */
+    /*border-collapse: collapse; */ /*in order the border not add width twice */
+   
+    width : 25%; /*width of one <li>. There are 4 <Li> elements + border : must match 100% */
+
+    /* height of <a> is bigger than height of <li> */
+    line-height: 3; /* 3 times police height : consequence : center vertically the text */
+
+}
+
+a:link{
+    background-color: whitesmoke;
+}
+
+a:visited{
+    background-color:whitesmoke; /*after a link has been visited */ 
+
+} 
+
+a:focus{
+    background-color:whitesmoke; /*when gets the focus, ie the default which is activated when enter is pressed */
+} 
+
+a:hover{
+    background-color : #3A913F;
+
+}
+
+a:active{
+    background-color : #8C2B53; /* when user click on link */
+
+}
+
+
+/*the pagination choices which are not selectable are shown a bit less opaque */
+.is-disable {
+
+    pointer-events: none;
+    opacity: 0.3;
+}
+
+
+/* Pagination menu is displayed in a row */
+/*.pagination-items-list {
+    display: flex;
+    flex-direction: row;
+
+    justify-content: center;
+} */
+
+/*pagination list items : no specific mark*/
+/*ul {
     list-style-type: none;
 }
 
@@ -196,12 +286,5 @@ li {
 
     padding-left: 1.5%;
     padding-right: 1.5%;
-}
+} */
 
-
-/*the pagination choices which are not selectable are shown a bit less opaque */
-.is-disable {
-
-    pointer-events: none;
-    opacity: 0.3;
-}

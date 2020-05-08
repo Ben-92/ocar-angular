@@ -31,7 +31,7 @@
             <div class="filter-form-elt">
               <label>Marque:</label>
               <select formControlName="carBrand">
-                <option value="">Sélectionner la Marque</option>
+                <option value="">Marque</option>
                 <option value={{brand.name}} *ngFor="let brand of brandList">{{brand.name}}</option>
               </select>
             </div>
@@ -46,7 +46,7 @@
               <label>Modèle:</label>
               <select formControlName="carModel">
                 <option value={{model.name}} *ngFor="let model of modelList">{{model.name}}</option>
-                <option value="">Sélectionner le modèle</option>
+                <option value="">Modèle</option>
               </select>
             </div>
             <div *ngIf="((filterForm.get('carModel').errors && (filterForm.get('carModel').touched || filterForm.get('carModel').dirty))
@@ -61,7 +61,7 @@
               <label>Année du véhicule:</label>
               <select formControlName="year">
                 <option value={{year.yearValue}} *ngFor="let year of yearList">{{year.yearValue}}</option>
-                <option value="">Sélectionner l'année</option>
+                <option value="">Année</option>
               </select>
             </div>
             <div *ngIf="((filterForm.get('year').errors && (filterForm.get('year').touched || filterForm.get('year').dirty))
@@ -187,18 +187,18 @@
     </div>
 </div>
 
-  <!--Pagination menu-->
-  <ul *ngIf="contentTotalOffers > 0" class="pagination-items-list">
-      <li class="pagination-item">
-        <a [ngClass]="{'is-disable': isFirstPage}" href='#offer-list' (click)="displayPaginationPage(0)">Première page</a>
-      </li>
-      <li class="pagination-item">
-        <a [ngClass]="{'is-disable': isFirstPage}" href='#offer-list' (click)="displayPaginationPage(actualPageNumber - 1)">Page précédente</a>
-      </li>
-      <li class="pagination-item">Page {{actualPageNumber + 1}}/{{contentTotalPages}}</li>
-      <li class="pagination-item">
-        <a [ngClass]="{'is-disable': isLastPage}" href='#offer-list' (click)="displayPaginationPage(actualPageNumber + 1)">Page suivante</a>
-      </li>
-  </ul>
+<!--Pagination menu-->
+<ul *ngIf="contentTotalOffers > 0" class="pagination-items-list">
+    <li class="pagination-item">
+      <a [ngClass]="{'is-disable': isFirstPage}" href='#offer-list' (click)="displayPaginationPage(0)">Première page</a>
+    </li>
+    <li class="pagination-item">
+      <a [ngClass]="{'is-disable': isFirstPage}" href='#offer-list' (click)="displayPaginationPage(actualPageNumber - 1)">Page précédente</a>
+    </li>
+    <li class="pagination-item">Page {{actualPageNumber + 1}}/{{contentTotalPages}}</li>
+    <li class="pagination-item">
+      <a [ngClass]="{'is-disable': isLastPage}" href='#offer-list' (click)="displayPaginationPage(actualPageNumber + 1)">Page suivante</a>
+    </li>
+</ul>
 
 

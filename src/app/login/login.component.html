@@ -1,6 +1,10 @@
 
+<!-- <div class="image-back"></div> -->
+
+<img src="../../assets/images/evgeni-evgeniev-ggVH1hoQAac-unsplash.jpg" alt=""> 
 
 <div class="login-form" *ngIf="!isLoggedIn">
+
     <form class="global-form"
 
            name="form"
@@ -38,6 +42,8 @@
               <div *ngIf="password.errors.minlength">Le mot de passe doit contenir au moins 6 caractères</div> 
       </div>
 
+      <div id="line"></div>
+
       <div id="connect-button">
         <button>Se connecter</button>
       </div>
@@ -51,14 +57,18 @@
 
     </form>
 
-  </div>
+</div>
 
-  <div class="message" *ngIf="isLoggedIn">
-    Bonjour {{username}} !
-  </div>
+<!--
+<div class="message" *ngIf="isLoggedIn">
+  Bonjour {{username}} !
+</div>
 
-  <div id='continue-button'>
-    <button *ngIf="isLoggedIn && autoDisplayLoginForm" (click)="onGoBack()">Continuer</button>
-  </div>
+<div id='continue-button'>
+  <button *ngIf="isLoggedIn && autoDisplayLoginForm" (click)="onGoBack()">Continuer</button>
+</div>
+-->
+
+
 
   

@@ -3,8 +3,8 @@ h1, p {
     text-align: center;
 }
 
+/* h2 titles are undelined */
 h2 {
-    /*border-bottom: solid 0.3rem darkgray; */
     border-bottom: solid 0.3rem #8C2B53;
 }
 
@@ -27,7 +27,7 @@ h2 {
 }
 
 /*all the frame containing result elements are in row and applies th wrap display */
-/*this wrap display is centerd in its parent element via justify-content */
+/*this wrap display is centered in its parent element via justify-content */
 .img-container {
     display: flex;
     flex-direction: row;
@@ -35,22 +35,21 @@ h2 {
 
     justify-content: center;
 
-    /*add*/
     width : 33%;
     margin:auto;
-
 }
 
 
 /*frame containing the image and the suppress button */
 .img-elt {
     
-    background-color: grey;
+   /*background-color: grey;
+   border: 1px solid green; */
 
-    border: 1px solid green;
+   background-color: silver;
+   border : solid dimgrey;
+   border-radius: 0.4rem;
   
-    
-   /* width : 30%; */
    height: 100%; 
    margin:1%; 
 
@@ -71,7 +70,6 @@ h2 {
 
 /*center the button in its parent element */
 .suppress-button {
-
     width:20%;
     margin:1% auto;
 

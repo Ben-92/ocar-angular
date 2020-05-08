@@ -10,7 +10,11 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class OfferDetailComponent implements OnInit {
 
+
+  /*observable containing the offer */
   offerDetailObs;
+
+  /*Id of the offer */
   offerIdDetail ;
 
   constructor(private dataService: DataService,
@@ -22,7 +26,7 @@ export class OfferDetailComponent implements OnInit {
     this.route.paramMap.subscribe(params => {
       this.offerIdDetail = params.get('offerId');
 
-      /*get an observable containing the data of an offer */
+      /*get an observable containing the offer */
       this.offerDetailObs = this.dataService.getOfferDetail(this.offerIdDetail);
 
   });

@@ -16,33 +16,45 @@ import { Offer } from '../offer';
 })
 export class OfferUpdateComponent implements OnInit {
 
+  /*Id of the offer the user wants to update*/
   offerIdOnUse;
+
+  /* offer the template is working on */
   offerToUpdate;
+
+  /*offer object sent in htp requests */
   offerToSendToBack : Offer;
 
+  /* data lists retrieved from data service */
   brandList  =this.dataService.brands;
   modelList = this.dataService.models;
   yearList = this.dataService.years;
-
-  equipmentForm: FormGroup;
   equipmentList = this.dataService.equipments;
 
+  equipmentForm: FormGroup;
+
+  /* list of equipment of an offer read in database*/
   offerEquipment;
 
+  /* indicates if a checkbox has to be checked or not */
   shoulBeChecked : Boolean;
 
-  /*message : String;*/
+  /*informationnal/error messages */
   generalInfoMessage : String;
   imageMessage : String;
   equipmentMessage : String;
 
+  /* indicates whether the general information form is submitted */
   isSubmitted : boolean;
 
+  /* id of the user who has deposited the offer */
   userId;
 
+  /* image file of a car */
   selectedFile : File;
 
 
+  /*general informations formgroup */ 
   depositForm = this.formBuilder.group({
     postalCode: ['',[Validators.required, Validators.minLength(5), Validators.maxLength(5), Validators.pattern('[0-9]*')]],
     carBrand: ['',Validators.required],
@@ -57,7 +69,7 @@ export class OfferUpdateComponent implements OnInit {
     date:''
   })
 
-  constructor(private router: Router,
+  constructor(/*private router: Router,*/
               private route: ActivatedRoute,
               private dataService: DataService,
               private formBuilder: FormBuilder) { 
@@ -65,9 +77,11 @@ export class OfferUpdateComponent implements OnInit {
 
   }
 
+  /**
+   * routing - get the param Id of the offer from the url
+   */
   ngOnInit() {
 
-      /* routing - get the param Id of the offer from the url */ 
       this.route.paramMap
       .subscribe(params => {
         this.offerIdOnUse = params.get('offerId');
@@ -76,6 +90,9 @@ export class OfferUpdateComponent implements OnInit {
   } 
 
 
+  /**
+   * compare data service equipment list with list of equipment in database and check the appropriate checkboxes
+   */
   private addCheckboxes() {
 
     this.equipmentList.forEach((equipmentItem, equipmentIndex) => {
@@ -98,13 +115,17 @@ export class OfferUpdateComponent implements OnInit {
     });
   }
 
+  /**
+   * update (PUT) the offer general information
+   * @param offerUpdated offer objec receive from the template form updated by the user
+   */
   onUpdate(offerUpdated) {
 
     this.initializeMessages();
 
     this.isSubmitted = true;
 
-    /*not going further if not all the input fields have succeeded the Validator controls */
+    /*not going further if all the input fields have not succeeded the Validator controls */
     if (this.depositForm.invalid){
       this.generalInfoMessage = "Veuillez vérifier les champs en erreur"
       return; 
@@ -124,7 +145,7 @@ export class OfferUpdateComponent implements OnInit {
     this.offerToSendToBack.year = offerUpdated.year;
     this.offerToSendToBack.price = offerUpdated.price;
 
-    /*adding date time to the submitted offer */
+    /*adding date time to the submitted offer : no : keeping intial value in db*/
     /*this.offerToSendToBack.date = new Date();*/
 
     this.dataService.updateOffer(this.offerIdOnUse, this.offerToSendToBack)
@@ -137,6 +158,10 @@ export class OfferUpdateComponent implements OnInit {
   }
 
 
+  /**
+   * getting selected file chosen by the client and POST it to the offer
+   * @param event 
+   */
   onFileChanged(event) {
 
     this.initializeMessages();
@@ -154,6 +179,10 @@ export class OfferUpdateComponent implements OnInit {
     }
   }
 
+  /**
+   * delete the image selected
+   * @param imageIdToDelete id of the image to delete
+   */
   onDeleteImage(imageIdToDelete) {
 
     this.initializeMessages();
@@ -169,6 +198,10 @@ export class OfferUpdateComponent implements OnInit {
 
   }
 
+  /**
+   * PUT equipment list and updating it to the offer in database
+   * @param equipmentDeposit formarray of user choices (check or not check for each equipment item)
+   */
   submit(equipmentDeposit) {
 
     this.initializeMessages();
@@ -189,6 +222,9 @@ export class OfferUpdateComponent implements OnInit {
 
   }
 
+  /**
+   * GET the offer to display in order to refresh template data, after each update (general info, image, equipment)
+   */
   reloadPage(){
 
     this.equipmentForm = this.formBuilder.group({
@@ -231,6 +267,9 @@ export class OfferUpdateComponent implements OnInit {
        error:err => {console.error(err);}});
   }
 
+  /**
+   * intialiazing informational/error messages
+   */
   initializeMessages(){
     this.generalInfoMessage = '';
     this.equipmentMessage = '';

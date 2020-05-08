@@ -1,11 +1,76 @@
+/*
+.image-back{
+    height: 100%;
+
+    background-image: url('../../assets/images/evgeni-evgeniev-ggVH1hoQAac-unsplash.jpg'); */
+
+    /* to see only the bottom or top or center of the image */
+   /* background-position: center; */
+
+    /*fullfill all screen */
+   /* background-repeat: no-repeat;
+    background-size: cover; */
+
+    /*image stay fixed and doesn't move with the scroll */
+   /* background-attachment: fixed; 
+
+} */
+
+
+/* full page backgrounf image */
+img {
+    position: absolute; /*so that the image may be positionned out of the flow */
+    z-index: 0; /*comes with position absolute - image is behind login form*/
+    /*min-height: 100%; */ /*fill the browser vertically */
+    min-width: 1024px;  /*image won't reduce less than 1024 px when responsive*/
+      
+    width: 100%; /* image takes the full container width */
+    height: auto; /*auto : default value */
+      
+    /* Set up positioning below the top bar, n% from the top of the screen */
+    position: fixed;
+    top: 0;
+    left: 0;
+
+  }
+
+
 /*center the div containing the login form */
 .login-form {
-    width : 18%;
-    margin : 5% auto;
 
-    border: solid 1px black; 
-    padding:2%; 
+    /*centering the form */
+    position: absolute; /*so that the form may be positionned out of the flow */
+    z-index: 1; /*comes with position absolute - image is behind login form*/
+    top:25%; /*% from the top of the page */
+
+    /* combination of 3 elements to center the form */
+    width : 300px;
+    margin-left:-150px; /* negative margin must be half the width to center the form */
+    left:50%;
+
+    border: solid 1px dimgrey;
+    border-radius: 0.4rem; 
+    padding-top:20px; 
+    padding-bottom:20px; 
+
+
+    background-color: whitesmoke;
 }
+
+@media screen and (max-width: 1024px) { /* keeping the image centered */
+    img {
+      left: 50%;
+      margin-left: -512px;   /* 50% */
+    }
+
+    .login-form {
+        /*centering the form */
+
+        width : 300px;
+        margin-left: -150px;
+        left:50%; 
+    }
+  }
 
 /*login form fields displayed in column */
 .global-form{
@@ -23,7 +88,17 @@
     margin-top:4%;
 }
 
+#line{
+    margin-top:5%;
+    margin-bottom:2%;
+
+    margin-left : 2%;
+    margin-right: 2%;
+    border-bottom: dashed 0.1rem #8C2B53;
+}
+
 #connect-button{
+    
     margin: 4% auto;
 }
 
@@ -34,11 +109,28 @@
 }
 
 .message {
+    position: absolute;
+    z-index: 1;
+
+    width : 50px;
+    margin-left:-25px;
+    left:50%;
+
     margin : 3%;
     text-align: center;
 }
 
 #continue-button {
-    width : 3%;
-    margin: 3% auto;
+   
+    position: absolute;
+    z-index: 1;
+
+    top:400px;
+    height:50px;
+    width : 300px;
+    margin-left:-150px;
+    left:50%;
+
+    /*width : 3%;
+    margin: 3% auto;*/
 }
