@@ -3,10 +3,6 @@
     text-align: center;
 }
 
-p {
-    font-size: 1.2em;
-
-}
 
 /*******************************************************************/
 /***************** Displaying offer list specific rules ************/
@@ -22,7 +18,8 @@ p {
 /* one frame contains 3 parts of an offer in a row : text, consult detail link, showcase image */
 .offer-list-result {
     background-color: silver;
-    border : solid grey;
+    border : solid dimgrey;
+    border-radius: 0.4rem;
 
     width: 50%;
    

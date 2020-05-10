@@ -4,8 +4,8 @@
 /*******************************************************************/
 
 
+/* h2 titles are undelined */
 h2 {
-    /*border-bottom: solid 0.3rem darkgray; */
     border-bottom: solid 0.3rem #8C2B53;
 }
 
@@ -13,6 +13,7 @@ h2 {
     margin : auto;
     width:50%;
 } 
+
 
 /***************** general container **********************************/
 .offer-detail {
@@ -40,6 +41,7 @@ h2 {
     justify-content: space-between;
 }
 
+/* title of each category (description, equipment...) aligned to the left */
 .item-title {
 
     margin-top: 0;
@@ -48,10 +50,7 @@ h2 {
     text-align: left;
 }
 
-p {
-    font-size: 1.2em;
 
-}
 
 
 
@@ -154,4 +153,9 @@ th, td {
 .buy-choice-button {
     margin : 1%;
 
+}
+
+#paypal-button-container {
+    width:100px;
+    margin:auto;
 }

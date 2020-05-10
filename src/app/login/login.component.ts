@@ -33,7 +33,11 @@ constructor(private authService: AuthService,
 
   ngOnInit() {
 
+    console.log('ngoninit login');
+
     this.sourceURL = this.route.snapshot.queryParams.sourceURL;
+
+    console.log(this.sourceURL);
 
     if (this.sourceURL > ''){
       this.autoDisplayLoginForm = true;
@@ -58,7 +62,10 @@ constructor(private authService: AuthService,
         this.isLoggedIn = true;
         this.roles = this.tokenStorage.getUser().roles;
         this.username = this.tokenStorage.getUser().username;
-        this.reloadPage(); 
+        /*this.reloadPage(); */
+        this.onGoBack();
+        /*this.router.navigate(['']); */
+
       },
       err => {
         this.errorMessage = err.error.message;
@@ -70,11 +77,14 @@ constructor(private authService: AuthService,
   reloadPage() {
     window.location.reload();
   }
-
   
   onGoBack() {
-    console.log(this.sourceURL);
-    this.router.navigate([this.sourceURL]);
+    if (this.sourceURL > '') {
+      console.log(this.sourceURL);
+      this.router.navigate([this.sourceURL]);
+    } else {
+      this.router.navigate(['']); 
+    }
 
   } 
 

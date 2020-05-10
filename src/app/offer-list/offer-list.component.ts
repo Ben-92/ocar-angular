@@ -67,7 +67,7 @@ lowestPriceFilter;
 highestPriceFilter;
 
 
-
+/* formgroup with all filter fields formcontrol */
 filterForm = this.formBuilder.group({
   dptCode: ['',[Validators.minLength(2), Validators.maxLength(2), Validators.pattern('[0-9]*')]],
   carBrand: '',
@@ -84,10 +84,15 @@ filterForm = this.formBuilder.group({
               private router: Router
               ) { 
               }
-   
+  
+  /**
+   * initialize display parameters and criterias, and display first page of all offers
+   */
   ngOnInit() {
 
-    console.log('ngoninit')
+    console.log('ngoninit offer-list');
+
+    /*window.location.reload(); */  /* ça boucle si je fais ça */
     
     /* initialize the paging and sort criteria for the first time display */
     this.pageToDisplay = 0;
@@ -117,6 +122,10 @@ filterForm = this.formBuilder.group({
 
   }
 
+/**
+ * route towards offer detail component
+ * @param offerId id of the offer the user has clicked on
+ */
   onConsult(offerId){
     this.router.navigate(['/offerDetail', offerId]);
   }
@@ -348,6 +357,5 @@ filterForm = this.formBuilder.group({
           break;
     }
   }
-
 
 }

@@ -3,17 +3,36 @@
 
   <h1>oCar - achat/vente de véhicules d'occasion</h1>
 
+  <nav class="nav-bar"> 
+    <ul>
+      <!--<li><a href="/home" routerLink="home">Accueil</a></li> -->
+      <li><a href="/" routerLink="">Accueil</a></li>
+      <li *ngIf="showAdminBoard"><a href="/admin" routerLink="admin">Admin Board</a></li>
+      <li *ngIf="showModeratorBoard"><a href="/mod" routerLink="mod">Moderator Board</a></li>
+      <li><a routerLink="/deposit">Déposer une annonce</a></li>
+      <li *ngIf="!isLoggedIn"><a href="/register" routerLink="register">S'inscrire</a></li>
+      <li *ngIf="!isLoggedIn"><a href="/login" routerLink="login">Se connecter</a></li>
+      <li *ngIf="isLoggedIn"><a href="/user" routerLink="user">{{ username }}</a></li>
+      <li *ngIf="isLoggedIn"><a href (click)="logout()">Se déconnecter</a></li>
+    </ul>
+  </nav>
+
+</div>
+
+
+
+  
+
+<!--
   <nav class="nav-bar">
       <ul>
         <li><a href="/home" routerLink="home">Accueil</a></li>
         <li *ngIf="showAdminBoard"><a href="/admin" routerLink="admin">Admin Board</a></li>
         <li *ngIf="showModeratorBoard"><a href="/mod" routerLink="mod">Moderator Board</a></li>
-        <!-- <li *ngIf="isLoggedIn"><a href="/user" routerLink="user">Espace personnel</a></li>  -->
       </ul>
 
       <ul>
           <li><a routerLink="/deposit">Déposer une annonce</a></li>
-          <!--<li><a routerLink="">Liste des annonces</a></li> -->
       </ul>
 
       <ul *ngIf="!isLoggedIn">
@@ -23,12 +42,13 @@
 
       <ul *ngIf="isLoggedIn">
           <li *ngIf="isLoggedIn"><a href="/user" routerLink="user">{{ username }}</a></li> 
-          <!-- <li><a href="/profile" routerLink="profile">{{ username }}</a></li> -->
           <li><a href (click)="logout()">Se déconnecter</a></li>
       </ul>
-  </nav>
+  </nav> -->
 
-</div>
+       <!-- <li *ngIf="isLoggedIn"><a href="/user" routerLink="user">Espace personnel</a></li>  -->
+     <!--<li><a routerLink="">Liste des annonces</a></li> -->
+      <!-- <li><a href="/profile" routerLink="profile">{{ username }}</a></li> -->
 
 <!--
 <div id="app">

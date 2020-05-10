@@ -19,6 +19,8 @@ export class TopBarComponent implements OnInit {
 
   ngOnInit() {
 
+    console.log('ngoninit top-bar');
+
     this.isLoggedIn = !!this.tokenStorageService.getToken();
 
     if (this.isLoggedIn) {

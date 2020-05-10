@@ -32,6 +32,7 @@ import { BoardModeratorComponent } from './board-moderator/board-moderator.compo
 import { BoardUserComponent } from './board-user/board-user.component';
 import { OfferDepositEquipmentComponent } from './offer-deposit-equipment/offer-deposit-equipment.component';
 import { OfferUpdateComponent } from './offer-update/offer-update.component';
+import { SaleComponent } from './sale/sale.component';
 
 
 
@@ -52,7 +53,8 @@ import { OfferUpdateComponent } from './offer-update/offer-update.component';
     BoardModeratorComponent,
     BoardUserComponent,
     OfferDepositEquipmentComponent,
-    OfferUpdateComponent
+    OfferUpdateComponent,
+    SaleComponent
   ],
   imports: [
     FormsModule,
@@ -63,6 +65,7 @@ import { OfferUpdateComponent } from './offer-update/offer-update.component';
       { path: '', component: OfferListComponent }, 
       { path: 'deposit', component: OfferDepositComponent },
       { path: 'offerDetail/:offerId', component: OfferDetailComponent },
+      { path: 'sale/:offerId', component: SaleComponent },
       /*{ path: 'deposit/offerDepositImage/:offerId', component: OfferDepositImageComponent },*/
       { path: 'offerDepositImage/:offerId', component: OfferDepositImageComponent },
       { path: 'offerDepositEquipment/:offerId', component: OfferDepositEquipmentComponent },
@@ -75,7 +78,7 @@ import { OfferUpdateComponent } from './offer-update/offer-update.component';
       { path: 'user', component: BoardUserComponent },
       { path: 'mod', component: BoardModeratorComponent },
       { path: 'admin', component: BoardAdminComponent },
-      { path: '', redirectTo: 'home', pathMatch: 'full' } 
+      /*{ path: '', redirectTo: 'home', pathMatch: 'full' } */
     ]),
   ],
   providers: [DataService,

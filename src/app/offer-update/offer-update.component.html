@@ -180,6 +180,7 @@
 
 <form [formGroup]="equipmentForm" [ngClass]="{'is-disable': isDepositComplete}" (ngSubmit)="submit(equipmentForm.value)">
 
+  <!--Displaying checkboxes with equipment from equipment in database-->
     <div class="check-form">
         <div class=check-list>
             <label  formArrayName="equipments" 

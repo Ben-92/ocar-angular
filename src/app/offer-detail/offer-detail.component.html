@@ -1,5 +1,4 @@
 
-
 <div class="title">
     <h2>Détail de l'annonce</h2>
 </div> 
@@ -113,10 +112,13 @@
 
 
     <div class="buy-buttons">
-        <button class="buy-choice-button">Acheter au comptant</button>
-        <button class="buy-choice-button">Acheter à crédit</button>
+        <button (click)="onBuy(offerDetail.id)">Acheter</button>
+        <!--<button class="buy-choice-button">Acheter au comptant</button>
+        <button class="buy-choice-button">Acheter à crédit</button> -->
     </div>
 
-
-
 </div>
+
+<!-- <div id="paypal-button-container"></div> -->
+
+

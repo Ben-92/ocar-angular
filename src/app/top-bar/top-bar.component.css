@@ -1,21 +1,70 @@
 #top-bar {
     border : 1px solid darkgray;
+
 }
 
 h1 {
     text-align: center;
-    /*color: forestgreen; */
-    color: #3A913F;
-    /*border : 1px solid green; */
+    color: #3A913F; 
 }
 
-.nav-bar {
-    display: flex;
-    flex-direction: row;
-
-    justify-content: center;
-}
 
 ul {
+
+    padding : 0; /* a left padding exists by default on ul */
+   
+    width: 33%;
     list-style-type: none;
+
+    margin : auto; /*center the list in the nav bar */
+
+}
+
+li {
+    display: inline; /* <li> are block by default ("list-item"), which means 1 <li> takes one line which we don't want */
+
+}
+
+/* <a> elements decide for appearance (not the <li> decide) */
+a {
+    display: inline-block;  /*in order to modify its dimensions - allow to set width and height */
+
+    outline: none;
+    text-align: center;
+    text-decoration: none; /* no undelined link */
+
+    color:whitesmoke;
+
+    /*border : solid whitesmoke 1px; */
+    /*border-collapse: collapse; */ /*in order the border not add width twice */
+   
+    width : 25%; /*width of one <li>. There are 4 <Li> elements + border : must match 100% */
+
+    /* height of <a> is bigger than height of <li> */
+    line-height: 3; /* 3 times police height : consequence : center vertically the text */
+
+}
+
+
+a:link{
+    background-color: dimgrey;
+}
+
+a:visited{
+    background-color:dimgrey; /*after a link has been visited */ 
+
+} 
+
+a:focus{
+    background-color:dimgrey; /*when gets the focus, ie the default which is activated when enter is pressed */
+} 
+
+a:hover{
+    background-color : #3A913F;
+
+}
+
+a:active{
+    background-color : #8C2B53; /* when user click on link */
+
 }

@@ -4,7 +4,6 @@ h1, #advice, .message {
 }
 
 h2 {
-    /*border-bottom: solid 0.3rem darkgray; */
     border-bottom: solid 0.3rem #8C2B53;
 }
 
@@ -21,9 +20,6 @@ h2 {
 
     margin : auto;
     width:33%;
-
-   /* pointer-events: none;
-    opacity: 0.3; */
 } 
 
 .is-disable {
@@ -31,7 +27,6 @@ h2 {
     pointer-events: none;
     opacity: 0.3;
 }
-
 
 
 
@@ -95,15 +90,17 @@ and label and input at each side */
 
     /*border : solid 1px darkgray;*/
 
+
 }
 
 
-/*frame containing the image and the suppress button */
+/*frame containing the image and the suppress/update button */
 .img-elt {
     
     background-color: grey;
+    border : solid dimgrey;
+    border-radius: 0.4rem;
   
-    /*width : 30%; */
     height: 100%;
     margin:1%;
 

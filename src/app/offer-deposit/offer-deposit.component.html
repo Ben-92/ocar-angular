@@ -44,7 +44,7 @@
     <div class="deposit-form-elt">
       <label class="deposit-form-elt-label">Marque (*):</label>
       <select formControlName="carBrand">
-        <option value="">Sélectionner la Marque</option> 
+        <option value="">Marque</option> 
         <option value={{brand.name}} *ngFor="let brand of brandList">{{brand.name}}</option>
       </select>
     </div>
@@ -60,7 +60,7 @@
       <label class="deposit-form-elt-label">Modèle (*):</label>
       <select formControlName="carModel">
         <option value={{model.name}} *ngFor="let model of modelList">{{model.name}}</option>
-        <option value="">Sélectionner le modèle</option>
+        <option value="">Modèle</option>
       </select>
     </div>
     <div *ngIf="((depositForm.get('carModel').errors && (depositForm.get('carModel').touched || depositForm.get('carModel').dirty))
@@ -74,7 +74,7 @@
       <label class="deposit-form-elt-label">Année du véhicule (*):</label>
       <select formControlName="year">
         <option value={{year.yearValue}} *ngFor="let year of yearList">{{year.yearValue}}</option>
-        <option value="">Sélectionner l'année</option>
+        <option value="">Année</option>
       </select>
     </div>
     <div *ngIf="((depositForm.get('year').errors && (depositForm.get('year').touched || depositForm.get('year').dirty))
