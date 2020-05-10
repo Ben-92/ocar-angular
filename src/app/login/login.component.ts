@@ -37,6 +37,8 @@ constructor(private authService: AuthService,
 
     this.sourceURL = this.route.snapshot.queryParams.sourceURL;
 
+    console.log(this.sourceURL);
+
     if (this.sourceURL > ''){
       this.autoDisplayLoginForm = true;
     }

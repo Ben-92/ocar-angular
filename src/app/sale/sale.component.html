@@ -1,0 +1,22 @@
+<!-- <p>sale works!</p> -->
+
+<div *ngIf="!isLoggedIn" class="if-not-connected">
+        <p>Connectez-vous ou inscrivez-vous pour réaliser l'achat</p>
+      
+        <!--<a routerLink="/login" queryParams="{redirectURL:/deposit}">Se connecter</a> -->
+        <button (click)="onLoginchoice()" class="if-not-connected-button">Se connecter</button> 
+        <button routerLink="/register" class="if-not-connected-button">S'inscrire</button> <!--address starting with / : absolute route-->
+      
+</div>
+
+<p id="mirror-price">{{carOfferPrice}}</p>
+
+<!--
+<label for="price2">Prix: </label>
+<p id="price2">{{carOfferPrice | currency:'EUR':'symbol':'1.0-0'}}</p> -->
+
+<h1 [ngClass]="{'is-disable': !isLoggedIn}">Montant de l'achat : {{carOfferPrice | currency:'EUR':'symbol':'1.0-0'}}</h1>
+
+<!-- <div id="paypal-button-container"></div> -->
+
+<div id="paypal-button-container" [ngClass]="{'is-disable': !isLoggedIn}"></div>

@@ -5,7 +5,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { DataService } from '../data.service';
 import { FormBuilder, Validators, FormGroup, FormArray, FormControl } from '@angular/forms';
 
-import {map, tap} from 'rxjs/operators';
+import {tap} from 'rxjs/operators';
 
 import { Offer } from '../offer';
 

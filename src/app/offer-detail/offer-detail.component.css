@@ -154,3 +154,8 @@ th, td {
     margin : 1%;
 
 }
+
+#paypal-button-container {
+    width:100px;
+    margin:auto;
+}
