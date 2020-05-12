@@ -46,6 +46,7 @@ and label and input at each side */
     font-weight: bold;
 } */
 
+
 /*radio buttons are displayed at extreme right of the element */
 .deposit-form-elt-radio {
     display:flex;

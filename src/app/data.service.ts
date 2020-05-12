@@ -6,6 +6,7 @@ import { Brand } from './brand';
 import { Model } from './model';
 
 import { Offer } from './offer';
+import { Sale } from './sale';
 
 @Injectable({
   providedIn: 'root'
@@ -120,6 +121,15 @@ export class DataService {
   addOfferToUser(userId, offerDeposit) {
     return this.httpClient.post<Offer>('http://localhost:8080/api/users/' + userId + '/offer', offerDeposit);
   }
+
+  addSaleToUser(userId, saleConcluded, offerId) {
+    let params = new HttpParams();
+    params = params.append('offerId', offerId);
+    const options = { params: params };
+
+    return this.httpClient.post<Sale>('http://localhost:8080/api/users/' + userId + '/sale', saleConcluded, options);
+  }
+
 
   updateOffer(offerIdOnUse, offerToSendToBack) {
     return this.httpClient.put<Offer>('http://localhost:8080/api/offers/' + offerIdOnUse, offerToSendToBack);

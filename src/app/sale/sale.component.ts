@@ -8,8 +8,12 @@ import {tap} from 'rxjs/operators';
 import { Offer } from '../offer';
 
 import { TokenStorageService } from '../_services/token-storage.service';
+import { Sale } from '../sale';
+
+import { FormBuilder, Validators } from '@angular/forms';
 
 declare var paypal : any;
+
 
 @Component({
   selector: 'app-sale',
@@ -30,32 +34,57 @@ export class SaleComponent implements OnInit{
    /*Id of the user who deposit the offer */
    userIdSelling;
 
-    /* true if user is logged in */
-    isLoggedIn = false;
+  /* true if user is logged in */
+  isLoggedIn = false;
 
-    test;
+  /* user Object connected */
+  loggedUserBuyer: any;
 
+  /*user Id retrieved from user Object connected */
+    userIdBuyer;
+
+  /*Sale concluded */
+  saleConcluded : Sale;
+
+  /*Id of the sale concluded after being saved in db */
+  saleIdCreated;
+
+  /* indicates if final price has been validated by the buyer */
+  isFinalPriceValidated : Boolean;
+
+  /* indicates whether the buy form is submitted */
+  isSubmitted : boolean;
+
+    /*informational/error message */
+    message:String;
+
+    /*general informations formgroup */ 
+    buyForm = this.formBuilder.group({
+      finalPrice: ['', [Validators.required, Validators.pattern('[0-9]*')]]
+    })
 
   constructor(private route: ActivatedRoute,
               private dataService: DataService,
               private router: Router,
-              private tokenStorageService: TokenStorageService) { }
+              private tokenStorageService: TokenStorageService,
+              private formBuilder: FormBuilder) { }
 
   ngOnInit() {
 
-    this.test = 12;
     console.log('nginit sale');
+    this.isFinalPriceValidated = false;
 
     this.isLoggedIn = !!this.tokenStorageService.getToken(); 
 
-    console.log(this.isLoggedIn);
 
     /* routing - get the param Id of the offer from the url */ 
     this.route.paramMap
       .subscribe(params => {
-       console.log(params);
        this.offerIdDetail = params.get('offerId');
        if (this.isLoggedIn){
+
+        this.loggedUserBuyer = this.tokenStorageService.getUser();
+        this.userIdBuyer = this.loggedUserBuyer.id;
           /*get an observable containing the data of an offer */
         this.dataService.getOfferDetail(this.offerIdDetail)
             .pipe(
@@ -64,6 +93,7 @@ export class SaleComponent implements OnInit{
                   console.log('ici');
                   
                   this.carOfferPrice = offer.price;
+                  this.buyForm.get('finalPrice').setValue(offer.price);
                   console.log(this.carOfferPrice);
                 }),
             )
@@ -82,19 +112,13 @@ export class SaleComponent implements OnInit{
       createOrder: function(data, actions) {
       
         let amount ;
-        /*console.log('yo');
-        console.log(this.carOfferPrice);
-        console.log(amount);
-        console.log(data);*/
-        amount = document.getElementById('mirror-price').innerText
-        console.log(amount);
+        amount = document.getElementById('price');
+
         // This function sets up the details of the transaction, including the amount and line item details.
         return actions.order.create({
           purchase_units: [{
             amount: {
-              /* value : 2100 */
-              /*value: parseInt(this.carOfferPrice,10) */
-              value : amount
+              value : amount.value
             }
           }]
         });
@@ -103,7 +127,7 @@ export class SaleComponent implements OnInit{
         // This function captures the funds from the transaction.
         return actions.order.capture().then(function(details) {
           // This function shows a transaction success message to your buyer.
-          alert('Transaction completed by ' + details.payer.name.given_name);
+          alert('Transaction finalisée par ' + details.payer.name.given_name); 
         });
       }
     }).render('#paypal-button-container');
@@ -114,6 +138,36 @@ export class SaleComponent implements OnInit{
     this.router.navigate(['/login'], {queryParams : {sourceURL:'/sale'+'/'+this.offerIdDetail }})
   }
 
+  onBuy(buyData) {
+
+    this.isSubmitted = true;
+    this.buyForm.get('finalPrice').disable();
+
+    /*test = buyData.finalPrice;*/
+    let dateOfSale = new Date();
+    let saleConcluded = {
+      /*finalPrice : document.getElementById('mirror-price').innerText, */
+      finalPrice : buyData.finalPrice,
+      date : dateOfSale
+    }    
+        //POST new offer to user
+        this.dataService.addSaleToUser(this.userIdBuyer, saleConcluded, this.offerIdDetail)
+            .pipe(
+              tap ((value:Sale) => {
+              this.saleIdCreated = value.id;
+              console.log(this.saleIdCreated)}) 
+            )
+            .subscribe( {
+              next: savedSale => {console.log(savedSale);
+                                  this.isFinalPriceValidated = true;
+                                  this.message = "Le montant de la transaction a été enregistré. Veuillez choisir un mode de paiement";},
+              error:err => {console.error(err);
+                            this.message = "Erreur lors de l'enregistrement du montant de la transaction";}});
+  } 
+
+  onSimulate(){
+    window.open("https://www.cetelem.fr/fr/credit/financement-vehicules-2-roues/credit-auto-neuve?co=LSG1B&cid=SEM__Conso__google__SEA_Conso_Marque+combinaisons__Cetelem_Cr%C3%A9dit+auto_Exact__cetelem%20auto__283144237671__e__mkw%7cIxUIV0MO__c&gclid=CjwKCAjwkun1BRAIEiwA2mJRWeJi-xVIcHO1GVUPm-G6vbAkKkcEK3vgShXELqwKHCgs8SuS1OHdpRoCdmQQAvD_BwE&gclsrc=aw.ds", "_blank");
+  }
 
 
   /*

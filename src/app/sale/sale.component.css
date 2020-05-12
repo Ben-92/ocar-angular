@@ -1,9 +1,10 @@
-h1 {
+h1, p {
     text-align: center;
 }
 
 .if-not-connected {
-    text-align: center;
+	margin-top: 3%;
+  text-align: center;
 }
 
 .if-not-connected-button {
@@ -12,15 +13,65 @@ h1 {
 
 /* disable a specific part of the template when user not connected */
 .is-disable {
+    /*
     pointer-events: none;
-    opacity: 0.3;
+    opacity: 0.3; */
+    display : none;
+}
+
+/* blur a specific part of the template */
+.is-blurred {
+
+	pointer-events: none;
+	opacity: 0.3; 
+
 }
 
 #paypal-button-container {
     width:100px;
-    margin:auto;
+    /*margin:auto;*/
 }
 
 #mirror-price{
     display: none;
+}
+
+
+.buy-form {
+    display:flex;
+    flex-direction: column;
+
+    margin : 3% auto;
+    width:33%;
+}
+
+
+
+
+/*form items are themselves container selector of their inner elements. Elements are displayed in row
+and label and input at each side */
+.buy-form-elt {
+    display:flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    margin-top:1%;
+}
+
+.submit-button {
+    margin: 1% auto;
+}
+
+#payment-choices{
+	width:50%;
+	margin:auto;
+
+	display: flex;
+	flex-direction: row;
+	justify-content: space-around;
+}
+
+/*colorisation of input and error/informationnal messages */
+.error-effect-title, .message {
+    color:lightcoral
 }

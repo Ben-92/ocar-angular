@@ -222,6 +222,7 @@ export class OfferUpdateComponent implements OnInit {
 
   }
 
+
   /**
    * GET the offer to display in order to refresh template data, after each update (general info, image, equipment)
    */

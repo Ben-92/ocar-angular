@@ -39,7 +39,7 @@ export class BoardUserComponent implements OnInit {
 
   console.log(this.userId);
 
-  /*get an observable containing the data of a car */
+  /*get an observable containing the data of a user*/
   this.userDetailObs = this.dataService.getUserDetail(this.userId);
   } 
 
