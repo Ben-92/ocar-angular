@@ -114,5 +114,13 @@ export class OfferDepositComponent implements OnInit {
 
   }
 
+  isInvalid(field){
+    if ((this.depositForm.get(field).errors && (this.depositForm.get(field).touched || this.depositForm.get(field).dirty))
+             || (this.isSubmitted && this.depositForm.get(field).errors))
+    {
+      return true;
+    }
+  }
+
 
 }

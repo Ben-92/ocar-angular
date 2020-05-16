@@ -13,6 +13,8 @@ import { Sale } from './sale';
 })
 export class DataService {
 
+  apiUrl = 'http://localhost:8080/api' ;
+
   constructor(private httpClient: HttpClient) { }
 
 
@@ -33,7 +35,8 @@ export class DataService {
 
   const options = { params: params };
 
-  return this.httpClient.get('http://localhost:8080/api/offers', options);
+  /*return this.httpClient.get('http://localhost:8080/api/offers', options); */
+  return this.httpClient.get(this.apiUrl + '/offers', options);
 }
 
  
@@ -43,11 +46,13 @@ export class DataService {
    */
 
   getOfferDetail(offerId) {
-    return this.httpClient.get('http://localhost:8080/api/offers/' + offerId );
+    //return this.httpClient.get('http://localhost:8080/api/offers/' + offerId );
+    return this.httpClient.get(this.apiUrl + '/offers/' + offerId );
   }
 
   getUserDetail(userId) {
-    return this.httpClient.get('http://localhost:8080/api/users/' + userId );
+    //return this.httpClient.get('http://localhost:8080/api/users/' + userId );
+    return this.httpClient.get(this.apiUrl + '/users/' + userId );
   }
 
 
@@ -105,7 +110,8 @@ export class DataService {
 
   const options = { params: params };
 
-  return this.httpClient.get('http://localhost:8080/api/offers/filter', options)
+  //return this.httpClient.get('http://localhost:8080/api/offers/filter', options)
+  return this.httpClient.get(this.apiUrl + '/offers/filter', options)
  }
 
   /**
@@ -119,7 +125,8 @@ export class DataService {
   } */
 
   addOfferToUser(userId, offerDeposit) {
-    return this.httpClient.post<Offer>('http://localhost:8080/api/users/' + userId + '/offer', offerDeposit);
+    //return this.httpClient.post<Offer>('http://localhost:8080/api/users/' + userId + '/offer', offerDeposit);
+    return this.httpClient.post<Offer>(this.apiUrl + '/users/' + userId + '/offer', offerDeposit);
   }
 
   addSaleToUser(userId, saleConcluded, offerId) {
@@ -127,12 +134,14 @@ export class DataService {
     params = params.append('offerId', offerId);
     const options = { params: params };
 
-    return this.httpClient.post<Sale>('http://localhost:8080/api/users/' + userId + '/sale', saleConcluded, options);
+    //return this.httpClient.post<Sale>('http://localhost:8080/api/users/' + userId + '/sale', saleConcluded, options);
+    return this.httpClient.post<Sale>(this.apiUrl + '/users/' + userId + '/sale', saleConcluded, options);
   }
 
 
   updateOffer(offerIdOnUse, offerToSendToBack) {
-    return this.httpClient.put<Offer>('http://localhost:8080/api/offers/' + offerIdOnUse, offerToSendToBack);
+    //return this.httpClient.put<Offer>('http://localhost:8080/api/offers/' + offerIdOnUse, offerToSendToBack);
+    return this.httpClient.put<Offer>(this.apiUrl + '/offers/' + offerIdOnUse, offerToSendToBack);
   }
 
 
@@ -146,17 +155,19 @@ export class DataService {
     const uploadData = new FormData;
     uploadData.append('imageFile',selectedFile, selectedFile.name);
 
-    return this.httpClient.post('http://localhost:8080/api/offers/' + offerIdOnUse + '/images', uploadData);
+    //return this.httpClient.post('http://localhost:8080/api/offers/' + offerIdOnUse + '/images', uploadData);
+    return this.httpClient.post(this.apiUrl + '/offers/' + offerIdOnUse + '/images', uploadData);
   }
 
+  /*
   addEquipmentToDb(offerIdOnUse, equipmentList) {
-
-    return this.httpClient.post('http://localhost:8080/api/offers/' + offerIdOnUse + '/equipments', equipmentList);
-  }
+    return this.httpClient.post(this.apiUrl + '/offers/' + offerIdOnUse + '/equipments', equipmentList);
+  } */
 
   updateEquipmentToDb(offerIdOnUse, equipmentList) {
 
-    return this.httpClient.put('http://localhost:8080/api/offers/' + offerIdOnUse + '/equipments', equipmentList);
+    //return this.httpClient.put('http://localhost:8080/api/offers/' + offerIdOnUse + '/equipments', equipmentList);
+    return this.httpClient.put(this.apiUrl + '/offers/' + offerIdOnUse + '/equipments', equipmentList);
   }
 
 
@@ -164,17 +175,19 @@ export class DataService {
    * get request to retrieve an image, giving its name
    * @param imageName name of the image to retrieve
    */
-  getImageFromDb(imageName){
-    return this.httpClient.get('http://localhost:8080/api/images/name/' + imageName);
-  }
+  //getImageFromDb(imageName){
+  //  return this.httpClient.get(this.apiUrl + '/images/name/' + imageName);
+  //}
 
 
   deleteOffer(offerIdToDelete) {
-    return this.httpClient.delete('http://localhost:8080/api/offers/' + offerIdToDelete );
+    //return this.httpClient.delete('http://localhost:8080/api/offers/' + offerIdToDelete );
+    return this.httpClient.delete(this.apiUrl + '/offers/' + offerIdToDelete );
   }
 
   deleteImage(imageIdToDelete) {
-    return this.httpClient.delete('http://localhost:8080/api/images/' + imageIdToDelete );
+    //return this.httpClient.delete('http://localhost:8080/api/images/' + imageIdToDelete );
+    return this.httpClient.delete(this.apiUrl + '/images/' + imageIdToDelete );
   }
 
 /**

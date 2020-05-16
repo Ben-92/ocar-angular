@@ -1,7 +1,8 @@
 
 <!-- <div class="image-back"></div> -->
-
-<img src="../../assets/images/evgeni-evgeniev-ggVH1hoQAac-unsplash.jpg" alt=""> 
+<div id="back">
+  <img src="../../assets/images/evgeni-evgeniev-ggVH1hoQAac-unsplash.jpg" alt="Photo by Evgeni Evgeniev on Unsplash"> 
+</div>
 
 <div class="login-form" *ngIf="!isLoggedIn">
 
@@ -11,7 +12,9 @@
           (ngSubmit)="f.form.valid && onSubmit()"
            #f="ngForm"
           novalidate>
-    
+      <div class="form-item"> 
+          <img id="logo" src="../../assets/images/justin-jones-iq8ZwK2pHNM-unsplash.jpg" alt="Photo by Justin Jones on Unsplash">
+      </div> 
       <div class="form-item">
         <!--<label for="username">Nom d'utilisateur:</label> -->
         <input  type="text"
@@ -43,6 +46,8 @@
       </div>
 
       <div id="line"></div>
+
+      <br>
 
       <div id="connect-button">
         <button>Se connecter</button>

@@ -17,8 +17,8 @@
 } */
 
 
-/* full page backgrounf image */
-img {
+/* full page background image */
+#back img {
     position: absolute; /*so that the image may be positionned out of the flow */
     z-index: 0; /*comes with position absolute - image is behind login form*/
     /*min-height: 100%; */ /*fill the browser vertically */
@@ -29,10 +29,18 @@ img {
       
     /* Set up positioning below the top bar, n% from the top of the screen */
     position: fixed;
-    top: 0;
+    top: -1200px; /*displaying the bottom side of the image */
     left: 0;
 
   }
+
+  .form-item img {
+
+    width : 100%;;
+    height : auto;
+
+  }
+
 
 
 /*center the div containing the login form */
@@ -41,7 +49,7 @@ img {
     /*centering the form */
     position: absolute; /*so that the form may be positionned out of the flow */
     z-index: 1; /*comes with position absolute - image is behind login form*/
-    top:25%; /*% from the top of the page */
+    top:15%; /*% from the top of the page */
 
     /* combination of 3 elements to center the form */
     width : 300px;
@@ -58,14 +66,14 @@ img {
 }
 
 @media screen and (max-width: 1024px) { /* keeping the image centered */
-    img {
+    #back img {
       left: 50%;
       margin-left: -512px;   /* 50% */
+      top : 0; /*seeing the whole image and not only the bottom, when diminishing screen size */
     }
 
+    /*centering the form */
     .login-form {
-        /*centering the form */
-
         width : 300px;
         margin-left: -150px;
         left:50%; 
@@ -92,14 +100,19 @@ img {
     margin-top:5%;
     margin-bottom:2%;
 
-    margin-left : 2%;
-    margin-right: 2%;
-    border-bottom: dashed 0.1rem #8C2B53;
+    margin-left : 5%;
+    margin-right: 5%;
+    border-bottom: dashed 0.1rem dimgrey;
 }
 
-#connect-button{
-    
-    margin: 4% auto;
+#connect-button button{
+    display : block;
+    width : 80%;
+    height : 35px;
+
+    margin: auto;
+
+    font-size : 1rem;
 }
 
 /*colorisation of input and error/informationnal messages */
@@ -108,6 +121,7 @@ img {
     text-align: center; /*when no label displayed */
 }
 
+/*
 .message {
     position: absolute;
     z-index: 1;
@@ -129,8 +143,8 @@ img {
     height:50px;
     width : 300px;
     margin-left:-150px;
-    left:50%;
+    left:50%; */
 
-    /*width : 3%;
-    margin: 3% auto;*/
-}
+   /* width : 3%;
+    margin: 3% auto;
+} */

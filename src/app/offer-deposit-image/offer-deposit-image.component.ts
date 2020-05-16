@@ -58,11 +58,10 @@ export class OfferDepositImageComponent implements OnInit {
   onFileChanged(event) {
     this.selectedFile = event.target.files[0];
 
-    console.log(this.selectedFile);
     if (this.selectedFile != null){
       this.dataService.addImageToDb(this.offerIdOnUse,  this.selectedFile)
       .subscribe({
-        next : img => { this.textButton = "Passer à l'étape suivante";
+        next : noValueBack => { this.textButton = "Passer à l'étape suivante";
                         this.offerInUseObs = this.dataService.getOfferDetail(this.offerIdOnUse);
         },
         error:err => {console.error(err);

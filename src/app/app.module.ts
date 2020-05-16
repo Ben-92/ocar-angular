@@ -33,6 +33,7 @@ import { BoardUserComponent } from './board-user/board-user.component';
 import { OfferDepositEquipmentComponent } from './offer-deposit-equipment/offer-deposit-equipment.component';
 import { OfferUpdateComponent } from './offer-update/offer-update.component';
 import { SaleComponent } from './sale/sale.component';
+import { LoanCalculatorComponent } from './loan-calculator/loan-calculator.component';
 
 
 
@@ -54,7 +55,8 @@ import { SaleComponent } from './sale/sale.component';
     BoardUserComponent,
     OfferDepositEquipmentComponent,
     OfferUpdateComponent,
-    SaleComponent
+    SaleComponent,
+    LoanCalculatorComponent
   ],
   imports: [
     FormsModule,
@@ -66,6 +68,7 @@ import { SaleComponent } from './sale/sale.component';
       { path: 'deposit', component: OfferDepositComponent },
       { path: 'offerDetail/:offerId', component: OfferDetailComponent },
       { path: 'sale/:offerId', component: SaleComponent },
+      { path: 'loanCalculator/:offerId', component: LoanCalculatorComponent },
       /*{ path: 'deposit/offerDepositImage/:offerId', component: OfferDepositImageComponent },*/
       { path: 'offerDepositImage/:offerId', component: OfferDepositImageComponent },
       { path: 'offerDepositEquipment/:offerId', component: OfferDepositEquipmentComponent },

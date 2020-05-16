@@ -65,6 +65,10 @@ export class OfferDetailComponent implements OnInit {
     this.router.navigate(['/sale', offerId]);
   }
 
+  onLoan(offerId){
+    this.router.navigate(['/loanCalculator', offerId]);
+  }
+
 
 
 

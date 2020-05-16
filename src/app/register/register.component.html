@@ -1,5 +1,7 @@
 
-<!-- <p>register works!</p> -->
+<div id="back">
+<img src="../../assets/images/evgeni-evgeniev-ggVH1hoQAac-unsplash.jpg" alt="Photo by Evgeni Evgeniev on Unsplash">
+</div>
 
 <div class="register-form" *ngIf="!isSuccessful">
     <!-- <div class="card card-container"> -->
@@ -10,7 +12,10 @@
             (ngSubmit)="f.form.valid && onSubmit()"
             #f="ngForm"
             novalidate>
-      
+
+        <div class="form-item"> 
+            <img id="logo" src="../../assets/images/justin-jones-iq8ZwK2pHNM-unsplash.jpg" alt="Photo by Justin Jones on Unsplash">
+        </div> 
         <div class="form-item">
           <!-- <label for="username">Username</label> -->
           <input  type="text"
@@ -66,6 +71,10 @@
                 <div *ngIf="password.errors.required">Le mot de passe est obligatoire</div>
                 <div *ngIf="password.errors.minlength">Le mot de passe doit contenir au moins 6 caractères</div>
         </div>
+
+        <div id="line"></div>
+
+        <br>
         
         <div id="connect-button">
           <button>S'inscrire</button>

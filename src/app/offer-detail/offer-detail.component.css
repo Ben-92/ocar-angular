@@ -151,11 +151,12 @@ th, td {
 }
 
 .buy-choice-button {
-    margin : 1%;
+    margin-left : 5%;
 
 }
 
+/*
 #paypal-button-container {
     width:100px;
     margin:auto;
-}
+}*/

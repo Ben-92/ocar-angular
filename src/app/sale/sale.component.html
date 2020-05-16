@@ -6,7 +6,7 @@
 </div>
 
 
-<form [formGroup]="buyForm" [ngClass]="{'is-disable': (!isLoggedIn) }"  (ngSubmit)="onBuy(buyForm.value)">
+<form [formGroup]="buyForm" [ngClass]="{'is-disable': (!isLoggedIn), 'is-blurred':isFinalPriceValidated }"  (ngSubmit)="onBuy(buyForm.value)">
 
 	<div class="buy-form">
 			<div class="buy-form-elt">
@@ -25,7 +25,7 @@
 			</div>
 
 			<div class="buy-form-elt">
-			<button class="submit-button" type="submit">Passer aux options d'achat</button>
+			<button class="submit-button" type="submit">Valider le montant de l'achat et passer aux options de paiement</button>
 			</div>
 
 	</div>
@@ -36,7 +36,7 @@
 <div [ngClass]="{'is-blurred': (!isLoggedIn || !isFinalPriceValidated) }"> 
 	<div id="payment-choices">
 		<div id="paypal-button-container" ></div>
-		<button (click)="onSimulate()">Simuler un achat à crédit</button>
+		<button (click)="onCash()">Paiement en direct (espèces/chèque)</button> 
 	</div>
 </div> 
 

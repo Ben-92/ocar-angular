@@ -1,0 +1,31 @@
+.if-not-connected {
+	margin-top: 3%;
+  text-align: center;
+}
+
+.if-not-connected-button {
+    margin:1%;
+}
+
+/* blur a specific part of the template */
+.is-blurred {
+
+	pointer-events: none;
+	opacity: 0.3; 
+
+}
+
+#calculator-choice {
+    margin-top : 15%;
+}
+
+#calculator-choice button{
+    display : block;
+    margin:auto;
+    
+    width : 200px;
+    height : 50px;
+
+    font-size : 1rem;
+ 
+} 

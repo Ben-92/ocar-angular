@@ -69,7 +69,7 @@ highestPriceFilter;
 
 /* formgroup with all filter fields formcontrol */
 filterForm = this.formBuilder.group({
-  dptCode: ['',[Validators.minLength(2), Validators.maxLength(2), Validators.pattern('[0-9]*')]],
+  dptCode: ['',[Validators.minLength(2), Validators.maxLength(3), Validators.pattern('[0-9]*')]],
   carBrand: '',
   carModel: '',
   year: '',
@@ -191,15 +191,15 @@ filterForm = this.formBuilder.group({
     this.dataService.getOfferPage(this.pageToDisplay, this.offersPerPage, this.sortCriteria, this.orderCriteria)
     .pipe(
       /* retrieving page informations before displaying it */
-      tap ((value:OfferPage) => {
-        this.actualPageNumber = value.number; 
-        this.pageContent = value.content;
+      tap ((offerPage:OfferPage) => {
+        this.actualPageNumber = offerPage.number; 
+        this.pageContent = offerPage.content;
   
-        this.isFirstPage = value.first;
-        this.isLastPage = value.last;
+        this.isFirstPage = offerPage.first;
+        this.isLastPage = offerPage.last;
         
-        this.contentTotalPages = value.totalPages;
-        this.contentTotalOffers = value.totalElements;
+        this.contentTotalPages = offerPage.totalPages;
+        this.contentTotalOffers = offerPage.totalElements;
 
         if (this.contentTotalOffers > 1) {
           this.singularPluralChar = 's';
@@ -236,15 +236,15 @@ filterForm = this.formBuilder.group({
     this.pageToDisplay, this.offersPerPage, this.sortCriteria, this.orderCriteria)
     .pipe(
       /* retrieving page informations before displaying it */
-      tap ((value:OfferPage) => {
-        this.actualPageNumber = value.number; 
-        this.pageContent = value.content;
+      tap ((offerPage:OfferPage) => {
+        this.actualPageNumber = offerPage.number; 
+        this.pageContent = offerPage.content;
   
-        this.isFirstPage = value.first;
-        this.isLastPage = value.last;
+        this.isFirstPage = offerPage.first;
+        this.isLastPage = offerPage.last;
         
-        this.contentTotalPages = value.totalPages;
-        this.contentTotalOffers = value.totalElements;
+        this.contentTotalPages = offerPage.totalPages;
+        this.contentTotalOffers = offerPage.totalElements;
 
         if (this.contentTotalOffers > 1) {
           this.singularPluralChar = 's';
@@ -269,15 +269,22 @@ filterForm = this.formBuilder.group({
   populateCriterias(filteringValues){
  
     this.isFilterRequested = false;
-  
+    // metropolitan and DOM TOM post codes
     if (filteringValues.dptCode > '' ){
-      this.lowestPostCodeFilter = filteringValues.dptCode + '000';
-      this.highestPostCodeFilter = filteringValues.dptCode + '999';
-      this.isFilterRequested = true;
+      if ((filteringValues.dptCode > 970 && filteringValues.dptCode < 977) || (filteringValues.dptCode > 983 && filteringValues.dptCode < 989)){
+        this.lowestPostCodeFilter = filteringValues.dptCode + '00';
+        this.highestPostCodeFilter = filteringValues.dptCode + '99';
+      } else {  
+        this.lowestPostCodeFilter = filteringValues.dptCode + '000';
+        this.highestPostCodeFilter = filteringValues.dptCode + '999';
+      }
+    this.isFilterRequested = true;
     } else {
       this.lowestPostCodeFilter = '00000';
       this.highestPostCodeFilter = '99999';
     }
+    console.log(this.lowestPostCodeFilter);
+    console.log(this.highestPostCodeFilter);
   
     if (filteringValues.carBrand > '' ){
       this.lowestBrandFilter = filteringValues.carBrand;

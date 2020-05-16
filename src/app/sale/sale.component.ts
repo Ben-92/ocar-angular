@@ -127,7 +127,7 @@ export class SaleComponent implements OnInit{
         // This function captures the funds from the transaction.
         return actions.order.capture().then(function(details) {
           // This function shows a transaction success message to your buyer.
-          alert('Transaction finalisée par ' + details.payer.name.given_name); 
+          alert('Merci pour votre achat ' + details.payer.name.given_name); 
         });
       }
     }).render('#paypal-button-container');
@@ -141,7 +141,7 @@ export class SaleComponent implements OnInit{
   onBuy(buyData) {
 
     this.isSubmitted = true;
-    this.buyForm.get('finalPrice').disable();
+    //this.buyForm.get('finalPrice').disable();
 
     /*test = buyData.finalPrice;*/
     let dateOfSale = new Date();
@@ -160,13 +160,18 @@ export class SaleComponent implements OnInit{
             .subscribe( {
               next: savedSale => {console.log(savedSale);
                                   this.isFinalPriceValidated = true;
-                                  this.message = "Le montant de la transaction a été enregistré. Veuillez choisir un mode de paiement";},
+                                  this.message = "Veuillez choisir un mode de paiement pour cet achat de " + buyData.finalPrice + " euros";},
+                               //   this.message = "Le montant de la transaction a été enregistré. Veuillez choisir un mode de paiement";},
               error:err => {console.error(err);
                             this.message = "Erreur lors de l'enregistrement du montant de la transaction";}});
   } 
 
-  onSimulate(){
+  /*onSimulate(){
     window.open("https://www.cetelem.fr/fr/credit/financement-vehicules-2-roues/credit-auto-neuve?co=LSG1B&cid=SEM__Conso__google__SEA_Conso_Marque+combinaisons__Cetelem_Cr%C3%A9dit+auto_Exact__cetelem%20auto__283144237671__e__mkw%7cIxUIV0MO__c&gclid=CjwKCAjwkun1BRAIEiwA2mJRWeJi-xVIcHO1GVUPm-G6vbAkKkcEK3vgShXELqwKHCgs8SuS1OHdpRoCdmQQAvD_BwE&gclsrc=aw.ds", "_blank");
+  } */
+
+  onCash() {
+    
   }
 
 

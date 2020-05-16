@@ -1,10 +1,65 @@
-.register-form {
-    width : 18%;
-    margin : 5% auto;
+/* full page background image */
+#back img {
+    position: absolute; /*so that the image may be positionned out of the flow */
+    z-index: 0; /*comes with position absolute - image is behind login form*/
+    /*min-height: 100%; */ /*fill the browser vertically */
+    min-width: 1024px;  /*image won't reduce less than 1024 px when responsive*/
+      
+    width: 100%; /* image takes the full container width */
+    height: auto; /*auto : default value */
+      
+    /* Set up positioning below the top bar, n% from the top of the screen */
+    position: fixed;
+    top: -1200px; /*displaying the bottom side of the image */
+    left: 0;
 
-    border: solid 1px black; 
-    padding:2%; 
+
+  }
+
+  .form-item img {
+    /*position : static;*/
+    width : 100%;;
+    height : auto;
+
+  }
+
+
+/*center the div containing the login form */
+.register-form {
+
+    /*centering the form */
+    position: absolute; /*so that the form may be positionned out of the flow */
+    z-index: 1; /*comes with position absolute - image is behind login form*/
+    top:15%; /*% from the top of the page */
+
+    /* combination of 3 elements to center the form */
+    width : 300px;
+    margin-left:-150px; /* negative margin must be half the width to center the form */
+    left:50%;
+
+    border: solid 1px dimgrey;
+    border-radius: 0.4rem; 
+    padding-top:20px; 
+    padding-bottom:20px; 
+
+
+    background-color: whitesmoke;
 }
+
+@media screen and (max-width: 1024px) { /* keeping the image centered */
+    #back img {
+      left: 50%;
+      margin-left: -512px;   /* 50% */
+      top : 0; /*seeing the whole image and not only the bottom, when diminishing screen size */
+    }
+
+    /*centering the form */
+    .register-form {
+        width : 300px;
+        margin-left: -150px;
+        left:50%; 
+    }
+  }
 
 .global-form{
     display: flex;
@@ -20,8 +75,23 @@
     margin-top:4%;
 }
 
-#connect-button{
-    margin: 4% auto;
+#line{
+    margin-top:5%;
+    margin-bottom:2%;
+
+    margin-left : 5%;
+    margin-right: 5%;
+    border-bottom: dashed 0.1rem dimgrey;
+}
+
+#connect-button button{
+    display : block;
+    width : 80%;
+    height : 35px;
+
+    margin: auto;
+
+    font-size : 1rem;
 }
 
 /*colorisation of input and error/informationnal messages */
@@ -30,7 +100,8 @@
     text-align: center; /*when no label displayed */
 }
 
+/*
 .message {
     margin : 3%;
     text-align: center;
-}
+}*/

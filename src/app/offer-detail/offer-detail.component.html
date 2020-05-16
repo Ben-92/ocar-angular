@@ -111,14 +111,15 @@
     <br>
 
 
-    <div class="buy-buttons">
+    <div *ngIf="!offerDetail.sale" class="buy-buttons">
         <button (click)="onBuy(offerDetail.id)">Acheter</button>
-        <!--<button class="buy-choice-button">Acheter au comptant</button>
-        <button class="buy-choice-button">Acheter à crédit</button> -->
+   
+        <button class="buy-choice-button" (click)="onLoan(offerDetail.id)">Simuler un crédit</button> 
     </div>
 
 </div>
 
 <!-- <div id="paypal-button-container"></div> -->
+     <!--<button class="buy-choice-button">Acheter au comptant</button> -->
 
 
