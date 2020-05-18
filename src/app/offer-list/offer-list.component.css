@@ -6,7 +6,12 @@
 
 /*titles h1 and h2 are page centered */
 h1 {
+    width : 33%;
+    margin:0.7rem auto;
+    background-color: #fff;
     text-align: center;  
+    border-radius: 0.4rem;
+   
 }
 
 
@@ -30,6 +35,10 @@ h2 {
     text-align: center;
 }
 
+.offer-list-result p {
+    margin:0;
+
+}
 
 
 /*******************************************************************/
@@ -85,6 +94,12 @@ and label and input at each side */
    
 }
 
+/*coloring the number of offers */
+#totalNbOffers{
+    color:#8C2B53;
+    font-weight: bolder;
+}
+
 /*******************************************************************/
 /***************** Paging and sorting specific rules ***************/
 /*******************************************************************/
@@ -98,19 +113,18 @@ and label and input at each side */
 
     width : 33%;
     margin:auto;
+    margin-bottom:1rem; /*mod*/
 
     background-color: rgb(255,255,255);
     border-radius: 0.4rem;
-    padding:0.7rem;
+    padding:0.7rem;  /*add*/
 }
 
 .sort-choice {
-
     margin:auto;
 }
 
 .nb-offers-choice {
- 
     margin:auto;
 }
 
@@ -120,8 +134,16 @@ and label and input at each side */
 
 /* offers are displayed on a single column */
 #offer-list{
-    /*width  :33%;
-    margin: auto;*/
+    width  :33%; /*add*/
+    margin: auto; /*add*/
+
+    background-color: #fff; 
+
+    padding:0.7rem;
+
+   /* border : solid red;*/ /*add*/
+  
+    
 
     display:flex;
     flex-wrap:wrap;
@@ -130,40 +152,106 @@ and label and input at each side */
 
 /* one frame contains 3 parts of an offer in a row : text, consult detail link, showcase image */
 .offer-list-result {
-    /*background-color: silver; */
-    background-color: #fff; 
-    border : solid dimgrey;
-    border-radius: 0.4rem;
 
-  
    
-    margin:10px;
+    border-top : solid #e9ebee;
+   
+   /* border-radius: 0.4rem; */
+
+    /*margin:10px; */ /*sup*/
 
     display:flex;
     flex-wrap:nowrap;
     justify-content: space-between;
 
-    align-items: center;
+    /*align-items: center;*/
 
-    width: 50%;
+    width: 100%;
+
+
+   /* width: 50%; */ /*sup*/
     
 }
+
+
+.offer-list-result {
+    outline: none;
+    text-decoration: none;  /* no undelined link */
+    background-color: #fff; 
+}
+
+.offer-list-result:link{
+    color : black;
+}
+
+.offer-list-result:visited{
+    color : black;
+
+} 
+
+.offer-list-result:focus{
+    color : black;
+} 
+
+.offer-list-result:hover{
+    color : black;
+
+}
+
+.offer-list-result:active{
+    color : black;
+
+}
+
+
+
+
+
+/*
+    display: inline-block; 
+    height: 100%;
+    width: 100%;
+
+
+    outline: none;
+    text-align: center; 
+    text-decoration: none; */ /* no undelined link */
+
+        /*text-decoration: none; */
+
+    /*display: inline-block; */ /*in order to modify its dimensions - allow to set width and height */
+
+    /*color:black; */
+
+    /*border : solid whitesmoke 1px; */
+    /*border-collapse: collapse; */ /*in order the border not add width twice */
+   
+    /*width : 25%; *//*width of one <li>. There are 4 <Li> elements + border : must match 100% */
+
+    /* height of <a> is bigger than height of <li> */
+    /*line-height: 3; */ /* 3 times police height : consequence : center vertically the text */
+/*}*/
 
 /*part one of an offer on the left side: short text description */
 /* flex 1 allows to adjust the space ratio that each element takes n= 1 for all indicates each takes the same space*/
 .offer-list-text {
-    text-align: left;
-    
+   
+ 
     flex: 1; /*note  :equivalent to flex: 1 0 0; */
 
+}
+
+#price {
+    color:#8C2B53;
 }
 
 /*part two of an offer on the center : detail consulting link */
 /* flex 1 allows to adjust the space ratio that each element takes n= 1 for all indicates each takes the same space*/
 .offer-list-link {
-    text-align: center;
+    text-align: center; 
 
-    flex: 1;
+    flex: 1; 
+
 }
 
 .offer-list-link button {
@@ -229,7 +317,7 @@ li {
 }
 
 /* <a> elements decide for appearance (not the <li> decide) */
-a {
+.pagination-item a {
     display: inline-block;  /*in order to modify its dimensions - allow to set width and height */
 
     outline: none;
@@ -248,25 +336,25 @@ a {
 
 }
 
-a:link{
+.pagination-item a:link{
     background-color: whitesmoke;
 }
 
-a:visited{
+.pagination-item a:visited{
     background-color:whitesmoke; /*after a link has been visited */ 
 
 } 
 
-a:focus{
+.pagination-item a:focus{
     background-color:whitesmoke; /*when gets the focus, ie the default which is activated when enter is pressed */
 } 
 
-a:hover{
+.pagination-item a:hover{
     background-color : #3A913F;
 
 }
 
-a:active{
+.pagination-item a:active{
     background-color : #8C2B53; /* when user click on link */
 
 }
