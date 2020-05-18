@@ -1,12 +1,21 @@
 #top-bar {
-    border : 1px solid darkgray;
-    background-color: #fff;
+    /*border : 1px solid darkgray;
+    background-color: #fff; */
+    margin-bottom : 2rem;
 
-}
+} 
 
 h1 {
+    width : 15%;
+    margin : auto;
+    border : 2px solid dimgrey ;
+    border-radius: 1.4rem;
     text-align: center;
-    color: #3A913F; 
+    color: #fff; 
+    background-color: #3A913F;
+
+    margin-bottom : 1rem;
+
 }
 
 
@@ -18,6 +27,8 @@ ul {
     list-style-type: none;
 
     margin : auto; /*center the list in the nav bar */
+
+    border : 2px solid #3A913F;
 
 }
 

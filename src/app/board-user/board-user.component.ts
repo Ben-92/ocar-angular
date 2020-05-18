@@ -63,4 +63,11 @@ export class BoardUserComponent implements OnInit {
                     this.message = "Erreur lors de la suppression de l'annonce";}});
   }
 
+  /* calculate the money received by the seller, after site commission */
+  priceReceivedBySeller(finalPrice, commissionRate){
+    let commissionInEuros = (finalPrice * commissionRate)/100;
+    let moneyToSeller = finalPrice - commissionInEuros ;
+    return moneyToSeller;
+  }
+
 }

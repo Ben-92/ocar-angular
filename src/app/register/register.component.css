@@ -10,7 +10,8 @@
       
     /* Set up positioning below the top bar, n% from the top of the screen */
     position: fixed;
-    top: -1200px; /*displaying the bottom side of the image */
+    /*top: -1200px; */ /*displaying the bottom side of the image */
+    top : -500px;
     left: 0;
 
 

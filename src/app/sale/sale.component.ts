@@ -12,6 +12,8 @@ import { Sale } from '../sale';
 
 import { FormBuilder, Validators } from '@angular/forms';
 
+import { HttpClient } from '@angular/common/http';
+
 declare var paypal : any;
 
 
@@ -21,6 +23,9 @@ declare var paypal : any;
   styleUrls: ['./sale.component.css']
 })
 export class SaleComponent implements OnInit{
+
+  /* param data form param file, to get the commissionRate */
+  jsonParamData;
 
   /*Id of the offer */
    offerIdDetail ;
@@ -58,6 +63,7 @@ export class SaleComponent implements OnInit{
     /*informational/error message */
     message:String;
 
+
     /*general informations formgroup */ 
     buyForm = this.formBuilder.group({
       finalPrice: ['', [Validators.required, Validators.pattern('[0-9]*')]]
@@ -67,9 +73,13 @@ export class SaleComponent implements OnInit{
               private dataService: DataService,
               private router: Router,
               private tokenStorageService: TokenStorageService,
-              private formBuilder: FormBuilder) { }
+              private formBuilder: FormBuilder,
+              private httpClient: HttpClient) { }
 
   ngOnInit() {
+
+    this.httpClient.get("../../assets/param.json")
+      .subscribe(paramData => this.jsonParamData = paramData);
 
     console.log('nginit sale');
     this.isFinalPriceValidated = false;
@@ -145,10 +155,14 @@ export class SaleComponent implements OnInit{
 
     /*test = buyData.finalPrice;*/
     let dateOfSale = new Date();
+
+    let commissionRateParam = this.jsonParamData.commissionRate;
+
     let saleConcluded = {
       /*finalPrice : document.getElementById('mirror-price').innerText, */
       finalPrice : buyData.finalPrice,
-      date : dateOfSale
+      date : dateOfSale,
+      commissionRate : commissionRateParam
     }    
         //POST new offer to user
         this.dataService.addSaleToUser(this.userIdBuyer, saleConcluded, this.offerIdDetail)
