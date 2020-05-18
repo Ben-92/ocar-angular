@@ -143,8 +143,6 @@ and label and input at each side */
 
    /* border : solid red;*/ /*add*/
   
-    
-
     display:flex;
     flex-wrap:wrap;
     justify-content: center;
@@ -195,6 +193,7 @@ and label and input at each side */
 
 .offer-list-result:hover{
     color : black;
+    background-color: #e9ebee;
 
 }
 
@@ -247,7 +246,7 @@ and label and input at each side */
 
 /*part two of an offer on the center : detail consulting link */
 /* flex 1 allows to adjust the space ratio that each element takes n= 1 for all indicates each takes the same space*/
-.offer-list-link {
+/*.offer-list-link {
     text-align: center; 
 
     flex: 1; 
@@ -257,7 +256,7 @@ and label and input at each side */
 .offer-list-link button {
     margin : 1% auto;
     min-width:30%;
-} 
+} */
 
 /*part three of an offer on the right side : showcase of the first image stored */
 /* flex 1 allows to adjust the space ratio that each element takes n= 1 for all indicates each takes the same space*/
