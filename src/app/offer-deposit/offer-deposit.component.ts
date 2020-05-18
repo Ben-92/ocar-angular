@@ -66,7 +66,12 @@ export class OfferDepositComponent implements OnInit {
               ) { }
 
   ngOnInit() {
-    this.isLoggedIn = !!this.tokenStorageService.getToken();    
+    this.isLoggedIn = !!this.tokenStorageService.getToken(); 
+    
+        /*this.depositForm.get('postalcode').valueChanges
+      .subscribe(pcEntered => {
+
+      })*/
   }
 
   onLoginchoice(){
