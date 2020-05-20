@@ -33,25 +33,20 @@
     <!--check error on field : 
       -when a user click on the field (touched) or modifies it (dirty) or
       -when the user submits the form  -->
-    <!--<div *ngIf="((depositForm.get('postalCode').errors && (depositForm.get('postalCode').touched || depositForm.get('postalCode').dirty))
-             || (isSubmitted && depositForm.get('postalCode').errors))">
-        <div *ngIf="depositForm.get('postalCode').errors" class="error-effect-title">
-          Le code postal doit être valide
-        </div>
-    </div> -->
     <div *ngIf="isInvalid('postalCode')">
       <div  class="error-effect-title">
         Le code postal doit être valide
       </div>
     </div>
-    <!--*ngIf="depositForm.get('postalCode').errors" -->
+
 
     <!--displaying Brand choices retrieved from the service brand list-->
     <div class="deposit-form-elt">
       <label class="deposit-form-elt-label">Marque (*):</label>
-      <select formControlName="carBrand">
+      <select formControlName="carBrand" (change)="onCarBrandChange($event)">
         <option value="">Marque</option> 
-        <option value={{brand.name}} *ngFor="let brand of brandList">{{brand.name}}</option>
+        <option [value]="brand.codigo+';'+brand.nome" *ngFor="let brand of brandListAPI">{{brand.nome}}</option>
+
       </select>
     </div>
     <div *ngIf="isInvalid('carBrand')">
@@ -59,19 +54,14 @@
           La marque est obligatoire
       </div>
     </div>
-    <!--<div *ngIf="((depositForm.get('carBrand').errors && (depositForm.get('carBrand').touched || depositForm.get('carBrand').dirty))
-    || (isSubmitted && depositForm.get('carBrand').errors))">
-      <div *ngIf="depositForm.get('carBrand').errors" class="error-effect-title">
-        La marque est obligatoire
-    </div>
-    </div> -->
+
 
     <!--displaying model choices retrieved from the service model list-->
     <div class="deposit-form-elt">
       <label class="deposit-form-elt-label">Modèle (*):</label>
       <select formControlName="carModel">
-        <option value={{model.name}} *ngFor="let model of modelList">{{model.name}}</option>
         <option value="">Modèle</option>
+        <option value={{model.nome}} *ngFor="let model of modelListAPI">{{model.nome}}</option>
       </select>
     </div>
     <div *ngIf="isInvalid('carModel')">
@@ -79,18 +69,13 @@
             Le modèle est obligatoire
         </div>
     </div>
-    <!--<div *ngIf="((depositForm.get('carModel').errors && (depositForm.get('carModel').touched || depositForm.get('carModel').dirty))
-      || (isSubmitted && depositForm.get('carModel').errors))">
-      <div *ngIf="depositForm.get('carModel').errors" class="error-effect-title">
-        Le modèle est obligatoire
-      </div>
-    </div> -->
+
 
     <div class="deposit-form-elt">
       <label class="deposit-form-elt-label">Année du véhicule (*):</label>
       <select formControlName="year">
-        <option value={{year.yearValue}} *ngFor="let year of yearList">{{year.yearValue}}</option>
         <option value="">Année</option>
+        <option value={{year.yearValue}} *ngFor="let year of yearList">{{year.yearValue}}</option>
       </select>
     </div>
     <div *ngIf="isInvalid('year')">
@@ -98,12 +83,7 @@
             L'année du véhicule est obligatoire
         </div>
     </div>
-    <!--<div *ngIf="((depositForm.get('year').errors && (depositForm.get('year').touched || depositForm.get('year').dirty))
-      || (isSubmitted && depositForm.get('year').errors))">
-        <div *ngIf="depositForm.get('year').errors" class="error-effect-title">
-           L'année du véhicule est obligatoire
-        </div>
-    </div> -->
+
 
     <p class="deposit-form-elt-label">Boite de vitesse :</p>
     <div class="deposit-form-elt-radio">
@@ -128,12 +108,7 @@
             La couleur ne doit comporter que des lettres
         </div>
     </div> 
-    <!--<div *ngIf="((depositForm.get('outerColor').errors && (depositForm.get('outerColor').touched || depositForm.get('outerColor').dirty))
-      || (isSubmitted && depositForm.get('price').errors))">
-      <div *ngIf="depositForm.get('outerColor').errors" class="error-effect-title">
-        La couleur ne doit comporter que des lettres
-      </div>
-    </div> -->
+
 
 
     <p class="deposit-form-elt-label">4 roues motrices :</p>
@@ -171,12 +146,7 @@
             Le prix doit être numérique et entier sans virgule
         </div>
     </div>
-    <!--<div *ngIf="((depositForm.get('price').errors && (depositForm.get('price').touched || depositForm.get('price').dirty))
-    || (isSubmitted && depositForm.get('price').errors))">
-      <div *ngIf="depositForm.get('price').errors" class="error-effect-title">
-        Le prix doit être numérique et entier sans virgule
-      </div>
-    </div> -->
+
 
     <div class="deposit-form-elt">
       <button class="submit-button" type="submit">Enregistrer mon annonce !</button>

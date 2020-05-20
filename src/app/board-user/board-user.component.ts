@@ -7,12 +7,18 @@ import { TokenStorageService } from '../_services/token-storage.service';
 import { DataService } from '../data.service';
 import { Router } from '@angular/router'; 
 
+import { HttpClient } from '@angular/common/http';
+
 @Component({
   selector: 'app-board-user',
   templateUrl: './board-user.component.html',
   styleUrls: ['./board-user.component.css']
 })
 export class BoardUserComponent implements OnInit {
+
+  /* param data form param file, to get the commissionRate */
+  jsonParamData;
+  commissionRateParam;
 
   content = '';
 
@@ -27,12 +33,20 @@ export class BoardUserComponent implements OnInit {
   constructor(private userService: UserService,
               private tokenStorageService: TokenStorageService,
               private dataService: DataService,
-              private router: Router) { }
+              private router: Router,
+              private httpClient: HttpClient) { }
 
   ngOnInit() {
 
     console.log('board user ngOnInit');
 
+    this.httpClient.get("../../assets/param.json")
+    .subscribe(paramData => {this.jsonParamData = paramData;
+      this.commissionRateParam = this.jsonParamData.commissionRate;
+    });
+
+     
+  
   /* retrieving User id*/
   this.currentUser = this.tokenStorageService.getUser();
   this.userId = this.currentUser.id;

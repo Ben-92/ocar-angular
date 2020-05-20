@@ -180,3 +180,7 @@ margin-bottom : 0;
 #price {
     color:#8C2B53;
 }
+
+#taxMessage p {
+    text-align: center;
+}

@@ -24,11 +24,6 @@ export class OfferDepositImageComponent implements OnInit {
   /*selected file on local storage user device */
   selectedFile : File;
 
-  /*
-  imageName : any;
-  retrievedImage: any;
-  base64Data: any;
-  retrieveResponse: any; */
 
   /*variable navigation text button */
   textButton : String;
@@ -74,19 +69,6 @@ export class OfferDepositImageComponent implements OnInit {
   onClickNavigate(){
     this.router.navigate(['/offerDepositEquipment', this.offerIdOnUse]);
   }
-
-
-/*
-  getImage() {
-    this.dataService.getImageFromDb(this.imageName)
-    .subscribe(
-      res => {
-        this.retrieveResponse = res;
-        this.base64Data = this.retrieveResponse.picByte;
-        this.retrievedImage = 'data:image/jpeg;base64,' + this.base64Data;
-      }
-    );
-  } */
 
 }
 
