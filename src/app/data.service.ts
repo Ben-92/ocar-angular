@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpParams } from "@angular/common/http";
+import { HttpClient, HttpParams, HttpHeaders } from "@angular/common/http";
 import { Observable } from 'rxjs';
 import { Equipment } from './equipment';
 import { Brand } from './brand';
@@ -7,6 +7,8 @@ import { Model } from './model';
 
 import { Offer } from './offer';
 import { Sale } from './sale';
+
+import {InterceptorSkipHeader} from './_helpers/auth.interceptor';
 
 @Injectable({
   providedIn: 'root'
@@ -35,7 +37,7 @@ export class DataService {
 
   const options = { params: params };
 
-  /*return this.httpClient.get('http://localhost:8080/api/offers', options); */
+
   return this.httpClient.get(this.apiUrl + '/offers', options);
 }
 
@@ -46,12 +48,12 @@ export class DataService {
    */
 
   getOfferDetail(offerId) {
-    //return this.httpClient.get('http://localhost:8080/api/offers/' + offerId );
+
     return this.httpClient.get(this.apiUrl + '/offers/' + offerId );
   }
 
   getUserDetail(userId) {
-    //return this.httpClient.get('http://localhost:8080/api/users/' + userId );
+
     return this.httpClient.get(this.apiUrl + '/users/' + userId );
   }
 
@@ -110,7 +112,7 @@ export class DataService {
 
   const options = { params: params };
 
-  //return this.httpClient.get('http://localhost:8080/api/offers/filter', options)
+
   return this.httpClient.get(this.apiUrl + '/offers/filter', options)
  }
 
@@ -125,7 +127,7 @@ export class DataService {
   } */
 
   addOfferToUser(userId, offerDeposit) {
-    //return this.httpClient.post<Offer>('http://localhost:8080/api/users/' + userId + '/offer', offerDeposit);
+
     return this.httpClient.post<Offer>(this.apiUrl + '/users/' + userId + '/offer', offerDeposit);
   }
 
@@ -134,13 +136,13 @@ export class DataService {
     params = params.append('offerId', offerId);
     const options = { params: params };
 
-    //return this.httpClient.post<Sale>('http://localhost:8080/api/users/' + userId + '/sale', saleConcluded, options);
+
     return this.httpClient.post<Sale>(this.apiUrl + '/users/' + userId + '/sale', saleConcluded, options);
   }
 
 
   updateOffer(offerIdOnUse, offerToSendToBack) {
-    //return this.httpClient.put<Offer>('http://localhost:8080/api/offers/' + offerIdOnUse, offerToSendToBack);
+
     return this.httpClient.put<Offer>(this.apiUrl + '/offers/' + offerIdOnUse, offerToSendToBack);
   }
 
@@ -155,7 +157,7 @@ export class DataService {
     const uploadData = new FormData;
     uploadData.append('imageFile',selectedFile, selectedFile.name);
 
-    //return this.httpClient.post('http://localhost:8080/api/offers/' + offerIdOnUse + '/images', uploadData);
+
     return this.httpClient.post(this.apiUrl + '/offers/' + offerIdOnUse + '/images', uploadData);
   }
 
@@ -166,8 +168,23 @@ export class DataService {
 
   updateEquipmentToDb(offerIdOnUse, equipmentList) {
 
-    //return this.httpClient.put('http://localhost:8080/api/offers/' + offerIdOnUse + '/equipments', equipmentList);
     return this.httpClient.put(this.apiUrl + '/offers/' + offerIdOnUse + '/equipments', equipmentList);
+  }
+
+  retrieveBrands(){
+    const headers = new HttpHeaders().set(InterceptorSkipHeader, '');
+
+
+    return this.httpClient.get('https://parallelum.com.br/fipe/api/v1/carros/marcas', {headers});
+  }
+
+  retrieveModels(modelCodigo){
+
+    const headers = new HttpHeaders().set(InterceptorSkipHeader, '');
+
+    let urlToRetrieveModels = 'https://parallelum.com.br/fipe/api/v1/carros/marcas/' + modelCodigo + '/modelos'
+   
+    return this.httpClient.get(urlToRetrieveModels, {headers});
   }
 
 
@@ -181,12 +198,12 @@ export class DataService {
 
 
   deleteOffer(offerIdToDelete) {
-    //return this.httpClient.delete('http://localhost:8080/api/offers/' + offerIdToDelete );
+
     return this.httpClient.delete(this.apiUrl + '/offers/' + offerIdToDelete );
   }
 
   deleteImage(imageIdToDelete) {
-    //return this.httpClient.delete('http://localhost:8080/api/images/' + imageIdToDelete );
+
     return this.httpClient.delete(this.apiUrl + '/images/' + imageIdToDelete );
   }
 

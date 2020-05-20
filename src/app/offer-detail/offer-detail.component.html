@@ -78,26 +78,6 @@
         </div>
     </div> 
 
-    <!--
-    <div *ngIf="offerDetail.equipments[0]" class="item-container">
-        <h3 class="item-title">Options et équipements : </h3>
-        <div  class="offer-option-equipment">
-            <p>Intérieur</p>
-            <ul *ngFor="let equip of offerDetail.equipments">
-                <li *ngIf="(equip.type=='interior')">{{equip.label}}</li>
-            </ul>
-
-            <p>Extérieur</p>
-            <ul *ngFor="let equip of offerDetail.equipments">
-                <li *ngIf="equip.type=='exterior'">{{equip.label}}</li>
-            </ul>
-            <p>Confort</p>
-            <ul *ngFor="let equip of offerDetail.equipments">
-                <li *ngIf="equip.type=='comfort'">{{equip.label}}</li>
-            </ul> 
-        </div>
-    </div> -->
-
     <br>
 
     <!--display information about the client who submitted the offer-->
@@ -121,5 +101,25 @@
 
 <!-- <div id="paypal-button-container"></div> -->
      <!--<button class="buy-choice-button">Acheter au comptant</button> -->
+
+    <!--
+    <div *ngIf="offerDetail.equipments[0]" class="item-container">
+        <h3 class="item-title">Options et équipements : </h3>
+        <div  class="offer-option-equipment">
+            <p>Intérieur</p>
+            <ul *ngFor="let equip of offerDetail.equipments">
+                <li *ngIf="(equip.type=='interior')">{{equip.label}}</li>
+            </ul>
+
+            <p>Extérieur</p>
+            <ul *ngFor="let equip of offerDetail.equipments">
+                <li *ngIf="equip.type=='exterior'">{{equip.label}}</li>
+            </ul>
+            <p>Confort</p>
+            <ul *ngFor="let equip of offerDetail.equipments">
+                <li *ngIf="equip.type=='comfort'">{{equip.label}}</li>
+            </ul> 
+        </div>
+    </div> -->
 
 

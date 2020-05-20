@@ -12,6 +12,9 @@ import { TokenStorageService } from '../_services/token-storage.service';
 
 import { Router, ActivatedRoute } from '@angular/router'; 
 
+import { BrandApi } from '../brand-api';
+import { ModelApi } from '../model-api';
+
 @Component({
   selector: 'app-offer-deposit',
   templateUrl: './offer-deposit.component.html',
@@ -19,12 +22,15 @@ import { Router, ActivatedRoute } from '@angular/router';
 })
 export class OfferDepositComponent implements OnInit {
   
+
   /* true if user is logged in */
   isLoggedIn = false;
 
   /* data lists retrieved from data service */
   brandList  =this.dataService.brands;
+  brandListAPI ;
   modelList = this.dataService.models;
+  modelListAPI;
   yearList = this.dataService.years;
 
   /*informational/error message */
@@ -42,6 +48,10 @@ export class OfferDepositComponent implements OnInit {
 
  /*user Id retrieved from user Object connected */
   userIdCreatingOffer;
+
+  brandCodigoSelected;
+
+  brandNomeSelected;
 
 
   /* deposit formgroup */ 
@@ -68,10 +78,14 @@ export class OfferDepositComponent implements OnInit {
   ngOnInit() {
     this.isLoggedIn = !!this.tokenStorageService.getToken(); 
     
-        /*this.depositForm.get('postalcode').valueChanges
-      .subscribe(pcEntered => {
-
-      })*/
+      this.dataService.retrieveBrands()
+        .subscribe( {
+          next: listOfBrandsAPI  => { 
+                              /*retrieving array of brands*/
+                              this.brandListAPI = listOfBrandsAPI;
+                            },
+          error:err => {console.error(err);
+                        this.message = "Erreur lors du chargement des marques";}});
   }
 
   onLoginchoice(){
@@ -103,6 +117,10 @@ export class OfferDepositComponent implements OnInit {
     /*adding date time now of offer creation to the submitted offer */
     offerDeposit.date = new Date();
 
+    /*updating carBrand field with the option selected by the user */
+    offerDeposit.carBrand = this.brandNomeSelected;
+    
+
     /* POST new offer to user */
     this.dataService.addOfferToUser(this.userIdCreatingOffer, offerDeposit)
         .pipe(
@@ -119,13 +137,43 @@ export class OfferDepositComponent implements OnInit {
 
   }
 
+
   isInvalid(field){
     if ((this.depositForm.get(field).errors && (this.depositForm.get(field).touched || this.depositForm.get(field).dirty))
              || (this.isSubmitted && this.depositForm.get(field).errors))
     {
       return true;
-    }
-  }
+    } 
 
+  }
+  
+  onCarBrandChange(carBrandOptionValue){
+
+    const optionValue = carBrandOptionValue.target.value;
+
+    /* retrieving car brand code and car brand name from the form*/
+    const optionValueArray = optionValue.split(';');
+
+    /*saving car brand code for http request for car models */
+    this.brandCodigoSelected = optionValueArray[0];
+
+    /*saving car brand name*/
+    this.brandNomeSelected = optionValueArray[1];
+  
+    this.dataService.retrieveModels(this.brandCodigoSelected)
+    .pipe(
+      /*retrieving array of models*/
+        tap ((ModelListVehicleApi:ModelApi) => {
+          this.modelListAPI = ModelListVehicleApi.modelos; 
+        }),
+      ) 
+    .subscribe( {
+      next: listOfModelsAPI  => { 
+                          console.log(listOfModelsAPI);
+                        },
+      error:err => {console.error(err);
+                    this.message = "Erreur lors du chargement des modèles";}});
+
+  }
 
 }
