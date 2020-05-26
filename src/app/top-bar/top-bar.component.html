@@ -2,7 +2,11 @@
 <div id="top-bar">
 
   <!--<h1>oCar - achat/vente de véhicules d'occasion</h1> -->
-  <h1>oCar</h1>
+  <h1>oCar <span>by Cetelem</span></h1>
+
+  <div id="top-image">
+    <img src="../../assets/images/Cetelembe_amplogo-fr.png" alt="Photo by PF"> 
+  </div>
 
   <nav class="nav-bar"> 
     <ul>
@@ -13,11 +17,20 @@
       <li><a routerLink="/deposit">Déposer une annonce</a></li>
       <li *ngIf="!isLoggedIn"><a href="/register" routerLink="register">S'inscrire</a></li>
       <li *ngIf="!isLoggedIn"><a href="/login" routerLink="login">Se connecter</a></li>
-      <li *ngIf="isLoggedIn"><a href="/user" routerLink="user">{{ username }}</a></li>
+      <li  *ngIf="isLoggedIn"><a id="username" href="/user" routerLink="user">{{ username }}</a></li>
       <li *ngIf="isLoggedIn"><a href (click)="logout()">Se déconnecter</a></li>
     </ul>
   </nav>
 
+</div>
+
+<!--
+<div id="left-image">
+  <img src="../../assets/images/img_module_ficheprojet.png" alt="Photo by PF"> 
+</div> -->
+
+<div id="right-image">
+  <img src="../../assets/images/credito-thinking.png" alt="Photo by PF"> 
 </div>
 
 

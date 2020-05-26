@@ -6,7 +6,7 @@
 </div>
 
 
-<form [formGroup]="buyForm" [ngClass]="{'is-disable': (!isLoggedIn), 'is-blurred':isFinalPriceValidated }"  (ngSubmit)="onBuy(buyForm.value)">
+<form [formGroup]="buyForm" [ngClass]="{'is-noDisplayed': (!isLoggedIn), 'is-blurred':(isFinalPriceValidated || buyerIsSeller) }"  (ngSubmit)="onBuy(buyForm.value)">
 
 	<div class="buy-form">
 			<div class="buy-form-elt">
@@ -33,7 +33,7 @@
 </form>
 
 
-<div [ngClass]="{'is-blurred': (!isLoggedIn || !isFinalPriceValidated) }"> 
+<div [ngClass]="{'is-blurred': (!isLoggedIn || !isFinalPriceValidated || buyerIsSeller) }"> 
 	<div id="payment-choices">
 		<div id="paypal-button-container" ></div>
 		<button (click)="onCash()">Paiement en direct (espèces/chèque)</button> 

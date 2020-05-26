@@ -18,6 +18,11 @@ h1 {
 
 }
 
+span{
+    font-style: italic;
+    font-size: 1rem;
+}
+
 
 ul {
 
@@ -31,6 +36,10 @@ ul {
     border : 2px solid #3A913F;
 
 }
+/*
+#username{
+    color:#3A913F;
+}*/
 
 li {
     display: inline; /* <li> are block by default ("list-item"), which means 1 <li> takes one line which we don't want */
@@ -45,7 +54,8 @@ a {
     text-align: center;
     text-decoration: none; /* no undelined link */
 
-    color:whitesmoke;
+    /*color:whitesmoke; */
+    color : #8C2B53;
 
     /*border : solid whitesmoke 1px; */
     /*border-collapse: collapse; */ /*in order the border not add width twice */
@@ -59,16 +69,16 @@ a {
 
 
 a:link{
-    background-color: dimgrey;
+    background-color: #CCCCCC;
 }
 
 a:visited{
-    background-color:dimgrey; /*after a link has been visited */ 
+    background-color:#CCCCCC; /*after a link has been visited */ 
 
 } 
 
 a:focus{
-    background-color:dimgrey; /*when gets the focus, ie the default which is activated when enter is pressed */
+    background-color:#CCCCCC; /*when gets the focus, ie the default which is activated when enter is pressed */
 } 
 
 a:hover{
@@ -80,3 +90,56 @@ a:active{
     background-color : #8C2B53; /* when user click on link */
 
 }
+
+#top-image img {
+    position: absolute; /*so that the image may be positionned out of the flow */
+    z-index: 0; /*comes with position absolute - image is behind login form*/
+
+      
+    width: 20%; /* image takes the full container width */
+    height: auto; /*auto : default value */
+      
+    /* Set up positioning below the top bar, n% from the top of the screen */
+    position: fixed;
+
+    top:-20px;
+    left: 200px;
+
+  }
+
+
+
+#left-image img {
+    position: absolute; /*so that the image may be positionned out of the flow */
+    z-index: 0; /*comes with position absolute - image is behind login form*/
+
+      
+    width: 10%; /* image takes the full container width */
+    height: auto; /*auto : default value */
+      
+    /* Set up positioning below the top bar, n% from the top of the screen */
+    position: fixed;
+
+    top:200px;
+    left: 250px;
+
+  }
+
+  #right-image img {
+    position: absolute; /*so that the image may be positionned out of the flow */
+    z-index: 0; /*comes with position absolute - image is behind login form*/
+    /*min-height: 100%; */ /*fill the browser vertically */
+    /*min-width: 1024px;  *//*image won't reduce less than 1024 px when responsive*/
+      
+    width: 15%; /* image takes the full container width */
+    height: auto; /*auto : default value */
+      
+    /* Set up positioning below the top bar, n% from the top of the screen */
+    position: fixed;
+    /*top: -1200px;*/ /*displaying the bottom side of the image */
+    top:550px;
+    right: 200px;
+
+  }
+
+

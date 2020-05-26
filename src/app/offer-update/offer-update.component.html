@@ -27,41 +27,54 @@
           </div>
       </div> 
   
+      <div class="deposit-form-elt">
+        <label class="deposit-form-elt-label" for="carBrand">Marque (non modifiable) :</label>
+        <input  type="text"
+                formControlName="carBrand"
+                id="carBrand">
+      </div>
+
+      <div class="deposit-form-elt">
+        <label class="deposit-form-elt-label" for="carModel">Modèle (non modifiable) :</label>
+        <input  type="text"
+                formControlName="carModel"
+                id="carModel">
+      </div>
 
   
-      <div class="deposit-form-elt">
+  <!--    <div class="deposit-form-elt">
         <label class="deposit-form-elt-label">Marque (*):</label>
-        <select formControlName="carBrand">
+        <select id="test1" formControlName="carBrand" (change)="onCarBrandChange($event)">
           <option value="">Sélectionner la Marque</option> 
-          <option value={{brand.name}} *ngFor="let brand of brandList">{{brand.name}}</option>
+          <option value={brand.nome}} *ngFor="let brand of brandListAPI">{{brand.nome}}</option>
         </select>
       </div>
       <div *ngIf="isInvalid('carBrand')">
           <div class="error-effect-title">
               La marque est obligatoire
           </div>
-      </div> 
+      </div> -->
 
   
-      <div class="deposit-form-elt">
+    <!--  <div class="deposit-form-elt">
         <label class="deposit-form-elt-label">Modèle (*):</label>
         <select formControlName="carModel">
-          <option value={{model.name}} *ngFor="let model of modelList">{{model.name}}</option>
           <option value="">Sélectionner le modèle</option>
+          <option value={{model.nome}} *ngFor="let model of modelListAPI">{{model.nome}}</option> 
         </select>
       </div>
       <div *ngIf="isInvalid('carModel')">
           <div class="error-effect-title">
               Le modèle est obligatoire
           </div>
-      </div> 
+      </div> -->
 
   
       <div class="deposit-form-elt">
         <label class="deposit-form-elt-label">Année du véhicule (*):</label>
         <select formControlName="year">
-          <option value={{year.yearValue}} *ngFor="let year of yearList">{{year.yearValue}}</option>
           <option value="">Sélectionner l'année</option>
+          <option value={{year.yearValue}} *ngFor="let year of yearList">{{year.yearValue}}</option> 
         </select>
       </div>
       <div *ngIf="isInvalid('year')">

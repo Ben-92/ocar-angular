@@ -7,6 +7,8 @@ import { OfferPage } from '../offer-page';
 
 import { Router } from '@angular/router'; 
 
+import { ModelApi } from '../model-api';
+
 @Component({
   selector: 'app-offer-list',
   templateUrl: './offer-list.component.html',
@@ -14,9 +16,17 @@ import { Router } from '@angular/router';
 })
 export class OfferListComponent implements OnInit {
 
+
+
+brandCodigoSelected;
+
+brandNomeSelected;
   /*
 offerListObs;
 filteredOfferListObs; */
+
+/* true if form submitted */
+isSubmitted : boolean;
 
 /* full data content of one Offer Page */  
 pageContent;
@@ -50,7 +60,9 @@ isFilterRequested;
 
 /* retrieving service data : list of brands, models, years */
 brandList  =this.dataService.brands;
+brandListAPI ;
 modelList = this.dataService.models;
+modelListAPI;
 yearList = this.dataService.years;
 
 /* list of possible filter boundaries */
@@ -65,6 +77,8 @@ highestYearFilter;
 gearboxFilter;
 lowestPriceFilter;
 highestPriceFilter;
+
+
 
 
 /* formgroup with all filter fields formcontrol */
@@ -90,7 +104,19 @@ filterForm = this.formBuilder.group({
    */
   ngOnInit() {
 
+    /*disable selct car model when car brand is not selected */
+    this.filterForm.get('carModel').disable();
+
     console.log('ngoninit offer-list');
+
+    this.dataService.retrieveBrands()
+    .subscribe( {
+      next: listOfBrandsAPI  => { 
+                          /*retrieving array of brands*/
+                          this.brandListAPI = listOfBrandsAPI;
+                        },
+      error:err => {console.error(err);
+                    }});
 
     /*window.location.reload(); */  /* ça boucle si je fais ça */
     
@@ -168,6 +194,14 @@ filterForm = this.formBuilder.group({
 
   } 
 
+  isInvalid(field){
+    if ((this.filterForm.get(field).errors && (this.filterForm.get(field).touched || this.filterForm.get(field).dirty))
+             || (this.isSubmitted && this.filterForm.get(field).errors))
+    {
+      return true;
+    } 
+
+  }
 
 /**
  * new page display after submitting criteria filter form
@@ -175,10 +209,44 @@ filterForm = this.formBuilder.group({
  */
   onFilter(filteringValues) {
 
+    this.isSubmitted = true;
+
     this.populateCriterias(filteringValues);
 
     this.pageToDisplay = 0;
     this.getFilteredPageOfOffers();
+
+  }
+
+  onCarBrandChange(carBrandOptionValue){
+
+    /*enable selct car model when car brand is selected */
+    this.filterForm.get('carModel').enable();
+
+    const optionValue = carBrandOptionValue.target.value;
+
+    /* retrieving car brand code and car brand name from the form*/
+    const optionValueArray = optionValue.split(';');
+
+    /*saving car brand code for http request for car models */
+    this.brandCodigoSelected = optionValueArray[0];
+
+    /*saving car brand name*/
+    this.brandNomeSelected = optionValueArray[1];
+  
+    this.dataService.retrieveModels(this.brandCodigoSelected)
+    .pipe(
+      /*retrieving array of models*/
+        tap ((ModelListVehicleApi:ModelApi) => {
+          this.modelListAPI = ModelListVehicleApi.modelos; 
+        }),
+      ) 
+    .subscribe( {
+      next: listOfModelsAPI  => { 
+                          console.log(listOfModelsAPI);
+                        },
+      error:err => {console.error(err);
+                    }});
 
   }
 
@@ -287,8 +355,11 @@ filterForm = this.formBuilder.group({
     console.log(this.highestPostCodeFilter);
   
     if (filteringValues.carBrand > '' ){
-      this.lowestBrandFilter = filteringValues.carBrand;
-      this.highestBrandFilter = filteringValues.carBrand;
+      /*this.lowestBrandFilter = filteringValues.carBrand;
+      this.highestBrandFilter = filteringValues.carBrand;*/
+      this.lowestBrandFilter = this.brandNomeSelected;
+      this.highestBrandFilter = this.brandNomeSelected;
+
       this.isFilterRequested = true;
     } else {
       this.lowestBrandFilter = '';

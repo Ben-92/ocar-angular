@@ -46,7 +46,6 @@
       <select formControlName="carBrand" (change)="onCarBrandChange($event)">
         <option value="">Marque</option> 
         <option [value]="brand.codigo+';'+brand.nome" *ngFor="let brand of brandListAPI">{{brand.nome}}</option>
-
       </select>
     </div>
     <div *ngIf="isInvalid('carBrand')">

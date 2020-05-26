@@ -42,6 +42,9 @@ export class SaleComponent implements OnInit{
   /* true if user is logged in */
   isLoggedIn = false;
 
+  /*true if the user who wants to buy is the seller */
+  buyerIsSeller = false;
+
   /* user Object connected */
   loggedUserBuyer: any;
 
@@ -77,11 +80,12 @@ export class SaleComponent implements OnInit{
               private httpClient: HttpClient) { }
 
   ngOnInit() {
+    console.log('ngOnit Sale');
 
     this.httpClient.get("../../assets/param.json")
       .subscribe(paramData => this.jsonParamData = paramData);
 
-    console.log('nginit sale');
+    
     this.isFinalPriceValidated = false;
 
     this.isLoggedIn = !!this.tokenStorageService.getToken(); 
@@ -104,13 +108,17 @@ export class SaleComponent implements OnInit{
                   
                   this.carOfferPrice = offer.price;
                   this.buyForm.get('finalPrice').setValue(offer.price);
-                  console.log(this.carOfferPrice);
+                 
                 }),
             )
             .subscribe( {
               next: (offer) => {
                 this.offerToBuy = offer;
                 this.userIdSelling = offer.user.id;
+                if (this.userIdBuyer == this.userIdSelling){
+                  this.buyerIsSeller = true;
+                  this.message = "Vous ne pouvez pas réaliser cet achat";
+                }
               },
               error:err => {console.error(err);}});
        } 

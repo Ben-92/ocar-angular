@@ -178,11 +178,11 @@ export class DataService {
     return this.httpClient.get('https://parallelum.com.br/fipe/api/v1/carros/marcas', {headers});
   }
 
-  retrieveModels(modelCodigo){
+  retrieveModels(brandCodigo){
 
     const headers = new HttpHeaders().set(InterceptorSkipHeader, '');
 
-    let urlToRetrieveModels = 'https://parallelum.com.br/fipe/api/v1/carros/marcas/' + modelCodigo + '/modelos'
+    let urlToRetrieveModels = 'https://parallelum.com.br/fipe/api/v1/carros/marcas/' + brandCodigo + '/modelos'
    
     return this.httpClient.get(urlToRetrieveModels, {headers});
   }

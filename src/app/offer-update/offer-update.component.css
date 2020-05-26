@@ -28,6 +28,10 @@ h2 {
     opacity: 0.3;
 }
 
+/*
+.deposit-form-elt select {
+    width : 500px;
+} */
 
 
 /*form items are themselves container selector of their inner elements. Elements are displayed in row

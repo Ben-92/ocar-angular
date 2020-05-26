@@ -76,16 +76,20 @@ export class OfferDepositComponent implements OnInit {
               ) { }
 
   ngOnInit() {
+
+    /*disable selct car model when car brand is not selected */
+    this.depositForm.get('carModel').disable();
+
     this.isLoggedIn = !!this.tokenStorageService.getToken(); 
     
-      this.dataService.retrieveBrands()
-        .subscribe( {
-          next: listOfBrandsAPI  => { 
-                              /*retrieving array of brands*/
-                              this.brandListAPI = listOfBrandsAPI;
-                            },
-          error:err => {console.error(err);
-                        this.message = "Erreur lors du chargement des marques";}});
+    this.dataService.retrieveBrands()
+      .subscribe( {
+        next: listOfBrandsAPI  => { 
+                            /*retrieving array of brands*/
+                            this.brandListAPI = listOfBrandsAPI;
+                          },
+        error:err => {console.error(err);
+                      this.message = "Erreur lors du chargement des marques";}});
   }
 
   onLoginchoice(){
@@ -148,6 +152,9 @@ export class OfferDepositComponent implements OnInit {
   }
   
   onCarBrandChange(carBrandOptionValue){
+
+    /*enable selct car model when car brand is selected */
+    this.depositForm.get('carModel').enable();
 
     const optionValue = carBrandOptionValue.target.value;
 

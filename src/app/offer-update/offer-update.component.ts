@@ -8,6 +8,7 @@ import { FormBuilder, Validators, FormGroup, FormArray, FormControl } from '@ang
 import {tap} from 'rxjs/operators';
 
 import { Offer } from '../offer';
+import { ModelApi } from '../model-api';
 
 @Component({
   selector: 'app-offer-update',
@@ -27,11 +28,13 @@ export class OfferUpdateComponent implements OnInit {
 
   /* data lists retrieved from data service */
   brandList  =this.dataService.brands;
+  brandListAPI ;
   modelList = this.dataService.models;
+  modelListAPI;
   yearList = this.dataService.years;
   equipmentList = this.dataService.equipments;
 
-  equipmentForm: FormGroup;
+  equipmentForm: FormGroup; 
 
   /* list of equipment of an offer read in database*/
   offerEquipment;
@@ -53,6 +56,11 @@ export class OfferUpdateComponent implements OnInit {
   /* image file of a car */
   selectedFile : File;
 
+  brandCodigoSelected;
+
+  brandNomeSelected;
+
+  hasBrandchanged = false;
 
   /*general informations formgroup */ 
   depositForm = this.formBuilder.group({
@@ -69,6 +77,8 @@ export class OfferUpdateComponent implements OnInit {
     date:''
   })
 
+
+
   constructor(/*private router: Router,*/
               private route: ActivatedRoute,
               private dataService: DataService,
@@ -81,39 +91,32 @@ export class OfferUpdateComponent implements OnInit {
    * routing - get the param Id of the offer from the url
    */
   ngOnInit() {
+    console.log('nginit update');
+
+
+
+    this.depositForm.get('carBrand').disable();
+    this.depositForm.get('carModel').disable();
 
       this.route.paramMap
       .subscribe(params => {
         this.offerIdOnUse = params.get('offerId');
       })
-      this.reloadPage();
+
+      this.reloadPage(); 
+
+   //  this.dataService.retrieveBrands()
+   //   .subscribe( {
+   //     next: listOfBrandsAPI  => {                
+   //                         this.brandListAPI = listOfBrandsAPI;
+   //
+   //                         this.reloadPage();
+   //                       },
+   //     error:err => {console.error(err);
+   //                   }});
+ 
   } 
 
-
-  /**
-   * compare data service equipment list with list of equipment in database and check the appropriate checkboxes
-   */
-  private addCheckboxes() {
-
-    this.equipmentList.forEach((equipmentItem, equipmentIndex) => {
-      this.shoulBeChecked = false;
-      this.offerEquipment.forEach((offerEquipmentItem, offerEquipmentIndex) => {
-
-        if (equipmentItem.label == offerEquipmentItem.label ){
-          const indexTrue = equipmentIndex;
-          const control = new FormControl(equipmentIndex === indexTrue);
-          (this.equipmentForm.controls.equipments as FormArray).push(control);
-          this.shoulBeChecked = true;
-        }
-      })
-      if (!this.shoulBeChecked){
-        const control = new FormControl();
-        (this.equipmentForm.controls.equipments as FormArray).push(control);
-
-      }
-
-    });
-  }
 
   /**
    * update (PUT) the offer general information
@@ -135,18 +138,21 @@ export class OfferUpdateComponent implements OnInit {
     this.offerToSendToBack = this.offerToUpdate;
     
     /* updating offer with new values */
-    this.offerToSendToBack.carBrand = offerUpdated.carBrand;
-    this.offerToSendToBack.carModel = offerUpdated.carModel;
+    this.offerToSendToBack.carBrand = this.depositForm.get('carBrand').value; 
+    this.offerToSendToBack.carModel = this.depositForm.get('carModel').value;
+
     this.offerToSendToBack.description = offerUpdated.description;
     this.offerToSendToBack.fourWheelDrive = offerUpdated.fourWheelDrive;
     this.offerToSendToBack.outerColor = offerUpdated.outerColor;
     this.offerToSendToBack.gearbox = offerUpdated.gearbox;
     this.offerToSendToBack.postalCode = offerUpdated.postalCode;
     this.offerToSendToBack.year = offerUpdated.year;
+
     this.offerToSendToBack.price = offerUpdated.price;
 
-    /*adding date time to the submitted offer : no : keeping intial value in db*/
-    /*this.offerToSendToBack.date = new Date();*/
+
+  //  /*updating carBrand field with the option selected by the user */
+  //  this.offerToSendToBack.carBrand = this.brandNomeSelected;
 
     this.dataService.updateOffer(this.offerIdOnUse, this.offerToSendToBack)
         .subscribe( {
@@ -154,7 +160,7 @@ export class OfferUpdateComponent implements OnInit {
                             this.generalInfoMessage = "Infos générales mises à jour";},
           error:err => {console.error(err);
                         this.generalInfoMessage = "Erreur : infos générales non mises à jour";},
-          complete : () => {this.reloadPage();}});
+          complete : () => {this.reloadPage();}}); 
   }
 
 
@@ -222,11 +228,13 @@ export class OfferUpdateComponent implements OnInit {
 
   }
 
-
   /**
    * GET the offer to display in order to refresh template data, after each update (general info, image, equipment)
    */
   reloadPage(){
+
+    console.log('reloadPage');
+
 
     this.equipmentForm = this.formBuilder.group({
       equipments: new FormArray([])
@@ -241,8 +249,9 @@ export class OfferUpdateComponent implements OnInit {
 
          /* this.depositForm.setValue(value);*/
          this.depositForm.get('postalCode').setValue(value.postalCode); 
+
          this.depositForm.get('carBrand').setValue(value.carBrand); 
-         this.depositForm.get('carModel').setValue(value.carModel);
+         this.depositForm.get('carModel').setValue(value.carModel);  
          this.depositForm.get('year').setValue(value.year);
          this.depositForm.get('gearbox').setValue(value.gearbox);
          this.depositForm.get('outerColor').setValue(value.outerColor);
@@ -261,7 +270,6 @@ export class OfferUpdateComponent implements OnInit {
          this.userId = offer.user.id;
          this.offerToUpdate = offer;
          this.offerEquipment = offer.equipments;
-       
 
          this.addCheckboxes();
       },
@@ -285,4 +293,63 @@ export class OfferUpdateComponent implements OnInit {
     }
   }
 
+
+    /**
+   * compare data service equipment list with list of equipment in database and check the appropriate checkboxes
+   */
+  private addCheckboxes() {
+
+    console.log('addCheckboxes');
+
+    this.equipmentList.forEach((equipmentItem, equipmentIndex) => {
+      this.shoulBeChecked = false;
+      this.offerEquipment.forEach((offerEquipmentItem, offerEquipmentIndex) => {
+
+        if (equipmentItem.label == offerEquipmentItem.label ){
+          const indexTrue = equipmentIndex;
+          const control = new FormControl(equipmentIndex === indexTrue);
+          (this.equipmentForm.controls.equipments as FormArray).push(control);
+          this.shoulBeChecked = true;
+        }
+      })
+      if (!this.shoulBeChecked){
+        const control = new FormControl();
+        (this.equipmentForm.controls.equipments as FormArray).push(control);
+
+      }
+
+    });
+  }
+
 }
+
+//  onCarBrandChange(carBrandOptionValue){
+//
+//    console.log('onCarBrandchange');
+//
+//    this.hasBrandchanged  =true;
+//
+//    const optionValue = carBrandOptionValue.target.value;
+//
+//    /* retrieving car brand code and car brand name from the form*/
+//    const optionValueArray = optionValue.split(';');
+//    /*saving car brand code for http request for car models */
+//    this.brandCodigoSelected = optionValueArray[0];
+//
+//    /*saving car brand name*/
+//    this.brandNomeSelected = optionValueArray[1];
+//  
+//    this.dataService.retrieveModels(this.brandCodigoSelected)
+//    .pipe(
+//      /*retrieving array of models*/
+//        tap ((ModelListVehicleApi:ModelApi) => {
+//          this.modelListAPI = ModelListVehicleApi.modelos; 
+//        }),
+//      ) 
+//    .subscribe( {
+//      next: listOfModelsAPI  => { 
+//                          console.log(listOfModelsAPI);
+//                        },
+//      error:err => {console.error(err);
+//                    }});
+//  }

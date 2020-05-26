@@ -20,41 +20,48 @@
             <!--check error on field : 
               -when a user click on the field (touched) or modifies it (dirty)
                -or when the user submits the form  -->
-            <div *ngIf="((filterForm.get('dptCode').errors && (filterForm.get('dptCode').touched || filterForm.get('dptCode').dirty))
+            <!--<div *ngIf="((filterForm.get('dptCode').errors && (filterForm.get('dptCode').touched || filterForm.get('dptCode').dirty))
                      || (isSubmitted && filterForm.get('dptCode').errors))">
                 <div *ngIf="filterForm.get('dptCode').errors" class="error-effect-title">
                   La région doit être valide
                 </div>
+            </div>-->
+            <div *ngIf="isInvalid('dptCode')">
+              <div class="error-effect-title">
+                La région doit être valide
+              </div>
             </div>
             
             <!--displaying Brand choices retrieved from the service brand list-->
             <div class="filter-form-elt">
               <label>Marque:</label>
-              <select formControlName="carBrand">
+              <select formControlName="carBrand" (change)="onCarBrandChange($event)">
                 <option value="">Marque</option>
-                <option value={{brand.name}} *ngFor="let brand of brandList">{{brand.name}}</option>
+                <!--<option value={{brand.name}} *ngFor="let brand of brandList">{{brand.name}}</option> -->
+                <option [value]="brand.codigo+';'+brand.nome" *ngFor="let brand of brandListAPI">{{brand.nome}}</option>
               </select>
             </div>
-            <div *ngIf="((filterForm.get('carBrand').errors && (filterForm.get('carBrand').touched || filterForm.get('carBrand').dirty))
-              || (isSubmitted && filterForm.get('carBrand').errors))">
-              <div *ngIf="filterForm.get('carBrand').errors" class="error-effect-title">
-                  La marque est obligatoire
+
+            <!--<div *ngIf="isInvalid('carBrand')">
+              <div class="error-effect-title">
+                La marque est obligatoire
               </div>
-            </div>
+            </div> -->
         
             <div class="filter-form-elt">
               <label>Modèle:</label>
               <select formControlName="carModel">
-                <option value={{model.name}} *ngFor="let model of modelList">{{model.name}}</option>
                 <option value="">Modèle</option>
+                <option value={{model.nome}} *ngFor="let model of modelListAPI">{{model.nome}} </option>
+                <!--<option value={{model.name}} *ngFor="let model of modelList">{{model.name}}</option> -->
               </select>
             </div>
-            <div *ngIf="((filterForm.get('carModel').errors && (filterForm.get('carModel').touched || filterForm.get('carModel').dirty))
-              || (isSubmitted && filterForm.get('carModel').errors))">
-              <div *ngIf="filterForm.get('carModel').errors" class="error-effect-title">
+
+            <!--<div *ngIf="isInvalid('carModel')">
+              <div class="error-effect-title">
                 Le modèle est obligatoire
               </div>
-            </div>
+            </div> -->
         
         
             <div class="filter-form-elt">
@@ -64,12 +71,12 @@
                 <option value="">Année</option>
               </select>
             </div>
-            <div *ngIf="((filterForm.get('year').errors && (filterForm.get('year').touched || filterForm.get('year').dirty))
-              || (isSubmitted && filterForm.get('year').errors))">
-                <div *ngIf="filterForm.get('year').errors" class="error-effect-title">
-                   L'année du véhicule est obligatoire
-                </div>
-            </div>
+
+            <!--<div *ngIf="isInvalid('year')">
+              <div class="error-effect-title">
+                L'année du véhicule est obligatoire
+              </div>
+            </div> -->
         
             <p>Boite de vitesse :</p>
             <div class="filter-form-elt-radio">
@@ -91,9 +98,14 @@
                       maxlength="6"
                       id="lowest">
             </div>
-            <div *ngIf="((filterForm.get('lowestPrice').errors && (filterForm.get('lowestPrice').touched || filterForm.get('lowestPrice').dirty))
+            <!--<div *ngIf="((filterForm.get('lowestPrice').errors && (filterForm.get('lowestPrice').touched || filterForm.get('lowestPrice').dirty))
             || (isSubmitted && filterForm.get('lowestPrice').errors))">
               <div *ngIf="filterForm.get('lowestPrice').errors" class="error-effect-title">
+                Le prix doit être numérique et entier sans virgule
+              </div>
+            </div> -->
+            <div *ngIf="isInvalid('lowestPrice')">
+              <div class="error-effect-title">
                 Le prix doit être numérique et entier sans virgule
               </div>
             </div>
@@ -106,9 +118,14 @@
                       maxlength="6"
                       id="highest">
             </div>
-            <div *ngIf="((filterForm.get('highestPrice').errors && (filterForm.get('highestPrice').touched || filterForm.get('highestPrice').dirty))
+            <!--<div *ngIf="((filterForm.get('highestPrice').errors && (filterForm.get('highestPrice').touched || filterForm.get('highestPrice').dirty))
             || (isSubmitted && filterForm.get('highestPrice').errors))">
               <div *ngIf="filterForm.get('highestPrice').errors" class="error-effect-title">
+                Le prix doit être numérique et entier sans virgule
+              </div>
+            </div> -->
+            <div *ngIf="isInvalid('highestPrice')">
+              <div class="error-effect-title">
                 Le prix doit être numérique et entier sans virgule
               </div>
             </div>

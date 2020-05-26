@@ -12,7 +12,7 @@ h1, p {
 }
 
 /* disable a specific part of the template when user not connected */
-.is-disable {
+.is-noDisplayed {
     /*
     pointer-events: none;
     opacity: 0.3; */

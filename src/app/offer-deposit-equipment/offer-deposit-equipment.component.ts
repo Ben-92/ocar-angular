@@ -70,10 +70,10 @@ export class OfferDepositEquipmentComponent implements OnInit {
    * @param equipmentDeposit formarray of user choices (check or not check for each equipment item)
    */
   submit(equipmentDeposit) {
-
-    const selectedEquipmentLabels = equipmentDeposit.equipments /* retrieve equipments FormArray from equipmentForm: true (if checked) or null */
-      .map((value, i) => value ? this.equipmentList[i] : null) /* new array : rapprochement between the checked boxes (at true) and the values of the data array*/                                                    
-      .filter(value => value !== null); /*new array with all non null elements */
+    /* retrieve equipments FormArray from equipmentForm: true (if checked) or null */
+    const selectedEquipmentLabels = equipmentDeposit.equipments 
+       .map((value, i) => value ? this.equipmentList[i] : null) /* new array : rapprochement between the checked boxes (at true) and the values of the data array*/                                                    
+       .filter(value => value !== null); /*new array with all non null elements */
 
 
     /* http call is made only if at least one box is checked */
