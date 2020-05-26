@@ -28,10 +28,6 @@ h2 {
     opacity: 0.3;
 }
 
-/*
-.deposit-form-elt select {
-    width : 500px;
-} */
 
 
 /*form items are themselves container selector of their inner elements. Elements are displayed in row
@@ -43,12 +39,6 @@ and label and input at each side */
 
     margin-top:1%;
 }
-
-/* simulating h3 font size and font weight for deposit-form element label style */
-/*.deposit-form-elt-label { 
-    font-size: 1.13em;
-    font-weight: bold;
-} */
 
 
 /*radio buttons are displayed at extreme right of the element */
@@ -93,7 +83,6 @@ and label and input at each side */
     width : 33%;
     margin:auto;
 
-    /*border : solid 1px darkgray;*/
 
 
 }

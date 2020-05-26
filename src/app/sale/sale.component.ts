@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterViewInit } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 
 import { ActivatedRoute, Router } from '@angular/router';
 import { DataService } from '../data.service';
@@ -104,7 +104,6 @@ export class SaleComponent implements OnInit{
             .pipe(
             /* retrieving price informations before displaying it */
                 tap ((offer:Offer) => {
-                  console.log('ici');
                   
                   this.carOfferPrice = offer.price;
                   this.buyForm.get('finalPrice').setValue(offer.price);
@@ -161,13 +160,11 @@ export class SaleComponent implements OnInit{
     this.isSubmitted = true;
     //this.buyForm.get('finalPrice').disable();
 
-    /*test = buyData.finalPrice;*/
     let dateOfSale = new Date();
 
     let commissionRateParam = this.jsonParamData.commissionRate;
 
     let saleConcluded = {
-      /*finalPrice : document.getElementById('mirror-price').innerText, */
       finalPrice : buyData.finalPrice,
       date : dateOfSale,
       commissionRate : commissionRateParam
@@ -188,39 +185,9 @@ export class SaleComponent implements OnInit{
                             this.message = "Erreur lors de l'enregistrement du montant de la transaction";}});
   } 
 
-  /*onSimulate(){
-    window.open("https://www.cetelem.fr/fr/credit/financement-vehicules-2-roues/credit-auto-neuve?co=LSG1B&cid=SEM__Conso__google__SEA_Conso_Marque+combinaisons__Cetelem_Cr%C3%A9dit+auto_Exact__cetelem%20auto__283144237671__e__mkw%7cIxUIV0MO__c&gclid=CjwKCAjwkun1BRAIEiwA2mJRWeJi-xVIcHO1GVUPm-G6vbAkKkcEK3vgShXELqwKHCgs8SuS1OHdpRoCdmQQAvD_BwE&gclsrc=aw.ds", "_blank");
-  } */
 
   onCash() {
     
   }
-
-
-  /*
-  ngAfterViewInit() {
-    console.log('Afterviewinit sale');
-    console.log(this.carOfferPrice);
-    let amount = 10;
-    paypal.Buttons({
-      createOrder: function(data, actions) {
-        // This function sets up the details of the transaction, including the amount and line item details.
-        return actions.order.create({
-          purchase_units: [{
-            amount: {
-              value : amount
-            }
-          }]
-        });
-      },
-      onApprove: function(data, actions) {
-        // This function captures the funds from the transaction.
-        return actions.order.capture().then(function(details) {
-          // This function shows a transaction success message to your buyer.
-          alert('Transaction completed by ' + details.payer.name.given_name);
-        });
-      }
-    }).render('#paypal-button-container');
-  } */
 
 }

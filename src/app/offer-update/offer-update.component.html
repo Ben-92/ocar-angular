@@ -42,34 +42,6 @@
       </div>
 
   
-  <!--    <div class="deposit-form-elt">
-        <label class="deposit-form-elt-label">Marque (*):</label>
-        <select id="test1" formControlName="carBrand" (change)="onCarBrandChange($event)">
-          <option value="">Sélectionner la Marque</option> 
-          <option value={brand.nome}} *ngFor="let brand of brandListAPI">{{brand.nome}}</option>
-        </select>
-      </div>
-      <div *ngIf="isInvalid('carBrand')">
-          <div class="error-effect-title">
-              La marque est obligatoire
-          </div>
-      </div> -->
-
-  
-    <!--  <div class="deposit-form-elt">
-        <label class="deposit-form-elt-label">Modèle (*):</label>
-        <select formControlName="carModel">
-          <option value="">Sélectionner le modèle</option>
-          <option value={{model.nome}} *ngFor="let model of modelListAPI">{{model.nome}}</option> 
-        </select>
-      </div>
-      <div *ngIf="isInvalid('carModel')">
-          <div class="error-effect-title">
-              Le modèle est obligatoire
-          </div>
-      </div> -->
-
-  
       <div class="deposit-form-elt">
         <label class="deposit-form-elt-label">Année du véhicule (*):</label>
         <select formControlName="year">
@@ -149,7 +121,6 @@
   
       <div class="deposit-form-elt">
         <button class="submit-button" type="submit">Enregistrer les modifications</button>
-        <!--<button class="submit-button" type="submit" [disabled]="!depositForm.dirty">Enregistrer l'annonce</button> -->
       </div>
   
     </div>

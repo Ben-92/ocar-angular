@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 
 import { DataService } from '../data.service';
 import { FormBuilder, Validators, FormGroup, FormArray, FormControl } from '@angular/forms';
@@ -8,7 +8,7 @@ import { FormBuilder, Validators, FormGroup, FormArray, FormControl } from '@ang
 import {tap} from 'rxjs/operators';
 
 import { Offer } from '../offer';
-import { ModelApi } from '../model-api';
+/*import { ModelApi } from '../model-api';*/
 
 @Component({
   selector: 'app-offer-update',
@@ -27,10 +27,6 @@ export class OfferUpdateComponent implements OnInit {
   offerToSendToBack : Offer;
 
   /* data lists retrieved from data service */
-  brandList  =this.dataService.brands;
-  brandListAPI ;
-  modelList = this.dataService.models;
-  modelListAPI;
   yearList = this.dataService.years;
   equipmentList = this.dataService.equipments;
 
@@ -105,15 +101,6 @@ export class OfferUpdateComponent implements OnInit {
 
       this.reloadPage(); 
 
-   //  this.dataService.retrieveBrands()
-   //   .subscribe( {
-   //     next: listOfBrandsAPI  => {                
-   //                         this.brandListAPI = listOfBrandsAPI;
-   //
-   //                         this.reloadPage();
-   //                       },
-   //     error:err => {console.error(err);
-   //                   }});
  
   } 
 
@@ -323,33 +310,3 @@ export class OfferUpdateComponent implements OnInit {
 
 }
 
-//  onCarBrandChange(carBrandOptionValue){
-//
-//    console.log('onCarBrandchange');
-//
-//    this.hasBrandchanged  =true;
-//
-//    const optionValue = carBrandOptionValue.target.value;
-//
-//    /* retrieving car brand code and car brand name from the form*/
-//    const optionValueArray = optionValue.split(';');
-//    /*saving car brand code for http request for car models */
-//    this.brandCodigoSelected = optionValueArray[0];
-//
-//    /*saving car brand name*/
-//    this.brandNomeSelected = optionValueArray[1];
-//  
-//    this.dataService.retrieveModels(this.brandCodigoSelected)
-//    .pipe(
-//      /*retrieving array of models*/
-//        tap ((ModelListVehicleApi:ModelApi) => {
-//          this.modelListAPI = ModelListVehicleApi.modelos; 
-//        }),
-//      ) 
-//    .subscribe( {
-//      next: listOfModelsAPI  => { 
-//                          console.log(listOfModelsAPI);
-//                        },
-//      error:err => {console.error(err);
-//                    }});
-//  }

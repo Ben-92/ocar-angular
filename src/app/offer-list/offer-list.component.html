@@ -20,12 +20,6 @@
             <!--check error on field : 
               -when a user click on the field (touched) or modifies it (dirty)
                -or when the user submits the form  -->
-            <!--<div *ngIf="((filterForm.get('dptCode').errors && (filterForm.get('dptCode').touched || filterForm.get('dptCode').dirty))
-                     || (isSubmitted && filterForm.get('dptCode').errors))">
-                <div *ngIf="filterForm.get('dptCode').errors" class="error-effect-title">
-                  La région doit être valide
-                </div>
-            </div>-->
             <div *ngIf="isInvalid('dptCode')">
               <div class="error-effect-title">
                 La région doit être valide
@@ -37,31 +31,18 @@
               <label>Marque:</label>
               <select formControlName="carBrand" (change)="onCarBrandChange($event)">
                 <option value="">Marque</option>
-                <!--<option value={{brand.name}} *ngFor="let brand of brandList">{{brand.name}}</option> -->
                 <option [value]="brand.codigo+';'+brand.nome" *ngFor="let brand of brandListAPI">{{brand.nome}}</option>
               </select>
             </div>
 
-            <!--<div *ngIf="isInvalid('carBrand')">
-              <div class="error-effect-title">
-                La marque est obligatoire
-              </div>
-            </div> -->
         
             <div class="filter-form-elt">
               <label>Modèle:</label>
               <select formControlName="carModel">
                 <option value="">Modèle</option>
                 <option value={{model.nome}} *ngFor="let model of modelListAPI">{{model.nome}} </option>
-                <!--<option value={{model.name}} *ngFor="let model of modelList">{{model.name}}</option> -->
               </select>
             </div>
-
-            <!--<div *ngIf="isInvalid('carModel')">
-              <div class="error-effect-title">
-                Le modèle est obligatoire
-              </div>
-            </div> -->
         
         
             <div class="filter-form-elt">
@@ -72,11 +53,6 @@
               </select>
             </div>
 
-            <!--<div *ngIf="isInvalid('year')">
-              <div class="error-effect-title">
-                L'année du véhicule est obligatoire
-              </div>
-            </div> -->
         
             <p>Boite de vitesse :</p>
             <div class="filter-form-elt-radio">
@@ -98,12 +74,7 @@
                       maxlength="6"
                       id="lowest">
             </div>
-            <!--<div *ngIf="((filterForm.get('lowestPrice').errors && (filterForm.get('lowestPrice').touched || filterForm.get('lowestPrice').dirty))
-            || (isSubmitted && filterForm.get('lowestPrice').errors))">
-              <div *ngIf="filterForm.get('lowestPrice').errors" class="error-effect-title">
-                Le prix doit être numérique et entier sans virgule
-              </div>
-            </div> -->
+
             <div *ngIf="isInvalid('lowestPrice')">
               <div class="error-effect-title">
                 Le prix doit être numérique et entier sans virgule
@@ -118,12 +89,7 @@
                       maxlength="6"
                       id="highest">
             </div>
-            <!--<div *ngIf="((filterForm.get('highestPrice').errors && (filterForm.get('highestPrice').touched || filterForm.get('highestPrice').dirty))
-            || (isSubmitted && filterForm.get('highestPrice').errors))">
-              <div *ngIf="filterForm.get('highestPrice').errors" class="error-effect-title">
-                Le prix doit être numérique et entier sans virgule
-              </div>
-            </div> -->
+
             <div *ngIf="isInvalid('highestPrice')">
               <div class="error-effect-title">
                 Le prix doit être numérique et entier sans virgule
@@ -154,7 +120,6 @@
   <div *ngIf="contentTotalOffers > 0" class="sort-choice">
     <label>Afficher en premier : </label>
     <select #sortChoice (change)="onSortSelectChange(sortChoice.value)">
-    <!--<option value="">Critère de tri</option> -->
     <option value="dateDESC">Annonces récentes</option>
     <option value="dateASC">Annonces anciennes</option>
     <option value="yearDESC">Véhicules récents</option>
@@ -187,15 +152,7 @@
             <p>{{offer.postalCode}}</p>
             <br>
             <p>{{offer.date | date : 'dd/MM/yyyy'}}, {{offer.date | date : 'HH:mm'}}</p>
-            <!--<p>{{offer.date | date : 'HH:mm'}}</p> -->
-             <!-- <p><strong>Date de l'offre:</strong> {{offer.date | date : 'dd/MM/yyyy'}}</p>
-              <p><strong>Marque:</strong> {{offer.carBrand}}</p> 
-              <p><strong>Modèle:</strong> {{offer.carModel}}</p>
-              <p><strong>Prix:</strong> {{offer.price | currency:'EUR':'symbol':'1.0-0'}}</p> -->
           </div>
-          <!--<div class="offer-list-link">
-              <button (click)="onConsult(offer.id)">Consulter</button>
-          </div> -->
           <div class="offer-list-image" *ngIf="offer.images[0]; else noPhoto"> 
               <img class="image-showcase" src="data:image/jpeg;base64,{{offer.images[0].picByte}}"> 
           </div>

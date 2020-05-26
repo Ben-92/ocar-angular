@@ -5,14 +5,13 @@ import { FormBuilder, Validators } from '@angular/forms';
 
 import { Offer } from '../offer';
 
-import {map, tap} from 'rxjs/operators';
-import { concat } from 'rxjs';
+import {tap} from 'rxjs/operators';
 
 import { TokenStorageService } from '../_services/token-storage.service';
 
-import { Router, ActivatedRoute } from '@angular/router'; 
+import { Router} from '@angular/router'; 
 
-import { BrandApi } from '../brand-api';
+/*import { BrandApi } from '../brand-api';*/
 import { ModelApi } from '../model-api';
 
 @Component({
@@ -71,13 +70,12 @@ export class OfferDepositComponent implements OnInit {
   constructor(private dataService: DataService,
               private formBuilder: FormBuilder,
               private tokenStorageService: TokenStorageService,
-              private router: Router,
-              /*private route: ActivatedRoute,*/
+              private router: Router
               ) { }
 
   ngOnInit() {
 
-    /*disable selct car model when car brand is not selected */
+    /*disable select car model when car brand is not selected */
     this.depositForm.get('carModel').disable();
 
     this.isLoggedIn = !!this.tokenStorageService.getToken(); 

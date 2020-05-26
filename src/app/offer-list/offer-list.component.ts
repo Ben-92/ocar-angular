@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from '../data.service';
 import { FormBuilder,Validators  } from '@angular/forms';
-import {map, tap} from 'rxjs/operators';
+import {tap} from 'rxjs/operators';
 
 import { OfferPage } from '../offer-page';
 
@@ -21,9 +21,7 @@ export class OfferListComponent implements OnInit {
 brandCodigoSelected;
 
 brandNomeSelected;
-  /*
-offerListObs;
-filteredOfferListObs; */
+
 
 /* true if form submitted */
 isSubmitted : boolean;
@@ -189,8 +187,6 @@ filterForm = this.formBuilder.group({
       this.getPageOfOffers();
     }
 
-    /*document.getElementById('offer-list').scrollIntoView();*/
-    /*document.getElementById('offer-list').scrollTo();*/
 
   } 
 
@@ -351,12 +347,10 @@ filterForm = this.formBuilder.group({
       this.lowestPostCodeFilter = '00000';
       this.highestPostCodeFilter = '99999';
     }
-    console.log(this.lowestPostCodeFilter);
-    console.log(this.highestPostCodeFilter);
+
   
     if (filteringValues.carBrand > '' ){
-      /*this.lowestBrandFilter = filteringValues.carBrand;
-      this.highestBrandFilter = filteringValues.carBrand;*/
+
       this.lowestBrandFilter = this.brandNomeSelected;
       this.highestBrandFilter = this.brandNomeSelected;
 
