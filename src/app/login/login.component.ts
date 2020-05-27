@@ -5,7 +5,6 @@ import { TokenStorageService } from '../_services/token-storage.service';
 
 import { Router, ActivatedRoute} from '@angular/router'; 
 
-
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -28,7 +27,6 @@ constructor(private authService: AuthService,
             private tokenStorage: TokenStorageService, 
             private router: Router,
             private route: ActivatedRoute) {
-
  }
 
   ngOnInit() {
@@ -62,6 +60,11 @@ constructor(private authService: AuthService,
         this.isLoggedIn = true;
         this.roles = this.tokenStorage.getUser().roles;
         this.username = this.tokenStorage.getUser().username;
+
+        /*emit the observable isLoggedObs containing the value true if user is logged in*/
+        this.authService.emitSubject();
+   
+
         /*this.reloadPage(); */
         this.onGoBack();
         /*this.router.navigate(['']); */

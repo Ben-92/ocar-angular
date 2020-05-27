@@ -1,7 +1,9 @@
-import { Injectable } from '@angular/core';
+import { Injectable} from '@angular/core';
 
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
+
+import { Output, EventEmitter} from '@angular/core';
 
 const AUTH_API = 'http://localhost:8080/api/auth/';
 
@@ -16,6 +18,9 @@ export class AuthService {
 
   constructor(private http: HttpClient) { }
 
+  /* defining an observable EventEmitter class type */
+  @Output() isLoggedObs: EventEmitter<boolean> = new EventEmitter();
+
   login(credentials): Observable<any> {
     return this.http.post(AUTH_API + 'signin', {
       username: credentials.username,
@@ -29,6 +34,13 @@ export class AuthService {
       email: user.email,
       password: user.password
     }, httpOptions);
+  }
+
+  /**
+   * emit the observable isLoggedObs containing the value true...the top bar component is subscribed to it
+   */
+  emitSubject() {
+  this.isLoggedObs.emit(true);
   }
 
 }
