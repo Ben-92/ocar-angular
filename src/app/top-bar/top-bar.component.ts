@@ -18,7 +18,7 @@ export class TopBarComponent implements OnInit {
   username: string;
 
   constructor(private tokenStorageService: TokenStorageService,
-              private authService: AuthService,) {
+              private authService: AuthService) {
 
       /*From the first construction of the component, it stays subscribed to the observable isLoggedObs containing the value true when user logged in*/
       this.authService.isLoggedObs.subscribe(value => {
