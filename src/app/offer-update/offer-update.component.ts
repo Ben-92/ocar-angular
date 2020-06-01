@@ -28,7 +28,8 @@ export class OfferUpdateComponent implements OnInit {
 
   /* data lists retrieved from data service */
   yearList = this.dataService.years;
-  equipmentList = this.dataService.equipments;
+  /*equipmentList = this.dataService.equipments;*/
+  equipmentList;
 
   equipmentForm: FormGroup; 
 
@@ -58,6 +59,8 @@ export class OfferUpdateComponent implements OnInit {
 
   hasBrandchanged = false;
 
+  equipmentListTypeSaved ;
+
   /*general informations formgroup */ 
   depositForm = this.formBuilder.group({
     postalCode: ['',[Validators.required, Validators.minLength(5), Validators.maxLength(5), Validators.pattern('[0-9]*')]],
@@ -80,6 +83,9 @@ export class OfferUpdateComponent implements OnInit {
               private dataService: DataService,
               private formBuilder: FormBuilder) { 
 
+                this.equipmentForm = this.formBuilder.group({
+                  equipmentsFormArray: new FormArray([])
+                });
 
   }
 
@@ -93,13 +99,27 @@ export class OfferUpdateComponent implements OnInit {
 
     this.depositForm.get('carBrand').disable();
     this.depositForm.get('carModel').disable();
+    this.depositForm.get('year').disable();
+    this.depositForm.get('gearbox').disable();
+    this.depositForm.get('outerColor').disable();
+    this.depositForm.get('fourWheelDrive').disable();
 
       this.route.paramMap
       .subscribe(params => {
         this.offerIdOnUse = params.get('offerId');
       })
 
-      this.reloadPage(); 
+          /*get an observable containing the equipments */
+    this.dataService.getEquipmentList()
+    .subscribe( {
+      next: value  => {this.equipmentList = value;
+                      /* console.log('equipmentList: ');
+                      console.log(this.equipmentList)*/
+                      this.reloadPage(); },
+      error:err => {console.error(err); 
+                    }});
+
+      /*this.reloadPage(); */
 
  
   } 
@@ -124,16 +144,20 @@ export class OfferUpdateComponent implements OnInit {
     /* retrieving the offer to update (before any updates) including images and equipments */
     this.offerToSendToBack = this.offerToUpdate;
     
-    /* updating offer with new values */
+    /* updating offer with new values. Have to get .value because fields are disable()*/
     this.offerToSendToBack.carBrand = this.depositForm.get('carBrand').value; 
     this.offerToSendToBack.carModel = this.depositForm.get('carModel').value;
+    this.offerToSendToBack.year = this.depositForm.get('year').value;
+    this.offerToSendToBack.gearbox = this.depositForm.get('gearbox').value;
+    this.offerToSendToBack.outerColor = this.depositForm.get('outerColor').value;
+    this.offerToSendToBack.fourWheelDrive = this.depositForm.get('fourWheelDrive').value;
 
     this.offerToSendToBack.description = offerUpdated.description;
-    this.offerToSendToBack.fourWheelDrive = offerUpdated.fourWheelDrive;
-    this.offerToSendToBack.outerColor = offerUpdated.outerColor;
-    this.offerToSendToBack.gearbox = offerUpdated.gearbox;
+    /*this.offerToSendToBack.fourWheelDrive = offerUpdated.fourWheelDrive; */
+    /*this.offerToSendToBack.outerColor = offerUpdated.outerColor;*/
+    /*this.offerToSendToBack.gearbox = offerUpdated.gearbox;*/
     this.offerToSendToBack.postalCode = offerUpdated.postalCode;
-    this.offerToSendToBack.year = offerUpdated.year;
+    /*this.offerToSendToBack.year = offerUpdated.year;*/
 
     this.offerToSendToBack.price = offerUpdated.price;
 
@@ -199,7 +223,7 @@ export class OfferUpdateComponent implements OnInit {
 
     this.initializeMessages();
 
-    const selectedEquipmentLabels = equipmentDeposit.equipments /* retrieve equipments FormArray from equipmentForm: true (if checked) or null */
+    const selectedEquipmentLabels = equipmentDeposit.equipmentsFormArray /* retrieve equipments FormArray from equipmentForm: true (if checked) or null */
       .map((value, i) => value ? this.equipmentList[i] : null) /* nouveau tableau : rapprochement entre les checked (qui sont à true) et les valeurs du tableau de données*/                                                    
       .filter(value => value !== null); /*new array with all non null elements */
 
@@ -222,9 +246,9 @@ export class OfferUpdateComponent implements OnInit {
 
     console.log('reloadPage');
 
-
+    /*redefining the formGroup because of the reload */
     this.equipmentForm = this.formBuilder.group({
-      equipments: new FormArray([])
+      equipmentsFormArray: new FormArray([])
     }); 
 
      /*get an observable containing the data of an offer */
@@ -295,17 +319,24 @@ export class OfferUpdateComponent implements OnInit {
         if (equipmentItem.label == offerEquipmentItem.label ){
           const indexTrue = equipmentIndex;
           const control = new FormControl(equipmentIndex === indexTrue);
-          (this.equipmentForm.controls.equipments as FormArray).push(control);
+          (this.equipmentForm.controls.equipmentsFormArray as FormArray).push(control);
           this.shoulBeChecked = true;
         }
       })
       if (!this.shoulBeChecked){
         const control = new FormControl();
-        (this.equipmentForm.controls.equipments as FormArray).push(control);
+        (this.equipmentForm.controls.equipmentsFormArray as FormArray).push(control);
 
       }
 
     });
+  }
+
+  hasToDisplay(equipmentListType){
+    if (equipmentListType != this.equipmentListTypeSaved){
+      this.equipmentListTypeSaved = equipmentListType;
+      return true;
+    }
   }
 
 }

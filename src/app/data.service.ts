@@ -57,6 +57,12 @@ export class DataService {
     return this.httpClient.get(this.apiUrl + '/users/' + userId );
   }
 
+  getEquipmentList() {
+
+    return this.httpClient.get(this.apiUrl + '/equipments');
+  }
+
+
 
 /**
  * GET request to retrieve a filtered Offer Page
@@ -210,7 +216,7 @@ export class DataService {
 /**
  * list of brands a client can choose from
  */
-  brands : Brand[] = [
+ /* brands : Brand[] = [
     {"name": "BMW" },
     {"name": "Renault"},
     {"name": "Ferrari"}
@@ -220,12 +226,12 @@ export class DataService {
       {"name": "Série 2"},
       {"name": "Clio"},
       {"name": "Testarossa"},
-    ]
+    ]*/
 
   /*list of equipments a client can choose from */
   /* ! do not change the first label of each type*/
   /* ! labels of the same type must be grouped*/
-  equipments : Equipment[] = 
+ /* equipments : Equipment[] = 
   [
     { "type": "interior", "label": "Sièges cuir"},
     { "type": "interior", "label": "Volant Alcantara" },
@@ -236,7 +242,7 @@ export class DataService {
     { "type": "comfort", "label": "rétros dorés" },
     { "type": "comfort", "label": "rétros argentés" },
     { "type": "comfort", "label": "rétros platine" },
-  ]
+  ]*/
   /*[
     {
       "type": "interior",
