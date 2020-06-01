@@ -26,9 +26,9 @@ export class OfferDepositComponent implements OnInit {
   isLoggedIn = false;
 
   /* data lists retrieved from data service */
-  brandList  =this.dataService.brands;
+  /*brandList  =this.dataService.brands;*/
   brandListAPI ;
-  modelList = this.dataService.models;
+  /*modelList = this.dataService.models;*/
   modelListAPI;
   yearList = this.dataService.years;
 

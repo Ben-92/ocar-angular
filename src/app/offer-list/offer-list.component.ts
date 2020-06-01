@@ -57,9 +57,9 @@ pageToDisplay;
 isFilterRequested;
 
 /* retrieving service data : list of brands, models, years */
-brandList  =this.dataService.brands;
+/*brandList  =this.dataService.brands;*/
 brandListAPI ;
-modelList = this.dataService.models;
+/*modelList = this.dataService.models;*/
 modelListAPI;
 yearList = this.dataService.years;
 

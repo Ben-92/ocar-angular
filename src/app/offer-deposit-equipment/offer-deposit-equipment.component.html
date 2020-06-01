@@ -12,16 +12,18 @@
 
     <div class="check-form">
         <div class=check-list>
-            <label  formArrayName="equipments" 
-                    *ngFor="let equipmentCheck of equipmentForm.controls.equipments.controls; let i = index">
-                    <h3 *ngIf="(equipmentList[i].type == 'comfort') && (equipmentList[i].label == 'Suspensions adaptables')">Confort</h3>
+            <label  formArrayName="equipmentsFormArray" 
+                    *ngFor="let equipmentCheck of equipmentForm.controls.equipmentsFormArray.controls; let i = index">
+                    <h3 *ngIf="hasToDisplay(equipmentList[i].type)">{{equipmentList[i].type}}</h3>
+                   <!-- <h3 *ngIf="(equipmentList[i].type == 'comfort') && (equipmentList[i].label == 'Suspensions adaptables')">Confort</h3>
                     <h3 *ngIf="(equipmentList[i].type == 'exterior') && (equipmentList[i].label == 'Jantes Alu 17')">Extérieur</h3>
-                    <h3 *ngIf="(equipmentList[i].type == 'interior') && (equipmentList[i].label == 'Sièges cuir')">Intérieur</h3>
+                    <h3 *ngIf="(equipmentList[i].type == 'interior') && (equipmentList[i].label == 'Sièges cuir')">Intérieur</h3> -->
                     
                     <input type="checkbox" [formControlName]="i">
                     
             {{equipmentList[i].label}}
             </label>
+            
         </div>
         <br>
         <button id="submit-button">J'ai terminé !</button>

@@ -24,18 +24,22 @@ export class OfferDepositEquipmentComponent implements OnInit {
   equipmentForm: FormGroup;
 
    /* equipment list retrieved from data service */
-  equipmentList = this.dataService.equipments;
+  equipmentList; /*= this.dataService.equipments;*/
+
+
+  equipmentListTypeSaved ;
 
   constructor(private formBuilder: FormBuilder,
     private dataService: DataService,
     private route: ActivatedRoute,
     private router: Router) {
 
+    console.log('deposit equipment constructor');  
       this.equipmentForm = this.formBuilder.group({
-        equipments: new FormArray([])
+        equipmentsFormArray: new FormArray([])
       });
 
-    this.addCheckboxes();
+    /*this.addCheckboxes();*/
 
      }
 
@@ -44,6 +48,19 @@ export class OfferDepositEquipmentComponent implements OnInit {
   * retrieve offer id
   */
   ngOnInit() {
+
+    console.log('deposit equipment ngOnInit'); 
+
+    /*get an observable containing the equipments */
+    this.dataService.getEquipmentList()
+    .subscribe( {
+      next: value  => {this.equipmentList = value;
+                       console.log('equipmentList: ');
+                      console.log(this.equipmentList)
+                      this.addCheckboxes(); },
+      error:err => {console.error(err); 
+                    }});
+     
 
     this.isDepositComplete = false;
 
@@ -56,33 +73,37 @@ export class OfferDepositEquipmentComponent implements OnInit {
 
   /**
    * each equipment correspond to one formcontrol, each formcontrol is an element of the formarray
+   * here we link index of equipmentList with index of the formArray
    */
   private addCheckboxes() {
+    console.log('equipmentItem: ');
     this.equipmentList.forEach((equipmentItem, equipmentIndex) => {
       console.log(equipmentItem);
       const control = new FormControl();
-      (this.equipmentForm.controls.equipments as FormArray).push(control); 
+      (this.equipmentForm.controls.equipmentsFormArray as FormArray).push(control); 
     });
+    console.log('equipmentsFormArray: ');
+    console.log(this.equipmentForm.controls.equipmentsFormArray);
   }
 
   /**
    * PUT equipment list and updating it to the offer in database
-   * @param equipmentDeposit formarray of user choices (check or not check for each equipment item)
+   * @param equipmentFormDeposit formarray of user choices (check or not check for each equipment item)
    */
-  submit(equipmentDeposit) {
-    /* retrieve equipments FormArray from equipmentForm: true (if checked) or null */
-    const selectedEquipmentLabels = equipmentDeposit.equipments 
+  submit(equipmentFormDeposit) {
+    /* retrieve equipments FormArray from equipmentForm: true (if checked) */
+    const selectedEquipmentObjectsArray = equipmentFormDeposit.equipmentsFormArray 
        .map((value, i) => value ? this.equipmentList[i] : null) /* new array : rapprochement between the checked boxes (at true) and the values of the data array*/                                                    
        .filter(value => value !== null); /*new array with all non null elements */
 
 
     /* http call is made only if at least one box is checked */
-    if (selectedEquipmentLabels.length > 0) {
-
-      /*this.dataService.addEquipmentToDb(this.offerIdOnUse,  selectedEquipmentLabels)*/
-      this.dataService.updateEquipmentToDb(this.offerIdOnUse,  selectedEquipmentLabels)
+    if (selectedEquipmentObjectsArray.length > 0) {
+      console.log('selectedEquipmentObjectsArray: ');
+      console.log(selectedEquipmentObjectsArray);
+      this.dataService.updateEquipmentToDb(this.offerIdOnUse,  selectedEquipmentObjectsArray)
       .subscribe({
-        next : img => { console.log('next: post equipment') },
+        next : offer => { console.log('next: post equipment') },
         error:err => {console.error(err);
                       this.message = "Erreur : equipement non enregistré";},
         complete : () => {console.log('complete: post equipment');
@@ -92,6 +113,13 @@ export class OfferDepositEquipmentComponent implements OnInit {
     } else {
       this.message = "Le dépôt d'annonce est terminé, merci !";
       this.isDepositComplete = true; 
+    }
+  }
+
+  hasToDisplay(equipmentListType){
+    if (equipmentListType != this.equipmentListTypeSaved){
+      this.equipmentListTypeSaved = equipmentListType;
+      return true;
     }
   }
 
