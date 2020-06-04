@@ -151,20 +151,14 @@ and label and input at each side */
    
     border-top : solid #e9ebee;
    
-   /* border-radius: 0.4rem; */
-
-    /*margin:10px; */ /*sup*/
 
     display:flex;
     flex-wrap:nowrap;
     justify-content: space-between;
 
-    /*align-items: center;*/
 
     width: 100%;
 
-
-   /* width: 50%; */ /*sup*/
     
 }
 
@@ -201,33 +195,6 @@ and label and input at each side */
 
 
 
-
-
-/*
-    display: inline-block; 
-    height: 100%;
-    width: 100%;
-
-
-    outline: none;
-    text-align: center; 
-    text-decoration: none; */ /* no undelined link */
-
-        /*text-decoration: none; */
-
-    /*display: inline-block; */ /*in order to modify its dimensions - allow to set width and height */
-
-    /*color:black; */
-
-    /*border : solid whitesmoke 1px; */
-    /*border-collapse: collapse; */ /*in order the border not add width twice */
-   
-    /*width : 25%; *//*width of one <li>. There are 4 <Li> elements + border : must match 100% */
-
-    /* height of <a> is bigger than height of <li> */
-    /*line-height: 3; */ /* 3 times police height : consequence : center vertically the text */
-/*}*/
-
 /*part one of an offer on the left side: short text description */
 /* flex 1 allows to adjust the space ratio that each element takes n= 1 for all indicates each takes the same space*/
 .offer-list-text {
@@ -241,19 +208,7 @@ and label and input at each side */
     color:#8C2B53;
 }
 
-/*part two of an offer on the center : detail consulting link */
-/* flex 1 allows to adjust the space ratio that each element takes n= 1 for all indicates each takes the same space*/
-/*.offer-list-link {
-    text-align: center; 
 
-    flex: 1; 
-
-}
-
-.offer-list-link button {
-    margin : 1% auto;
-    min-width:30%;
-} */
 
 /*part three of an offer on the right side : showcase of the first image stored */
 /* flex 1 allows to adjust the space ratio that each element takes n= 1 for all indicates each takes the same space*/
@@ -279,13 +234,7 @@ and label and input at each side */
 /***************** Displaying offer list specific rules ************/
 /*******************************************************************/
 
-/* Pagination menu is displayed in a row */
-/*.pagination-items-list {
-    display: flex;
-    flex-direction: row;
 
-    justify-content: center;
-} */
 
 /*pagination list items : no specific mark*/
 ul {
@@ -305,11 +254,7 @@ li {
 
    display: inline; /* <li> are block by default ("list-item"), which means 1 <li> takes one line which we don't want */
 
-    /*border : 1px solid black;
-    border-collapse: collapse;
 
-    padding-left: 1.5%;
-    padding-right: 1.5%; */
 }
 
 /* <a> elements decide for appearance (not the <li> decide) */
@@ -322,8 +267,7 @@ li {
 
     color:black;
 
-    /*border : solid whitesmoke 1px; */
-    /*border-collapse: collapse; */ /*in order the border not add width twice */
+
    
     width : 25%; /*width of one <li>. There are 4 <Li> elements + border : must match 100% */
 
@@ -363,26 +307,116 @@ li {
     opacity: 0.3;
 }
 
+/* for Ipad Pro and Ipad : 80% of full screen display (1024px and less)*/
+@media screen and (max-width: 1024px) {
 
-/* Pagination menu is displayed in a row */
-/*.pagination-items-list {
-    display: flex;
-    flex-direction: row;
+    .filter-form  {
+        width:80%;
+    }
 
-    justify-content: center;
-} */
+    #offer-list{
+        width:80%;
+    }
 
-/*pagination list items : no specific mark*/
-/*ul {
-    list-style-type: none;
-}
+    .sort-nb-offer-choices{
+        width:80%;
+    }
+
+    ul {
+        width:80%;
+    }
+
+    .pagination-item a {
+       
+        width : 30%; /*width of one <li>. There are 3 <Li> elements + border + actual page display: must match 100% */
+
+    }
+    }
+    
+    
+    /* for mobile phones and all tablets equals or less than 767px,
+    labels and inputs are displayed in column and at full screen width */
+    @media screen and (max-width: 767px) {
+    
+    .filter-form {
+        width:80%;
+    }
+    
+    
+    .filter-form-elt {
+    
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .filter-form select {
+        width:40%;
+    }
+
+    #offer-list{
+        width:80%;
+    }
+
+    .sort-nb-offer-choices{
+        width:80%;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .sort-nb-offer-choices select{
+        width:30%;
+
+    }
+
+    
+
+    .sort-choice {
+        margin:0;
+    }
+    
+    .nb-offers-choice {
+        margin:0;
+    } 
+
+    /*ul {
+        width:80%;
+
+    }*/
+
+    h1 {
+        width:80%; 
+    }
+
+    .title {
+        width:80%;
+    }
+
+    ul a {
+        line-height: 3;
+        font-size: 0.6rem;
+    }
+
+    ul li {
+        line-height: 3;
+        font-size: 0.6rem;
+    }
+
+    p, label{
+        font-size:1rem;
+    }
+
+    .pagination-item a {
+       
+        width : 28%; /*width of one <li>. There are 3 <Li> elements + border + actual page display: must match 100% */
+
+    }
+
+    .error-effect-title {
+        text-align: center;
+    }
+        
+    }
 
 
-li {
-    border : 1px solid black;
-    border-collapse: collapse;
 
-    padding-left: 1.5%;
-    padding-right: 1.5%;
-} */
 

@@ -1,6 +1,5 @@
 #top-bar {
-    /*border : 1px solid darkgray;
-    background-color: #fff; */
+
     margin-bottom : 2rem;
 
 } 
@@ -36,10 +35,7 @@ ul {
     border : 2px solid #3A913F;
 
 }
-/*
-#username{
-    color:#3A913F;
-}*/
+
 
 li {
     display: inline; /* <li> are block by default ("list-item"), which means 1 <li> takes one line which we don't want */
@@ -54,11 +50,8 @@ a {
     text-align: center;
     text-decoration: none; /* no undelined link */
 
-    /*color:whitesmoke; */
-    color : #8C2B53;
 
-    /*border : solid whitesmoke 1px; */
-    /*border-collapse: collapse; */ /*in order the border not add width twice */
+    color : #8C2B53;
    
     width : 25%; /*width of one <li>. There are 4 <Li> elements + border : must match 100% */
 
@@ -141,5 +134,47 @@ a:active{
     right: 200px;
 
   }
+
+  /* for Ipad Pro and Ipad : 80% of full screen display (1024px and less)*/
+@media screen and (max-width: 1024px) {
+
+    ul {
+        width:80%;
+    }
+
+    h1{
+        width:30%; 
+    }
+
+    #top-image, #right-image{
+        display: none;
+    }
+
+
+    }
+    
+    
+    /* for mobile phones and all tablets equals or less than 767px,
+    labels and inputs are displayed in column and at full screen width */
+    @media screen and (max-width: 767px) {
+    
+    ul {    
+        width:100%;
+    }
+
+    h1{
+        width:50%; 
+    }
+
+    #top-image, #right-image{
+        display: none;
+    }
+
+    a {
+        line-height: 3;
+        font-size: 0.6rem;
+    }
+        
+    }
 
 

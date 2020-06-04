@@ -41,3 +41,25 @@ h2 {
     pointer-events: none;
     opacity: 0.3;
 }
+
+/* for Ipad Pro and Ipad : 80% of full screen display (1024px and less)*/
+@media screen and (max-width: 1024px) {
+
+    .check-form {
+        width:80%;
+    }
+
+    }
+    
+    
+    /* for mobile phones and all tablets equals or less than 767px,
+    labels and inputs are displayed in column and at full screen width */
+    @media screen and (max-width: 767px) {
+    
+
+    .title {
+        width:80%;
+    }
+
+        
+    }

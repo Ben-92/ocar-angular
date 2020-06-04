@@ -32,9 +32,10 @@ h1, p {
     /*margin:auto;*/
 }
 
+/*
 #mirror-price{
     display: none;
-}
+}*/
 
 
 .buy-form {
@@ -75,3 +76,53 @@ and label and input at each side */
 .error-effect-title, .message {
     color:lightcoral
 }
+
+/* for Ipad Pro and Ipad : 80% of full screen display (1024px and less)*/
+@media screen and (max-width: 1024px) {
+
+    .buy-form  {
+        width:80%;
+    }
+
+    #payment-choices{
+        width:66%;
+
+    }
+
+
+    }
+    
+    
+    /* for mobile phones and all tablets equals or less than 767px,
+    labels and inputs are displayed in column and at full screen width */
+    @media screen and (max-width: 767px) {
+    
+    #payment-choices{
+  
+        flex-direction: column;
+    }
+
+    #payment-choices button{
+        width:60%;
+        height:auto;
+        margin:auto;
+
+    }
+
+    #paypal-button-container {
+        width:200px;
+        margin:auto;
+    }
+
+    p, label{
+        font-size:1rem;
+    }
+
+    .submit-button {
+        height:auto;
+    }
+
+
+
+        
+    }

@@ -155,6 +155,46 @@ th, td {
 
 }
 
+/* for Ipad Pro and Ipad : 80% of full screen display (1024px and less)*/
+@media screen and (max-width: 1024px) {
+
+    .offer-detail {
+        width:80%;
+    }
+
+    .item-title {
+
+        width : 23%;
+    }
+    
+    }
+    
+    
+    /* for mobile phones and all tablets equals or less than 767px,
+    labels and inputs are displayed in column and at full screen width */
+    @media screen and (max-width: 767px) {
+    
+    .offer-detail {
+        width:80%;
+    }
+
+    .item-container {
+       
+        flex-direction: column;
+
+    }
+
+    .item-title, .title{
+
+        width : 80%;
+    }
+
+    .offer-description , .offer-summary, .offer-option-equipment, .offer-seller-infos {
+        width : 100%;
+    }
+        
+    }
+
 /*
 #paypal-button-container {
     width:100px;

@@ -89,4 +89,47 @@ and label and input at each side */
     margin: 1% auto;
 }
 
+/* for Ipad Pro and Ipad : 80% of full screen display (1024px and less)*/
+@media screen and (max-width: 1024px) {
+
+    .deposit-form  {
+        width:80%;
+    }
+
+
+    }
+    
+    
+    /* for mobile phones and all tablets equals or less than 767px,
+    labels and inputs are displayed in column and at full screen width */
+    @media screen and (max-width: 767px) {
+    
+    .deposit-form {
+        width:80%;
+    }
+    
+    
+    .deposit-form-elt {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .deposit-form select {
+        width:40%;
+    }
+
+    p, label{
+        font-size:1rem;
+    }
+
+
+
+    .title {
+        width:80%;
+    }
+
+
+        
+    }
+
 
