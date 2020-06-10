@@ -72,7 +72,9 @@ lowestPostCodeFilter;
 highestPostCodeFilter;
 lowestYearFilter;
 highestYearFilter;
-gearboxFilter;
+/*gearboxFilter; */
+lowestGearboxFilter;
+highestGearboxFilter;
 lowestPriceFilter;
 highestPriceFilter;
 
@@ -85,7 +87,7 @@ filterForm = this.formBuilder.group({
   carBrand: '',
   carModel: '',
   year: '',
-  gearbox:'Manuelle',
+  gearbox:'',
   lowestPrice: ['', Validators.pattern('[0-9]*')],
   highestPrice: ['', Validators.pattern('[0-9]*')],
 
@@ -294,7 +296,9 @@ filterForm = this.formBuilder.group({
     this.highestPostCodeFilter,
     this.lowestYearFilter,
     this.highestYearFilter,
-    this.gearboxFilter,
+    /*this.gearboxFilter,*/
+    this.lowestGearboxFilter,
+    this.highestGearboxFilter,
     this.lowestPriceFilter,
     this.highestPriceFilter,
     this.pageToDisplay, this.offersPerPage, this.sortCriteria, this.orderCriteria)
@@ -378,13 +382,21 @@ filterForm = this.formBuilder.group({
       this.highestYearFilter = '9999';
     }
   
-    this.gearboxFilter = filteringValues.gearbox;
+    /*this.gearboxFilter = filteringValues.gearbox; */
+    if (filteringValues.gearbox > '' ){
+      this.lowestGearboxFilter = filteringValues.gearbox;
+      this.highestGearboxFilter = filteringValues.gearbox;
+      this.isFilterRequested = true;
+    } else {
+      this.lowestGearboxFilter = '';
+      this.highestGearboxFilter = 'zzz';
+    }
   
     if (filteringValues.lowestPrice > '' ){
       this.lowestPriceFilter = filteringValues.lowestPrice;
       this.isFilterRequested = true;
     } else {
-      this.lowestPriceFilter = '0';
+      this.lowestPriceFilter = '0'; 
     }
   
     if (filteringValues.highestPrice > '' ){

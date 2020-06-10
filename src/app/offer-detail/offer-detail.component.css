@@ -19,6 +19,10 @@ h2 {
 .offer-detail {
     width:50%;
     margin : auto;
+
+    background-color: #fff;
+    border-radius: 0.4rem;
+    padding:0.7rem;
 }
 
 

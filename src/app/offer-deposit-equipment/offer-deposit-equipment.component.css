@@ -16,6 +16,10 @@ h2 {
 .check-form {
     margin:auto;
     width:33%;
+
+    background-color: #fff;
+    border-radius: 0.4rem;
+    padding:0.7rem;
 }
 
 /* displaying check choices in column */

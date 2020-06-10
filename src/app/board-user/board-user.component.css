@@ -184,3 +184,38 @@ margin-bottom : 0;
 #taxMessage p {
     text-align: center;
 }
+
+/* for Ipad Pro and Ipad : 80% of full screen display (1024px and less)*/
+@media screen and (max-width: 1024px) {
+
+    #offer-list, #personal-info  {
+        width:80%;
+    }
+
+
+}
+    
+    
+/* for mobile phones and all tablets equals or less than 767px,
+labels and inputs are displayed in column and at full screen width */
+@media screen and (max-width: 767px) {
+    
+    h2 {
+        width:80%;
+        font-size: 1.1rem;
+    } 
+    
+
+    p, label{
+        font-size:0.8rem;
+    }
+
+    .offer-list-text button {
+
+        margin-left : 0.1rem;
+        width:60px;
+        font-size:0.7rem;
+        } 
+
+  
+}

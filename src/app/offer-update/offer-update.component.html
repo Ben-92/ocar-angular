@@ -1,5 +1,6 @@
-
+<div class="title">
  <h1>Modification d'une annonce</h1>
+</div>
 
  <div class="title">
   <h2>Informations générales</h2>
@@ -42,8 +43,8 @@
       </div>
 
   
-      <div class="deposit-form-elt">
-        <label class="deposit-form-elt-label">Année du véhicule (*):</label>
+     <!-- <div class="deposit-form-elt">
+        <label class="deposit-form-elt-label">Année du véhicule (non modifiable):</label>
         <select formControlName="year">
           <option value="">Sélectionner l'année</option>
           <option value={{year.yearValue}} *ngFor="let year of yearList">{{year.yearValue}}</option> 
@@ -53,10 +54,16 @@
           <div class="error-effect-title">
               L'année du véhicule est obligatoire
           </div>
-      </div> 
+      </div> -->
+      <div class="deposit-form-elt">
+        <label class="deposit-form-elt-label" for="year">Année du véhicule (non modifiable) :</label>
+        <input  type="text"
+                formControlName="year"
+                id="year">
+      </div>
 
   
-      <p class="deposit-form-elt-label">Boite de vitesse :</p>
+      <!--<p class="deposit-form-elt-label">Boite de vitesse (non modifiable)</p>
       <div class="deposit-form-elt-radio">
   
         <input type="radio" id="manualChoice" formControlName="gearbox" value="Manuelle">
@@ -65,10 +72,21 @@
         <input type="radio" id="autoChoice" formControlName="gearbox" value="Automatique">
         <label for="autoChoice">Automatique</label>
   
+      </div> -->
+
+      <div class="deposit-form-elt">
+        <label>Boite de vitesse (non modifiable)</label>
+        <div>
+          <input type="radio" id="manualChoice" formControlName="gearbox" value="Manuelle">
+          <label for="manualChoice">Manuelle</label>
+    
+          <input type="radio" id="autoChoice" formControlName="gearbox" value="Automatique">
+          <label for="autoChoice">Automatique</label>
+        </div>
       </div>
   
       <div class="deposit-form-elt">
-        <label class="deposit-form-elt-label" for="ext-color">Couleur extérieure :</label>
+        <label class="deposit-form-elt-label" for="ext-color">Couleur extérieure (non modifiable)</label>
         <input  type="text"
                 formControlName="outerColor"
                 id="ext-color"
@@ -82,7 +100,7 @@
 
   
   
-      <p class="deposit-form-elt-label">4 roues motrices :</p>
+      <!--<p class="deposit-form-elt-label">4 roues motrices (non modifiable)</p>
       <div class="deposit-form-elt-radio">
   
         <input type="radio" id="fwdChoiceNo" formControlName="fourWheelDrive" value=false>
@@ -90,8 +108,17 @@
   
         <input type="radio" id="fwdChoiceYes" formControlName="fourWheelDrive" value=true>
         <label for="fwdChoiceYes">Oui</label>
-  
-  
+      </div> -->
+
+      <div class="deposit-form-elt">
+        <label>4 roues motrices (non modifiable)</label>
+         <div>
+          <input type="radio" id="fwdChoiceNo" formControlName="fourWheelDrive" value=false>
+          <label for="fwdChoiceNo">Non</label>
+    
+          <input type="radio" id="fwdChoiceYes" formControlName="fourWheelDrive" value=true>
+          <label for="fwdChoiceYes">Oui</label>
+        </div>
       </div>
   
       <div class="deposit-form-elt">
