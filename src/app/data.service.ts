@@ -90,7 +90,9 @@ export class DataService {
   highestPostCodeFilter,
   lowestYearFilter,
   highestYearFilter,
-  gearboxFilter,
+  /*gearboxFilter,*/
+  lowestGearboxFilter,
+  highestGearboxFilter,
   lowestPriceFilter,
   highestPriceFilter,
   pageNumberParam,
@@ -107,7 +109,9 @@ export class DataService {
   params = params.append('highestPostCode', highestPostCodeFilter);
   params = params.append('lowestYear', lowestYearFilter);
   params = params.append('highestYear', highestYearFilter);
-  params = params.append('gearbox', gearboxFilter);
+  /*params = params.append('gearbox', gearboxFilter);*/
+  params = params.append('lowestGearbox', lowestGearboxFilter);
+  params = params.append('highestGearbox', highestGearboxFilter);
   params = params.append('lowestPrice', lowestPriceFilter);
   params = params.append('highestPrice', highestPriceFilter);
 

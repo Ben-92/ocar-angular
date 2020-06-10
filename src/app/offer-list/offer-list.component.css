@@ -71,12 +71,14 @@ and label and input at each side */
 }
 
 /*radio buttons are displayed at extreme right of the element */
-.filter-form-elt-radio {
+/*.filter-form-elt-radio {
     display:flex;
     flex-direction: row;
-    justify-content: flex-end;
+    justify-content:space-between;
+
+    margin-top:1%;
    
-}
+} */
 
 
 /*colorisation of input and informational/error messages */
@@ -310,55 +312,36 @@ li {
 /* for Ipad Pro and Ipad : 80% of full screen display (1024px and less)*/
 @media screen and (max-width: 1024px) {
 
-    .filter-form  {
-        width:80%;
-    }
-
-    #offer-list{
-        width:80%;
-    }
-
-    .sort-nb-offer-choices{
-        width:80%;
-    }
-
-    ul {
+    .filter-form, #offer-list, .sort-nb-offer-choices, ul   {
         width:80%;
     }
 
     .pagination-item a {
-       
         width : 30%; /*width of one <li>. There are 3 <Li> elements + border + actual page display: must match 100% */
-
     }
-    }
+}
     
     
-    /* for mobile phones and all tablets equals or less than 767px,
-    labels and inputs are displayed in column and at full screen width */
-    @media screen and (max-width: 767px) {
+/* for mobile phones and all tablets equals or less than 767px,
+labels and inputs are displayed in column and at full screen width */
+@media screen and (max-width: 767px) {
     
-    .filter-form {
+    h1, .title {
         width:80%;
     }
     
     
     .filter-form-elt {
-    
         flex-direction: column;
         align-items: center;
     }
+
 
     .filter-form select {
         width:40%;
     }
 
-    #offer-list{
-        width:80%;
-    }
-
     .sort-nb-offer-choices{
-        width:80%;
         flex-direction: column;
         align-items: flex-start;
     }
@@ -368,35 +351,11 @@ li {
 
     }
 
-    
-
-    .sort-choice {
+    .sort-choice, .nb-offers-choice {
         margin:0;
     }
     
-    .nb-offers-choice {
-        margin:0;
-    } 
-
-    /*ul {
-        width:80%;
-
-    }*/
-
-    h1 {
-        width:80%; 
-    }
-
-    .title {
-        width:80%;
-    }
-
-    ul a {
-        line-height: 3;
-        font-size: 0.6rem;
-    }
-
-    ul li {
+    ul a, ul li{
         line-height: 3;
         font-size: 0.6rem;
     }
@@ -405,18 +364,57 @@ li {
         font-size:1rem;
     }
 
-    .pagination-item a {
-       
+    .pagination-item a {  
         width : 28%; /*width of one <li>. There are 3 <Li> elements + border + actual page display: must match 100% */
-
     }
 
     .error-effect-title {
         text-align: center;
+    }    
+}
+
+
+/*1024 */
+    /*#offer-list{
+        width:80%;
     }
-        
+
+    .sort-nb-offer-choices{
+        width:80%;
     }
 
+    ul {
+        width:80%;
+    } */
 
+/*767*/
+   /* .filter-form, #offer-list, h1, .title {
+        width:80%;
+    } */
 
+     /* .nb-offers-choice {
+        margin:0;
+    } */
+
+    /*ul {
+        width:80%;
+
+    }*/
+
+    /*h1 {
+        width:80%; 
+    }
+
+    .title {
+        width:80%;
+    } */
+
+       /* ul li {
+        line-height: 3;
+        font-size: 0.6rem;
+    } */
+
+       /* #offer-list{
+        width:80%;
+    } */
 

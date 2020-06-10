@@ -84,7 +84,7 @@
     </div>
 
 
-    <p class="deposit-form-elt-label">Boite de vitesse :</p>
+   <!-- <p class="deposit-form-elt-label">Boite de vitesse :</p>
     <div class="deposit-form-elt-radio">
 
       <input type="radio" id="manualChoice" formControlName="gearbox" value="Manuelle">
@@ -93,11 +93,23 @@
       <input type="radio" id="autoChoice" formControlName="gearbox" value="Automatique">
       <label for="autoChoice">Automatique</label>
 
+    </div> -->
+
+    <div class="deposit-form-elt">
+      <label>Boite de vitesse :</label>
+       <div>
+        <input type="radio" id="manualChoice" formControlName="gearbox" value="Manuelle">
+        <label for="manualChoice">Manuelle</label>
+
+        <input type="radio" id="autoChoice" formControlName="gearbox" value="Automatique">
+        <label for="autoChoice">Automatique</label>
+      </div>
     </div>
 
     <div class="deposit-form-elt">
       <label class="deposit-form-elt-label" for="ext-color">Couleur extérieure :</label>
-      <input  type="text"
+      <input  id="ext-color"
+              type="text"
               formControlName="outerColor"
               id="ext-color"
               placeholder="Exemple : bleu nuit">
@@ -110,7 +122,7 @@
 
 
 
-    <p class="deposit-form-elt-label">4 roues motrices :</p>
+   <!-- <p class="deposit-form-elt-label">4 roues motrices :</p>
     <div class="deposit-form-elt-radio">
 
       <input type="radio" id="fwdChoiceNo" formControlName="fourWheelDrive" value=false>
@@ -120,6 +132,17 @@
       <label for="fwdChoiceYes">Oui</label>
 
 
+    </div> -->
+
+    <div class="deposit-form-elt">
+      <label>4 roues motrices :</label>
+       <div>
+        <input type="radio" id="fwdChoiceNo" formControlName="fourWheelDrive" value=false>
+        <label for="fwdChoiceNo">Non</label>
+
+        <input type="radio" id="fwdChoiceYes" formControlName="fourWheelDrive" value=true>
+        <label for="fwdChoiceYes">Oui</label>
+       </div>
     </div>
 
     <div class="deposit-form-elt">
