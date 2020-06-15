@@ -16,7 +16,7 @@ h1 {
 
 /*undeline h2 title with swooosh effect */
 h2 {
-    /*border-bottom: solid 0.3rem darkgray; */
+
     border-bottom: solid 0.3rem #8C2B53;
  
     border-bottom-left-radius: 0.5rem;
@@ -32,7 +32,7 @@ h2 {
     text-align: center;
 }
 
-.offer-list-result p {
+#offer-list-result p {
     margin:0;
 
 }
@@ -42,12 +42,12 @@ h2 {
 /***************** Form filter specific rules **********************/
 /*******************************************************************/
 
-.filter-form select {
+#filter-form select {
     width:20%;
 }
 
 /*container selector of deposit form items. Content form items are displayed in column and page centered*/
-.filter-form {
+#filter-form {
     display:flex;
     flex-direction: column;
 
@@ -70,24 +70,14 @@ and label and input at each side */
     margin-top:1%;
 }
 
-/*radio buttons are displayed at extreme right of the element */
-/*.filter-form-elt-radio {
-    display:flex;
-    flex-direction: row;
-    justify-content:space-between;
-
-    margin-top:1%;
-   
-} */
-
 
 /*colorisation of input and informational/error messages */
-.error-effect-title, .message {
+.error-effect-title {
     color:lightcoral
 }
 
 /* the submit button "Filtrer les annonces" is page centered */
-.submit-button {
+#submit-button {
 
     margin: 1% auto;
    
@@ -104,7 +94,7 @@ and label and input at each side */
 /*******************************************************************/
 
 /* sort choice and nb offer/page choice are diaplayed in row and page centered */ 
-.sort-nb-offer-choices {
+#sort-nb-offer-choices {
     display: flex;
     flex-direction: row;
 
@@ -119,11 +109,11 @@ and label and input at each side */
     padding:0.7rem;  /*add*/
 }
 
-.sort-choice {
+#sort-choice {
     margin:auto;
 }
 
-.nb-offers-choice {
+#nb-offers-choice {
     margin:auto;
 }
 
@@ -139,8 +129,6 @@ and label and input at each side */
     background-color: #fff; 
 
     padding:0.7rem;
-
-   /* border : solid red;*/ /*add*/
   
     display:flex;
     flex-wrap:wrap;
@@ -148,7 +136,7 @@ and label and input at each side */
 }
 
 /* one frame contains 3 parts of an offer in a row : text, consult detail link, showcase image */
-.offer-list-result {
+#offer-list-result {
 
    
     border-top : solid #e9ebee;
@@ -165,41 +153,43 @@ and label and input at each side */
 }
 
 
-.offer-list-result {
+#offer-list-result {
     outline: none;
     text-decoration: none;  /* no undelined link */
     background-color: #fff; 
 }
 
-.offer-list-result:link{
+#offer-list-result:link, #offer-list-result:visited, #offer-list-result:focus, #offer-list-result:hover, #offer-list-result:active  {
     color : black;
 }
 
-.offer-list-result:visited{
+/*
+#offer-list-result:visited{
     color : black;
 
 } 
 
-.offer-list-result:focus{
+#offer-list-result:focus{
     color : black;
-} 
+} */
 
-.offer-list-result:hover{
-    color : black;
+#offer-list-result:hover{
+    /*color : black; */
     background-color: #e9ebee;
 
 }
 
-.offer-list-result:active{
+/*
+#offer-list-result:active{
     color : black;
 
-}
+} */
 
 
 
 /*part one of an offer on the left side: short text description */
 /* flex 1 allows to adjust the space ratio that each element takes n= 1 for all indicates each takes the same space*/
-.offer-list-text {
+#offer-list-text {
    
  
     flex: 1; /*note  :equivalent to flex: 1 0 0; */
@@ -220,6 +210,7 @@ and label and input at each side */
    
     width:100%;                       
     height: 100%; 
+
 
     display: flex;
     align-items: center;
@@ -312,7 +303,11 @@ li {
 /* for Ipad Pro and Ipad : 80% of full screen display (1024px and less)*/
 @media screen and (max-width: 1024px) {
 
-    .filter-form, #offer-list, .sort-nb-offer-choices, ul   {
+    h1, .title {
+        width:80%;
+    }
+
+    #filter-form, #offer-list, #sort-nb-offer-choices, ul   {
         width:80%;
     }
 
@@ -326,9 +321,7 @@ li {
 labels and inputs are displayed in column and at full screen width */
 @media screen and (max-width: 767px) {
     
-    h1, .title {
-        width:80%;
-    }
+
     
     
     .filter-form-elt {
@@ -337,21 +330,21 @@ labels and inputs are displayed in column and at full screen width */
     }
 
 
-    .filter-form select {
+    #filter-form select {
         width:40%;
     }
 
-    .sort-nb-offer-choices{
+    #sort-nb-offer-choices{
         flex-direction: column;
         align-items: flex-start;
     }
 
-    .sort-nb-offer-choices select{
+    #sort-nb-offer-choices select{
         width:30%;
 
     }
 
-    .sort-choice, .nb-offers-choice {
+    #sort-choice, #nb-offers-choice {
         margin:0;
     }
     
@@ -373,48 +366,4 @@ labels and inputs are displayed in column and at full screen width */
     }    
 }
 
-
-/*1024 */
-    /*#offer-list{
-        width:80%;
-    }
-
-    .sort-nb-offer-choices{
-        width:80%;
-    }
-
-    ul {
-        width:80%;
-    } */
-
-/*767*/
-   /* .filter-form, #offer-list, h1, .title {
-        width:80%;
-    } */
-
-     /* .nb-offers-choice {
-        margin:0;
-    } */
-
-    /*ul {
-        width:80%;
-
-    }*/
-
-    /*h1 {
-        width:80%; 
-    }
-
-    .title {
-        width:80%;
-    } */
-
-       /* ul li {
-        line-height: 3;
-        font-size: 0.6rem;
-    } */
-
-       /* #offer-list{
-        width:80%;
-    } */
 

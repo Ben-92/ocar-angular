@@ -22,10 +22,13 @@ export class RegisterComponent implements OnInit {
   ngOnInit() {
   }
 
+  /**
+   * send register request
+   */
   onSubmit() {
     this.authService.register(this.form).subscribe(
       data => {
-        console.log(data);
+
         this.isSuccessful = true;
         this.isSignUpFailed = false;
         this.router.navigate(['']); 

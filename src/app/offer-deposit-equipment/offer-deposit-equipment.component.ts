@@ -39,12 +39,11 @@ export class OfferDepositEquipmentComponent implements OnInit {
         equipmentsFormArray: new FormArray([])
       });
 
-    /*this.addCheckboxes();*/
-
      }
 
 
   /**
+  * getting equipments from database
   * retrieve offer id
   */
   ngOnInit() {
@@ -76,14 +75,13 @@ export class OfferDepositEquipmentComponent implements OnInit {
    * here we link index of equipmentList with index of the formArray
    */
   private addCheckboxes() {
-    console.log('equipmentItem: ');
+
     this.equipmentList.forEach((equipmentItem, equipmentIndex) => {
-      console.log(equipmentItem);
+
       const control = new FormControl();
       (this.equipmentForm.controls.equipmentsFormArray as FormArray).push(control); 
     });
-    console.log('equipmentsFormArray: ');
-    console.log(this.equipmentForm.controls.equipmentsFormArray);
+
   }
 
   /**
@@ -99,14 +97,13 @@ export class OfferDepositEquipmentComponent implements OnInit {
 
     /* http call is made only if at least one box is checked */
     if (selectedEquipmentObjectsArray.length > 0) {
-      console.log('selectedEquipmentObjectsArray: ');
-      console.log(selectedEquipmentObjectsArray);
+
       this.dataService.updateEquipmentToDb(this.offerIdOnUse,  selectedEquipmentObjectsArray)
       .subscribe({
         next : offer => { console.log('next: post equipment') },
-        error:err => {console.error(err);
+        error:err => {
                       this.message = "Erreur : equipement non enregistré";},
-        complete : () => {console.log('complete: post equipment');
+        complete : () => {
                           this.message = "Le dépôt d'annonce est terminé, merci !";
                           this.isDepositComplete = true;} 
       });
@@ -116,6 +113,10 @@ export class OfferDepositEquipmentComponent implements OnInit {
     }
   }
 
+  /**
+   * return info if template has to display the equipment type. typically, when its value changes
+   * @param equipmentListType type of the equipment displayed
+   */
   hasToDisplay(equipmentListType){
     if (equipmentListType != this.equipmentListTypeSaved){
       this.equipmentListTypeSaved = equipmentListType;

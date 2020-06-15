@@ -17,6 +17,5 @@ export interface Offer {
     user : User;
     equipments : Equipment[];
 
-    /* offerData : string; */
 
 }

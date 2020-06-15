@@ -1,16 +1,17 @@
 
 <div id="top-bar">
 
-  <!--<h1>oCar - achat/vente de véhicules d'occasion</h1> -->
+
   <h1>oCar <span>by Cetelem</span></h1>
 
+  <!--top picture : cetelem logo-->
   <div id="top-image">
     <img src="../../assets/images/Cetelembe_amplogo-fr.png" alt="Photo by PF"> 
   </div>
 
+  <!--unordered list nav bar-->
   <nav class="nav-bar"> 
     <ul>
-      <!--<li><a href="/home" routerLink="home">Accueil</a></li> -->
       <li><a href="/" routerLink="">Accueil</a></li>
       <li *ngIf="showAdminBoard"><a href="/admin" routerLink="admin">Admin Board</a></li>
       <li *ngIf="showModeratorBoard"><a href="/mod" routerLink="mod">Moderator Board</a></li>
@@ -24,88 +25,9 @@
 
 </div>
 
-<!--
-<div id="left-image">
-  <img src="../../assets/images/img_module_ficheprojet.png" alt="Photo by PF"> 
-</div> -->
-
+ <!--right bottom picture : credito-->
 <div id="right-image">
   <img src="../../assets/images/credito-thinking.png" alt="Photo by PF"> 
 </div>
 
-
-
-  
-
-<!--
-  <nav class="nav-bar">
-      <ul>
-        <li><a href="/home" routerLink="home">Accueil</a></li>
-        <li *ngIf="showAdminBoard"><a href="/admin" routerLink="admin">Admin Board</a></li>
-        <li *ngIf="showModeratorBoard"><a href="/mod" routerLink="mod">Moderator Board</a></li>
-      </ul>
-
-      <ul>
-          <li><a routerLink="/deposit">Déposer une annonce</a></li>
-      </ul>
-
-      <ul *ngIf="!isLoggedIn">
-        <li><a href="/register" routerLink="register">S'inscrire</a></li>
-        <li><a href="/login" routerLink="login">Se connecter</a></li>
-      </ul>
-
-      <ul *ngIf="isLoggedIn">
-          <li *ngIf="isLoggedIn"><a href="/user" routerLink="user">{{ username }}</a></li> 
-          <li><a href (click)="logout()">Se déconnecter</a></li>
-      </ul>
-  </nav> -->
-
-       <!-- <li *ngIf="isLoggedIn"><a href="/user" routerLink="user">Espace personnel</a></li>  -->
-     <!--<li><a routerLink="">Liste des annonces</a></li> -->
-      <!-- <li><a href="/profile" routerLink="profile">{{ username }}</a></li> -->
-
-<!--
-<div id="app">
-    <nav class="navbar navbar-expand navbar-dark bg-dark">
-      <a href="#" class="navbar-brand">bezKoder</a>
-      <ul class="navbar-nav mr-auto" routerLinkActive="active">
-        <li class="nav-item">
-          <a href="/home" class="nav-link" routerLink="home">Home </a>
-        </li> 
-        <li class="nav-item" *ngIf="showAdminBoard">
-          <a href="/admin" class="nav-link" routerLink="admin">Admin Board</a>
-        </li>
-        <li class="nav-item" *ngIf="showModeratorBoard">
-          <a href="/mod" class="nav-link" routerLink="mod">Moderator Board</a>
-        </li>
-        <li class="nav-item">
-          <a href="/user" class="nav-link" *ngIf="isLoggedIn" routerLink="user">User</a>
-        </li>
-      </ul>
-  
-      <ul class="navbar-nav ml-auto" *ngIf="!isLoggedIn">
-        <li class="nav-item">
-          <a href="/register" class="nav-link" routerLink="register">Sign Up</a>
-        </li>
-        <li class="nav-item">
-          <a href="/login" class="nav-link" routerLink="login">Login</a>
-        </li>
-      </ul>
-  
-      <ul class="navbar-nav ml-auto" *ngIf="isLoggedIn">
-        <li class="nav-item">
-          <a href="/profile" class="nav-link" routerLink="profile">{{ username }}</a>
-        </li>
-        <li class="nav-item">
-          <a href class="nav-link" (click)="logout()">LogOut</a>
-        </li>
-      </ul>
-    </nav>
-  
-    
-    <div class="container">
-      <router-outlet></router-outlet>
-    </div> 
-  </div>
-  -->
   

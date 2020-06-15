@@ -158,7 +158,6 @@ export class SaleComponent implements OnInit{
   onBuy(buyData) {
 
     this.isSubmitted = true;
-    //this.buyForm.get('finalPrice').disable();
 
     let dateOfSale = new Date();
 
@@ -180,7 +179,6 @@ export class SaleComponent implements OnInit{
               next: savedSale => {console.log(savedSale);
                                   this.isFinalPriceValidated = true;
                                   this.message = "Veuillez choisir un mode de paiement pour cet achat de " + buyData.finalPrice + " euros";},
-                               //   this.message = "Le montant de la transaction a été enregistré. Veuillez choisir un mode de paiement";},
               error:err => {console.error(err);
                             this.message = "Erreur lors de l'enregistrement du montant de la transaction";}});
   } 

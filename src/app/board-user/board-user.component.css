@@ -1,5 +1,5 @@
 h1 {
-    /*width : 33%; */
+
     margin:0.7rem auto;
     background-color: #fff;
     text-align: center;  
@@ -8,8 +8,6 @@ h1 {
 }
 
 h2 {
-    /*margin : auto;
-    width:33%; */
 
     border-bottom: solid 0.3rem #8C2B53;
  
@@ -24,17 +22,16 @@ h2 {
     width : 33%;
 }
 
-/*
-#personal-info h1, */
-#personal-info p {
+
+#personal-info p, .offer-list-result p {
     margin:0;
-    /*text-align: center; */
+
 } 
 
-.offer-list-result p {
+/*.offer-list-result p {
     margin:0;
 
-}
+} */
 
 
 /*******************************************************************/
@@ -43,9 +40,7 @@ h2 {
 
 /* offers are displayed on a single column */
 #offer-list{
-    /*display:flex;
-    flex-wrap:wrap;
-    justify-content: center; */
+
 
     width  :33%; /*add*/
     margin: auto; /*add*/
@@ -61,19 +56,6 @@ h2 {
 
 /* one frame contains 3 parts of an offer in a row : text, consult detail link, showcase image */
 .offer-list-result {
-    /*background-color: silver;
-    border : solid dimgrey;
-    border-radius: 0.4rem;
-
-    width: 50%;
-   
-    margin:10px;
-
-    display:flex;
-    flex-wrap:nowrap;
-    justify-content: space-between;
-
-    align-items: center; */
 
     border-top : solid #e9ebee;
    
@@ -91,10 +73,11 @@ h2 {
     
 }
 
-.offer-list-result:link{
+.offer-list-result:link, .offer-list-result:visited, .offer-list-result:focus, .offer-list-result:hover, .offer-list-result:active{
     color : black;
 }
 
+/*
 .offer-list-result:visited{
     color : black;
 
@@ -112,12 +95,11 @@ h2 {
 .offer-list-result:active{
     color : black;
 
-}
+} */
 
 /*part one of an offer on the left side: short text description */
 /* flex 1 allows to adjust the space ratio that each element takes n= 1 for all indicates each takes the same space*/
 .offer-list-text {
-    /*text-align: left; */
     
     flex: 1; /*note  :equivalent to flex: 1 0 0; */
 
@@ -131,25 +113,6 @@ margin-top: 0;
 margin-bottom : 0;
 } 
 
-/*part two of an offer on the center : detail consulting link */
-/* flex 1 allows to adjust the space ratio that each element takes n= 1 for all indicates each takes the same space*/
-/*.offer-list-link {
-    text-align: center;
-
-    flex: 1;
-
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-
-
-}
-
-
-.offer-list-link button {
-    margin : 1% auto;
-    min-width:30%;
-} */
 
 
 /*part three of an offer on the right side : showcase of the first image stored */
@@ -192,7 +155,6 @@ margin-bottom : 0;
         width:80%;
     }
 
-
 }
     
     
@@ -215,7 +177,7 @@ labels and inputs are displayed in column and at full screen width */
         margin-left : 0.1rem;
         width:60px;
         font-size:0.7rem;
-        } 
+    } 
 
   
 }

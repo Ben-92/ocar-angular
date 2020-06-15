@@ -1,13 +1,13 @@
 
-<div class="title">
+<div id="title">
     <h2>Détail de l'annonce</h2>
 </div> 
 
 <!--for each Offer retrieved in dabatabe, display the attributes-->
-<div *ngIf="offerDetailObs  | async as offerDetail" class="offer-detail">
+<div *ngIf="offerDetailObs  | async as offerDetail" id="offer-detail">
 
 
-    <div class="offer-date-price">
+    <div id="offer-date-price">
             <p>Annonce du {{offerDetail.date | date : 'dd/MM/yyyy'}}</p>
             <p><strong>{{offerDetail.price | currency:'EUR':'symbol':'1.0-0'}}</strong></p>
     </div>
@@ -17,10 +17,10 @@
     <!--display images of the car if present-->
     <div *ngIf="offerDetail.images[0]">
 
-        <div class="img-container">
+        <div id="img-container">
 
-            <div class="img-elt" *ngFor="let image of offerDetail.images">
-                <img class="image-uploaded" src="data:image/jpeg;base64,{{image.picByte}}"> 
+            <div id="img-elt" *ngFor="let image of offerDetail.images">
+                <img id="image-uploaded" src="data:image/jpeg;base64,{{image.picByte}}"> 
             </div>
 
         </div>
@@ -31,7 +31,7 @@
     <!--table display of general details of an offer-->
     <div class="item-container">
         <h3 class="item-title">Détails :</h3>
-        <div class="offer-summary">
+        <div id="offer-summary">
             <table>
                 <tr>
                     <th>Marque</th>
@@ -60,7 +60,7 @@
     <!--if a description is present in database, displaying it-->
     <div *ngIf="offerDetail.description" class="item-container">
         <h3 class="item-title">Description :</h3>
-        <div  class="offer-description">
+        <div  id="offer-description">
                 <p>{{offerDetail.description}}</p>
         </div>
     </div>
@@ -71,7 +71,7 @@
      <!--loop on equipment array to print equipement -->
     <div *ngIf="offerDetail.equipments[0]" class="item-container">
         <h3 class="item-title">Options et équipements : </h3>
-        <div  class="offer-option-equipment">
+        <div  id="offer-option-equipment">
             <ul *ngFor="let equip of offerDetail.equipments">
                 <li>{{equip.label}}</li>
             </ul>
@@ -83,43 +83,21 @@
     <!--display information about the client who submitted the offer-->
     <div class="item-container">
         <h3 class="item-title">Détails du vendeur :</h3>
-        <div class="offer-seller-infos">
+        <div id="offer-seller-infos">
                 <p>Email: <strong>{{offerDetail.user.email}}</strong></p>
         </div>
     </div>
 
     <br>
 
-
-    <div *ngIf="!offerDetail.sale" class="buy-buttons">
+    <!--display payment options if the offer does not correspond to a sale-->
+    <div *ngIf="!offerDetail.sale" id="buy-buttons">
         <button (click)="onBuy(offerDetail.id)">Acheter</button>
    
-        <button class="buy-choice-button" (click)="onLoan(offerDetail.id)">Simuler un crédit</button> 
+        <button id="buy-choice-button" (click)="onLoan(offerDetail.id)">Simuler un crédit</button> 
     </div>
 
 </div>
 
-<!-- <div id="paypal-button-container"></div> -->
-     <!--<button class="buy-choice-button">Acheter au comptant</button> -->
-
-    <!--
-    <div *ngIf="offerDetail.equipments[0]" class="item-container">
-        <h3 class="item-title">Options et équipements : </h3>
-        <div  class="offer-option-equipment">
-            <p>Intérieur</p>
-            <ul *ngFor="let equip of offerDetail.equipments">
-                <li *ngIf="(equip.type=='interior')">{{equip.label}}</li>
-            </ul>
-
-            <p>Extérieur</p>
-            <ul *ngFor="let equip of offerDetail.equipments">
-                <li *ngIf="equip.type=='exterior'">{{equip.label}}</li>
-            </ul>
-            <p>Confort</p>
-            <ul *ngFor="let equip of offerDetail.equipments">
-                <li *ngIf="equip.type=='comfort'">{{equip.label}}</li>
-            </ul> 
-        </div>
-    </div> -->
 
 

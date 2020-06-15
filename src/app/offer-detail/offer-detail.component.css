@@ -7,16 +7,19 @@
 /* h2 titles are undelined */
 h2 {
     border-bottom: solid 0.3rem #8C2B53;
+
+    border-bottom-left-radius: 0.5rem;
+    border-bottom-right-radius: 0.2rem;
 }
 
-.title {
+#title {
     margin : auto;
     width:50%;
 } 
 
 
 /***************** general container **********************************/
-.offer-detail {
+#offer-detail {
     width:50%;
     margin : auto;
 
@@ -28,12 +31,12 @@ h2 {
 
 /***************** border for all details content **********************************/
 
-.img-container, .offer-summary, .offer-description, .offer-option-equipment, .offer-seller-infos {
+#img-container, #offer-summary, #offer-description, #offer-option-equipment, #offer-seller-infos {
     border : 1px solid black;
 }
 
 /***************** relative width for all details content ******************************/
-.offer-description , .offer-summary, .offer-option-equipment, .offer-seller-infos {
+#offer-description , #offer-summary, #offer-option-equipment, #offer-seller-infos {
     width : 85%;
 }
 
@@ -65,7 +68,7 @@ h2 {
 
 /***************** date and price **********************************/
 /*  date and price on a row in each side of a div */
-.offer-date-price {
+#offer-date-price {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -74,7 +77,7 @@ h2 {
 
 /***************** offer description **********************************/
 /* pre-line to respect Break lines  */
-.offer-description p {
+#offer-description p {
     text-align: left;
     white-space: pre-line;
 
@@ -84,14 +87,14 @@ h2 {
 
 /***************** seller information **********************************/
 /* adding a bit of space inside the parent div */
-.offer-seller-infos p, .offer-description p {
+#offer-seller-infos p, #offer-description p {
     margin: 1%;
 } 
 
 
 /***************** options and equipemts **********************************/
 /* displaying in flex wrap all options and equipments  */
-.offer-option-equipment {
+#offer-option-equipment {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
@@ -111,7 +114,7 @@ th, td {
 
 
 /*all the frame containing result elements are in row without wrap display to allow scroll */
-.img-container {
+#img-container {
     display: flex;
     flex-direction: row;  
 
@@ -123,7 +126,7 @@ th, td {
 
 /*****************  frame containing the image **********************************/
 /*respecting image scale full height and a fixed 45% ratio */
-.img-elt {
+#img-elt {
     height: 100%;
 
     min-width: 45%;
@@ -138,7 +141,7 @@ th, td {
 } 
 
 /*reducing image size into parent div and center image */
-.image-uploaded {
+#image-uploaded {
     width: 80%;
     height: 80%;
 
@@ -149,12 +152,12 @@ th, td {
 }
 
 /*****************  choice buttons **********************************/
-.buy-buttons {
+#buy-buttons {
     display: flex;
     justify-content: center;
 }
 
-.buy-choice-button {
+#buy-choice-button {
     margin-left : 5%;
 
 }
@@ -162,7 +165,7 @@ th, td {
 /* for Ipad Pro and Ipad : 80% of full screen display (1024px and less)*/
 @media screen and (max-width: 1024px) {
 
-    .offer-detail {
+    #offer-detail {
         width:80%;
     }
 
@@ -178,7 +181,7 @@ th, td {
     labels and inputs are displayed in column and at full screen width */
     @media screen and (max-width: 767px) {
     
-    .offer-detail {
+    #offer-detail {
         width:80%;
     }
 
@@ -188,19 +191,15 @@ th, td {
 
     }
 
-    .item-title, .title{
+    .item-title, #title{
 
         width : 80%;
     }
 
-    .offer-description , .offer-summary, .offer-option-equipment, .offer-seller-infos {
+    #offer-description , #offer-summary, #offer-option-equipment, #offer-seller-infos {
         width : 100%;
     }
         
     }
 
-/*
-#paypal-button-container {
-    width:100px;
-    margin:auto;
-}*/
+

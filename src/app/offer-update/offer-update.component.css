@@ -1,10 +1,22 @@
 /*center the h1 titles and the advice at the beginning of the page */
-h1, #advice, .message {
+#advice, .message {
     text-align: center;
 }
 
+h1 {
+    width : 80%;
+    margin:0.7rem auto;
+    background-color: #fff;
+    text-align: center;  
+    border-radius: 0.4rem;
+}
+
+
 h2 {
     border-bottom: solid 0.3rem #8C2B53;
+
+    border-bottom-left-radius: 0.5rem;
+    border-bottom-right-radius: 0.2rem;
 }
 
 .title {
@@ -14,7 +26,7 @@ h2 {
 
 
 
-.deposit-form {
+#deposit-form {
     display:flex;
     flex-direction: column;
 
@@ -45,15 +57,6 @@ and label and input at each side */
 }
 
 
-/*radio buttons are displayed at extreme right of the element */
-/*.deposit-form-elt-radio {
-    display:flex;
-    flex-direction: row;
-    justify-content: flex-end;
-
-    
-} */
-
 
 /*colorisation of input and error/informationnal messages */
 .error-effect-title, .message {
@@ -69,7 +72,7 @@ and label and input at each side */
 /**** Images ************************************/
 
 /*display the select and upload button on a row, and center them in their parent element */
-.image-select {
+#image-select {
     display:flex;
     flex-direction: row;
     justify-content: center;
@@ -77,7 +80,7 @@ and label and input at each side */
 
 /*all the frame containing result elements are in row and applies th wrap display */
 /*this wrap display is centerd in its parent element via justify-content */
-.img-container {
+#img-container {
     display: flex;
     flex-direction: row;
     flex-wrap:wrap;
@@ -97,7 +100,7 @@ and label and input at each side */
 
 
 /*frame containing the image and the suppress/update button */
-.img-elt {
+#img-elt {
     
     background-color: grey;
     border : solid dimgrey;
@@ -112,7 +115,7 @@ and label and input at each side */
 } 
 
 /*reducing image size into parent div and center image */
-.image-uploaded {
+#image-uploaded {
     width: 80%;
     height: 80%;
 
@@ -122,7 +125,7 @@ and label and input at each side */
 }
 
 /*center the button in its parent element */
-.suppress-button {
+#suppress-button {
 
     width:20%;
     margin:1% auto;
@@ -131,7 +134,7 @@ and label and input at each side */
 
 /**** Equipment ************************************/
 
-.check-form {
+#check-form {
     margin:auto;
     width:33%;
 
@@ -141,7 +144,7 @@ and label and input at each side */
 
 }
 
-.check-list {
+#check-list {
   
     border : 1px solid darkgray;
 
@@ -158,17 +161,17 @@ and label and input at each side */
 /* for Ipad Pro and Ipad : 80% of full screen display (1024px and less)*/
 @media screen and (max-width: 1024px) {
 
-    .deposit-form   {
+    #deposit-form   {
         width:80%;
     }
 
-    .img-container {
+    #img-container {
     
         width : 80%;
 
     }
 
-    .check-form {
+    #check-form {
         width:80%;
     }
 
@@ -191,9 +194,16 @@ labels and inputs are displayed in column and at full screen width */
     }
 
 
-    .deposit-form select {
+    #deposit-form select {
         width:40%;
     }
+
+    #suppress-button{
+
+    width:80px;
+
+    } 
+
 
 
     p, label{

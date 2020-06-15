@@ -1,6 +1,6 @@
-<div class="title">
+
  <h1>Modification d'une annonce</h1>
-</div>
+
 
  <div class="title">
   <h2>Informations générales</h2>
@@ -10,7 +10,7 @@
 <!--deposit form containing basis information and corresponding to Offer entity in the model-->
 <form [formGroup]="depositForm"  (ngSubmit)="onUpdate(depositForm.value)">
 
-    <div class="deposit-form">
+    <div id="deposit-form">
        
         <h5 id="advice">Les champs marqués d'un (*) sont obligatoires</h5>
   
@@ -22,6 +22,9 @@
                 maxlength="5"
                 id="post-code">
       </div>
+      <!--check error on field : 
+      -when a user click on the field (touched) or modifies it (dirty) or
+      -when the user submits the form  -->
       <div *ngIf="isInvalid('postalCode')">
           <div class="error-effect-title">
               Le code postal doit être valide
@@ -43,18 +46,6 @@
       </div>
 
   
-     <!-- <div class="deposit-form-elt">
-        <label class="deposit-form-elt-label">Année du véhicule (non modifiable):</label>
-        <select formControlName="year">
-          <option value="">Sélectionner l'année</option>
-          <option value={{year.yearValue}} *ngFor="let year of yearList">{{year.yearValue}}</option> 
-        </select>
-      </div>
-      <div *ngIf="isInvalid('year')">
-          <div class="error-effect-title">
-              L'année du véhicule est obligatoire
-          </div>
-      </div> -->
       <div class="deposit-form-elt">
         <label class="deposit-form-elt-label" for="year">Année du véhicule (non modifiable) :</label>
         <input  type="text"
@@ -62,17 +53,6 @@
                 id="year">
       </div>
 
-  
-      <!--<p class="deposit-form-elt-label">Boite de vitesse (non modifiable)</p>
-      <div class="deposit-form-elt-radio">
-  
-        <input type="radio" id="manualChoice" formControlName="gearbox" value="Manuelle">
-        <label for="manualChoice">Manuelle</label>
-  
-        <input type="radio" id="autoChoice" formControlName="gearbox" value="Automatique">
-        <label for="autoChoice">Automatique</label>
-  
-      </div> -->
 
       <div class="deposit-form-elt">
         <label>Boite de vitesse (non modifiable)</label>
@@ -98,17 +78,6 @@
           </div>
       </div> 
 
-  
-  
-      <!--<p class="deposit-form-elt-label">4 roues motrices (non modifiable)</p>
-      <div class="deposit-form-elt-radio">
-  
-        <input type="radio" id="fwdChoiceNo" formControlName="fourWheelDrive" value=false>
-        <label for="fwdChoiceNo">Non</label>
-  
-        <input type="radio" id="fwdChoiceYes" formControlName="fourWheelDrive" value=true>
-        <label for="fwdChoiceYes">Oui</label>
-      </div> -->
 
       <div class="deposit-form-elt">
         <label>4 roues motrices (non modifiable)</label>
@@ -163,18 +132,18 @@
 </div>
 
 <!--selection and upload of an image-->
-<div class="image-select">
+<div id="image-select">
     <input  type="file" (change)="onFileChanged($event)">
 </div>
 
 <br>
 
   <!--displaying live images uploaded, in a flex and wrap way-->
-<div class="img-container" *ngIf="offerToUpdate">
+<div id="img-container" *ngIf="offerToUpdate">
 
-  <div class="img-elt" *ngFor="let imageInUse of offerToUpdate.images">
-    <img class="image-uploaded" src="data:image/jpeg;base64,{{imageInUse.picByte}}"> 
-    <button class="suppress-button" (click)="onDeleteImage(imageInUse.id)">Supprimer</button> 
+  <div id="img-elt" *ngFor="let imageInUse of offerToUpdate.images">
+    <img id="image-uploaded" src="data:image/jpeg;base64,{{imageInUse.picByte}}"> 
+    <button id="suppress-button" (click)="onDeleteImage(imageInUse.id)">Supprimer</button> 
   </div>
 
 </div>
@@ -193,15 +162,11 @@
 <form [formGroup]="equipmentForm" [ngClass]="{'is-disable': isDepositComplete}" (ngSubmit)="submit(equipmentForm.value)">
 
   <!--Displaying checkboxes with equipment from equipment in database-->
-    <div class="check-form">
-        <div class=check-list>
+    <div id="check-form">
+        <div id=check-list>
             <label  formArrayName="equipmentsFormArray" 
                     *ngFor="let equipmentCheck of equipmentForm.controls.equipmentsFormArray.controls; let i = index">
                     <h3 *ngIf="hasToDisplay(equipmentList[i].type)">{{equipmentList[i].type}}</h3>
-                    <!--<h3 *ngIf="(equipmentList[i].type == 'comfort') && (equipmentList[i].label == 'Suspensions adaptables')">Confort</h3>
-                    <h3 *ngIf="(equipmentList[i].type == 'exterior') && (equipmentList[i].label == 'Jantes Alu 17')">Extérieur</h3>
-                    <h3 *ngIf="(equipmentList[i].type == 'interior') && (equipmentList[i].label == 'Sièges cuir')">Intérieur</h3> -->
-                    
                     <input type="checkbox" [formControlName]="i">
                     
             {{equipmentList[i].label}}

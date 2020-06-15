@@ -9,7 +9,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppComponent } from './app.component';
 
 
-import { Routes,RouterModule } from '@angular/router';
+import { RouterModule } from '@angular/router';
 
 import { authInterceptorProviders } from './_helpers/auth.interceptor';
 
@@ -69,10 +69,8 @@ import { LoanCalculatorComponent } from './loan-calculator/loan-calculator.compo
       { path: 'offerDetail/:offerId', component: OfferDetailComponent },
       { path: 'sale/:offerId', component: SaleComponent },
       { path: 'loanCalculator/:offerId', component: LoanCalculatorComponent },
-      /*{ path: 'deposit/offerDepositImage/:offerId', component: OfferDepositImageComponent },*/
       { path: 'offerDepositImage/:offerId', component: OfferDepositImageComponent },
       { path: 'offerDepositEquipment/:offerId', component: OfferDepositEquipmentComponent },
-      /*{ path: 'home', component: HomeComponent }, */
       { path: 'update/:offerId', component: OfferUpdateComponent },
       { path: 'home', component: OfferListComponent },
       { path: 'login', component: LoginComponent },
@@ -81,7 +79,6 @@ import { LoanCalculatorComponent } from './loan-calculator/loan-calculator.compo
       { path: 'user', component: BoardUserComponent },
       { path: 'mod', component: BoardModeratorComponent },
       { path: 'admin', component: BoardAdminComponent },
-      /*{ path: '', redirectTo: 'home', pathMatch: 'full' } */
     ]),
   ],
   providers: [DataService,

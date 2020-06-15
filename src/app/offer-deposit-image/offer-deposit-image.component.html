@@ -1,7 +1,7 @@
 
 <h1>Nouvelle annonce</h1>
 
-<div class="title">
+<div id="title">
     <h2>Déposer des photos</h2>
 </div>
 
@@ -9,7 +9,7 @@
 
 
 <!--selection and upload of an image-->
-<div class="image-select">
+<div id="image-select">
   <input  type="file" (change)="onFileChanged($event)">
 </div>
 
@@ -17,17 +17,16 @@
 
 <!--variable text navigation button-->
 <div>
-    <button class="navigate-button" (click)="onClickNavigate()">{{textButton}}</button>
+    <button id="navigate-button" (click)="onClickNavigate()">{{textButton}}</button>
 </div>
 
 <br>
 
 <!--displaying live images uploaded, in a flex and wrap way-->
-<div class="img-container" *ngIf="offerInUseObs  | async as offerInUse">
+<div id="img-container" *ngIf="offerInUseObs  | async as offerInUse">
 
-  <div class="img-elt" *ngFor="let imageInUse of offerInUse.images">
-    <img class="image-uploaded" src="data:image/jpeg;base64,{{imageInUse.picByte}}"> 
-    <!-- <button class="suppress-button">Supprimer</button> -->
+  <div id="img-elt" *ngFor="let imageInUse of offerInUse.images">
+    <img id="image-uploaded" src="data:image/jpeg;base64,{{imageInUse.picByte}}"> 
   </div>
 
 </div>

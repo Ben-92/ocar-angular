@@ -7,13 +7,13 @@ h2 {
     border-bottom: solid 0.3rem #8C2B53;
 }
 
-.title {
+#title {
     margin : auto;
     width:33%;
 }
 
 /* the form takes 1/3 width of the page and is page centered */
-.check-form {
+#check-form {
     margin:auto;
     width:33%;
 
@@ -23,7 +23,7 @@ h2 {
 }
 
 /* displaying check choices in column */
-.check-list {
+#check-list {
     border : 1px solid darkgray;
 
     display: flex;
@@ -35,7 +35,7 @@ h2 {
     display:block;
 }
 
-.navigate-button {
+#navigate-button {
     display:block;
     margin:auto;
 }
@@ -49,7 +49,7 @@ h2 {
 /* for Ipad Pro and Ipad : 80% of full screen display (1024px and less)*/
 @media screen and (max-width: 1024px) {
 
-    .check-form {
+    #check-form {
         width:80%;
     }
 
@@ -61,7 +61,7 @@ h2 {
     @media screen and (max-width: 767px) {
     
 
-    .title {
+    #title {
         width:80%;
     }
 

@@ -8,19 +8,19 @@ h2 {
     border-bottom: solid 0.3rem #8C2B53;
 }
 
-.title {
+#title {
     margin : auto;
     width:33%;
 }
 
 
-.navigate-button {
+#navigate-button {
     display:block;
     margin:auto;
 }
 
 /*display the select and upload button on a row, and center them in their parent element */
-.image-select {
+#image-select {
     display:flex;
     flex-direction: row;
     justify-content: center;
@@ -28,7 +28,7 @@ h2 {
 
 /*all the frame containing result elements are in row and applies th wrap display */
 /*this wrap display is centered in its parent element via justify-content */
-.img-container {
+#img-container {
     display: flex;
     flex-direction: row;
     flex-wrap:wrap;
@@ -45,7 +45,7 @@ h2 {
 
 
 /*frame containing the image and the suppress button */
-.img-elt {
+#img-elt {
     
    /*background-color: grey;
    border: 1px solid green; */
@@ -63,7 +63,7 @@ h2 {
 } 
 
 /*reducing image size into parent div and center image */
-.image-uploaded {
+#image-uploaded {
     width: 80%;
     height: 80%; 
 
@@ -72,24 +72,15 @@ h2 {
    margin:auto; 
 }
 
-/*center the button in its parent element */
-.suppress-button {
-    width:20%;
-    margin:1% auto;
-
-}
 
 /* for Ipad Pro and Ipad : 80% of full screen display (1024px and less)*/
 @media screen and (max-width: 1024px) {
 
-    .img-container {
-    
+    #img-container {
         width : 80%;
-
     }
 
-
-    }
+}
     
     
     /* for mobile phones and all tablets equals or less than 767px,
@@ -97,11 +88,10 @@ h2 {
     @media screen and (max-width: 767px) {
     
 
-    .title {
+    #title {
         width:80%;
     }
-
         
-    }
+}
 
  

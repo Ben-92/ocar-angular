@@ -3,8 +3,16 @@
 /*******************************************************************/
 
 /*center the h1 titles and the advice at the beginning of the page */
-h1, #advice {
+#advice {
     text-align: center;
+}
+
+h1 {
+    width : 33%;
+    margin:0.7rem auto;
+    background-color: #fff;
+    text-align: center;  
+    border-radius: 0.4rem;
 }
 
 /* h2 titles are undelined */
@@ -13,7 +21,7 @@ h2 {
     border-bottom: solid 0.3rem #8C2B53;
 }
 
-.title {
+#title {
     margin : auto;
     width:33%;
 }
@@ -23,7 +31,7 @@ h2 {
 /***************** Specific rules **********************************/
 /*******************************************************************/
 
-.deposit-form select {
+#deposit-form select {
     width:20%;
 }
 
@@ -33,7 +41,7 @@ h2 {
 }
 
 .if-not-connected-button {
-/*display: inline;*/
+
     margin:1%;
 }
 
@@ -45,7 +53,7 @@ h2 {
 
 
 /*container selector of deposit form items. Items are displayed in column and page centered*/
-.deposit-form {
+#deposit-form {
     display:flex;
     flex-direction: column;
 
@@ -69,34 +77,20 @@ and label and input at each side */
     margin-top:1%;
 }
 
-/* simulating h3 font size and font weight for deposit-form element label style */
-/*.deposit-form-elt-label { 
-    font-size: 1.13em;
-    font-weight: bold;
-} */
-
-/*radio buttons are displayed at extreme right of the element */
-/*.deposit-form-elt-radio {
-    display:flex;
-    flex-direction: row;
-    justify-content: flex-end;
-    
-} */
-
 
 /*colorisation of input and error/informationnal messages */
-.error-effect-title, .message {
+.error-effect-title, #message {
     color:lightcoral;
 }
 
-.submit-button {
+#submit-button {
     margin: 1% auto;
 }
 
 /* for Ipad Pro and Ipad : 80% of full screen display (1024px and less)*/
 @media screen and (max-width: 1024px) {
 
-    .deposit-form  {
+    #deposit-form  {
         width:80%;
     }
 
@@ -108,7 +102,7 @@ and label and input at each side */
     labels and inputs are displayed in column and at full screen width */
     @media screen and (max-width: 767px) {
     
-    .deposit-form, textarea, #ext-color   {
+    #deposit-form, textarea, #ext-color   {
         width:80%;
     }
     
@@ -118,7 +112,7 @@ and label and input at each side */
         align-items: center;
     }
 
-    .deposit-form select {
+    #deposit-form select {
         width:40%;
     }
 
@@ -127,13 +121,12 @@ and label and input at each side */
     }
 
 
-
-    .title {
+    #title, h1 {
         width:80%;
     }
 
 
         
-    }
+}
 
 

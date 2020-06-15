@@ -29,6 +29,10 @@ constructor(private authService: AuthService,
             private route: ActivatedRoute) {
  }
 
+ /**
+  * retrieving url of the calling component
+  * retrieving user name in session token
+  */
   ngOnInit() {
 
     console.log('ngoninit login');
@@ -50,6 +54,10 @@ constructor(private authService: AuthService,
 
   }
 
+  /**
+   * send authentication request
+   * emit Eventemitter Subject for nav bar data to reload
+   */
   onSubmit() {
     this.authService.login(this.form).subscribe(
       data => {
@@ -64,10 +72,7 @@ constructor(private authService: AuthService,
         /*emit the observable isLoggedObs containing the value true if user is logged in*/
         this.authService.emitSubject();
    
-
-        /*this.reloadPage(); */
         this.onGoBack();
-        /*this.router.navigate(['']); */
 
       },
       err => {

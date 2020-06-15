@@ -18,7 +18,6 @@ export class AuthInterceptor implements HttpInterceptor {
 
     /* skip interceptor for specific url which contains InterceptorSkipHeader*/
     if (authReq.headers.has(InterceptorSkipHeader)) {
-      console.log('http skip header');
       const headers = authReq.headers.delete(InterceptorSkipHeader);
       return next.handle(authReq.clone({ headers }));
     }

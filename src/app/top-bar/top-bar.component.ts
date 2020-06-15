@@ -22,52 +22,35 @@ export class TopBarComponent implements OnInit {
 
       /*From the first construction of the component, it stays subscribed to the observable isLoggedObs containing the value true when user logged in*/
       this.authService.isLoggedObs.subscribe(value => {
-        console.log('constructor top bar');
+ 
         if (value == true){
           
           this.getUserData();
           
-          /*
-          this.isLoggedIn = !!this.tokenStorageService.getToken();
-
-          if (this.isLoggedIn) {
-            const user = this.tokenStorageService.getUser();
-            this.roles = user.roles;
-      
-            this.showAdminBoard = this.roles.includes('ROLE_ADMIN');
-            this.showModeratorBoard = this.roles.includes('ROLE_MODERATOR');
-      
-            this.username = user.username; 
-          } */
         }
       })
    }
 
+   /**
+    * call function that retrieves user data stored in token situated in session storage
+    */
   ngOnInit() {
-
-    console.log('ngoninit top-bar');
 
    this.getUserData();
 
-   /*
-   this.isLoggedIn = !!this.tokenStorageService.getToken();
-
-    if (this.isLoggedIn) {
-      const user = this.tokenStorageService.getUser();
-      this.roles = user.roles;
-
-      this.showAdminBoard = this.roles.includes('ROLE_ADMIN');
-      this.showModeratorBoard = this.roles.includes('ROLE_MODERATOR');
-
-      this.username = user.username;
-    } */ 
   }
 
+  /**
+   * delete session storage token
+   */
   logout() {
     this.tokenStorageService.signOut();
     window.location.reload();
   }
 
+  /**
+   * retrieving user data stored in token situated in session storage
+   */
   getUserData(){
 
     this.isLoggedIn = !!this.tokenStorageService.getToken();

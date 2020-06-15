@@ -11,7 +11,6 @@ import { TokenStorageService } from '../_services/token-storage.service';
 
 import { Router} from '@angular/router'; 
 
-/*import { BrandApi } from '../brand-api';*/
 import { ModelApi } from '../model-api';
 
 @Component({
@@ -26,9 +25,7 @@ export class OfferDepositComponent implements OnInit {
   isLoggedIn = false;
 
   /* data lists retrieved from data service */
-  /*brandList  =this.dataService.brands;*/
   brandListAPI ;
-  /*modelList = this.dataService.models;*/
   modelListAPI;
   yearList = this.dataService.years;
 
@@ -67,12 +64,17 @@ export class OfferDepositComponent implements OnInit {
     price: ['', [Validators.required, Validators.pattern('[0-9]*')]],
     date:''
   })
+  /*injecting services, routing and form instances */
   constructor(private dataService: DataService,
               private formBuilder: FormBuilder,
               private tokenStorageService: TokenStorageService,
               private router: Router
               ) { }
 
+  /**
+   * retreiving token data if present
+   * calling external API to retrieve list of vehicle brands
+   */
   ngOnInit() {
 
     /*disable select car model when car brand is not selected */
@@ -90,6 +92,9 @@ export class OfferDepositComponent implements OnInit {
                       this.message = "Erreur lors du chargement des marques";}});
   }
 
+  /**
+   * navigating towards login page, with this component go-back url 
+   */
   onLoginchoice(){
 
     /* route towards login form with return URL in parameter */
@@ -123,7 +128,11 @@ export class OfferDepositComponent implements OnInit {
     offerDeposit.carBrand = this.brandNomeSelected;
     
 
-    /* POST new offer to user */
+    /**
+     * POST new offer to user
+     * retrieving observable
+     * displaying message to the user whereas the POST ended ko
+     */
     this.dataService.addOfferToUser(this.userIdCreatingOffer, offerDeposit)
         .pipe(
           tap ((value:Offer) => {
@@ -135,11 +144,14 @@ export class OfferDepositComponent implements OnInit {
                               this.router.navigate(['/offerDepositImage', this.offerIdCreated]);},
           error:err => {console.error(err);
                         this.message = "Erreur : annonce non enregistrée";}});
-          /*complete : () => this.message = "Annonce " + this.offerIdCreated + " enregistrée!"});*/
 
   }
 
 
+  /**
+   * testing fields in error
+   * @param field the template field to test
+   */
   isInvalid(field){
     if ((this.depositForm.get(field).errors && (this.depositForm.get(field).touched || this.depositForm.get(field).dirty))
              || (this.isSubmitted && this.depositForm.get(field).errors))
@@ -149,6 +161,10 @@ export class OfferDepositComponent implements OnInit {
 
   }
   
+  /**
+   * calling external API to retrieve all models given a brand
+   * @param carBrandOptionValue brand value selected in the template
+   */
   onCarBrandChange(carBrandOptionValue){
 
     /*enable selct car model when car brand is selected */

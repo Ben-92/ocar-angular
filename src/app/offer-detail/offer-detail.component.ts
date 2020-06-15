@@ -3,7 +3,6 @@ import { DataService } from '../data.service';
 
 import { ActivatedRoute, Router } from '@angular/router';
 
-declare var paypal : any;
 
 @Component({
   selector: 'app-offer-detail',
@@ -25,29 +24,10 @@ export class OfferDetailComponent implements OnInit {
               private router: Router) { 
 
               }
-/*
-  ngAfterViewInit() {
-    paypal.Buttons({
-      createOrder: function(data, actions) {
-        // This function sets up the details of the transaction, including the amount and line item details.
-        return actions.order.create({
-          purchase_units: [{
-            amount: {
-              value: '5'
-            }
-          }]
-        });
-      },
-      onApprove: function(data, actions) {
-        // This function captures the funds from the transaction.
-        return actions.order.capture().then(function(details) {
-          // This function shows a transaction success message to your buyer.
-          alert('Transaction completed by ' + details.payer.name.given_name);
-        });
-      }
-    }).render('#paypal-button-container');
-  } */
 
+  /**
+   * getting offer id from routing param and retrieving offer data
+   */
   ngOnInit() {
 
     /* routing - get the param Id of the offer from the url */ 
@@ -61,17 +41,20 @@ export class OfferDetailComponent implements OnInit {
 
   }
 
+  /**
+   * navigate to sale component
+   * @param offerId Id of the offer the user wants to buy
+   */
   onBuy(offerId){
     this.router.navigate(['/sale', offerId]);
   }
 
+  /**
+   * navigate to loan calculator component
+   * @param offerId Id of the offer the user wants to make simulation to
+   */
   onLoan(offerId){
     this.router.navigate(['/loanCalculator', offerId]);
   }
-
-
-
-
-  
 
 }

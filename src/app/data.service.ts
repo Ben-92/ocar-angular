@@ -1,9 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams, HttpHeaders } from "@angular/common/http";
-import { Observable } from 'rxjs';
-import { Equipment } from './equipment';
-import { Brand } from './brand';
-import { Model } from './model';
+
 
 import { Offer } from './offer';
 import { Sale } from './sale';
@@ -126,16 +123,13 @@ export class DataService {
   return this.httpClient.get(this.apiUrl + '/offers/filter', options)
  }
 
-  /**
-   * post request to save a client's new offer deposit
-   * @param clientId Id of the client who deposit a new offer
-   * @param offerDeposit form values containing offer data
-   */
-  /*
-  addOfferToClient(clientId, offerDeposit) {
-    return this.httpClient.post<Offer>('http://localhost:8080/api/clients/' + clientId + '/offer', offerDeposit);
-  } */
 
+
+  /**
+   * post request to save a user's new offer deposit
+   * @param userId id of the user connected who deposits an offer
+   * @param offerDeposit offer object to deposit
+   */
   addOfferToUser(userId, offerDeposit) {
 
     return this.httpClient.post<Offer>(this.apiUrl + '/users/' + userId + '/offer', offerDeposit);
@@ -171,10 +165,6 @@ export class DataService {
     return this.httpClient.post(this.apiUrl + '/offers/' + offerIdOnUse + '/images', uploadData);
   }
 
-  /*
-  addEquipmentToDb(offerIdOnUse, equipmentList) {
-    return this.httpClient.post(this.apiUrl + '/offers/' + offerIdOnUse + '/equipments', equipmentList);
-  } */
 
   updateEquipmentToDb(offerIdOnUse, equipmentList) {
 
@@ -198,14 +188,6 @@ export class DataService {
   }
 
 
-  /**
-   * get request to retrieve an image, giving its name
-   * @param imageName name of the image to retrieve
-   */
-  //getImageFromDb(imageName){
-  //  return this.httpClient.get(this.apiUrl + '/images/name/' + imageName);
-  //}
-
 
   deleteOffer(offerIdToDelete) {
 
@@ -217,66 +199,7 @@ export class DataService {
     return this.httpClient.delete(this.apiUrl + '/images/' + imageIdToDelete );
   }
 
-/**
- * list of brands a client can choose from
- */
- /* brands : Brand[] = [
-    {"name": "BMW" },
-    {"name": "Renault"},
-    {"name": "Ferrari"}
-  ]
 
-    models : Model[] = [
-      {"name": "Série 2"},
-      {"name": "Clio"},
-      {"name": "Testarossa"},
-    ]*/
-
-  /*list of equipments a client can choose from */
-  /* ! do not change the first label of each type*/
-  /* ! labels of the same type must be grouped*/
- /* equipments : Equipment[] = 
-  [
-    { "type": "interior", "label": "Sièges cuir"},
-    { "type": "interior", "label": "Volant Alcantara" },
-    { "type": "exterior", "label": "Jantes Alu 17"   },
-    { "type": "exterior", "label": "Peinture métallisée" },
-    { "type": "comfort", "label": "Suspensions adaptables"},
-    { "type": "comfort", "label": "Sièges chauffants" },
-    { "type": "comfort", "label": "rétros dorés" },
-    { "type": "comfort", "label": "rétros argentés" },
-    { "type": "comfort", "label": "rétros platine" },
-  ]*/
-  /*[
-    {
-      "type": "interior",
-      "label": "Sièges cuir"
-    },
-    {
-      "type": "interior",
-      "label": "Volant Alcantara"
-    },
-    {
-      "type": "exterior",
-      "label": "Jantes Alu 17"
-    },
-    {
-      "type": "exterior",
-      "label": "Peinture métallisée"
-    },
-    {
-      "type": "Comfort",
-      "label": "Suspensions adaptables"
-    },
-    {
-      "type": "Comfort",
-      "label": "Sièges chauffants"
-    }
-  ] */
-
-  /**
- * list of years for a vehicle
- */
 years  = [
   {"yearValue": "2020" },
   {"yearValue": "2019"},

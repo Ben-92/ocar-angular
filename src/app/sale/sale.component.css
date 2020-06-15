@@ -13,9 +13,7 @@ h1, p {
 
 /* disable a specific part of the template when user not connected */
 .is-noDisplayed {
-    /*
-    pointer-events: none;
-    opacity: 0.3; */
+
     display : none;
 }
 
@@ -29,16 +27,11 @@ h1, p {
 
 #paypal-button-container {
     width:100px;
-    /*margin:auto;*/
+
 }
 
-/*
-#mirror-price{
-    display: none;
-}*/
 
-
-.buy-form {
+#buy-form {
     display:flex;
     flex-direction: column;
 
@@ -59,7 +52,7 @@ and label and input at each side */
     margin-top:1%;
 }
 
-.submit-button {
+#submit-button {
     margin: 1% auto;
 }
 
@@ -80,7 +73,7 @@ and label and input at each side */
 /* for Ipad Pro and Ipad : 80% of full screen display (1024px and less)*/
 @media screen and (max-width: 1024px) {
 
-    .buy-form  {
+    #buy-form  {
         width:80%;
     }
 

@@ -57,9 +57,7 @@ pageToDisplay;
 isFilterRequested;
 
 /* retrieving service data : list of brands, models, years */
-/*brandList  =this.dataService.brands;*/
 brandListAPI ;
-/*modelList = this.dataService.models;*/
 modelListAPI;
 yearList = this.dataService.years;
 
@@ -72,7 +70,6 @@ lowestPostCodeFilter;
 highestPostCodeFilter;
 lowestYearFilter;
 highestYearFilter;
-/*gearboxFilter; */
 lowestGearboxFilter;
 highestGearboxFilter;
 lowestPriceFilter;
@@ -81,7 +78,7 @@ highestPriceFilter;
 
 
 
-/* formgroup with all filter fields formcontrol */
+/* formgroup with all filter fields formcontrol and validators when needed*/
 filterForm = this.formBuilder.group({
   dptCode: ['',[Validators.minLength(2), Validators.maxLength(3), Validators.pattern('[0-9]*')]],
   carBrand: '',
@@ -104,10 +101,8 @@ filterForm = this.formBuilder.group({
    */
   ngOnInit() {
 
-    /*disable selct car model when car brand is not selected */
+    /*disable select car model when car brand is not selected */
     this.filterForm.get('carModel').disable();
-
-    console.log('ngoninit offer-list');
 
     this.dataService.retrieveBrands()
     .subscribe( {
@@ -118,7 +113,6 @@ filterForm = this.formBuilder.group({
       error:err => {console.error(err);
                     }});
 
-    /*window.location.reload(); */  /* ça boucle si je fais ça */
     
     /* initialize the paging and sort criteria for the first time display */
     this.pageToDisplay = 0;
@@ -192,6 +186,10 @@ filterForm = this.formBuilder.group({
 
   } 
 
+  /**
+   * methos which test the validity of a form field
+   * @param field the field to be tested, coming from the template
+   */
   isInvalid(field){
     if ((this.filterForm.get(field).errors && (this.filterForm.get(field).touched || this.filterForm.get(field).dirty))
              || (this.isSubmitted && this.filterForm.get(field).errors))
@@ -216,6 +214,10 @@ filterForm = this.formBuilder.group({
 
   }
 
+  /**
+   * the user has changed the brand, so the list of corresponding models are retrieved from http request to external API
+   * @param carBrandOptionValue 
+   */
   onCarBrandChange(carBrandOptionValue){
 
     /*enable selct car model when car brand is selected */
@@ -279,7 +281,6 @@ filterForm = this.formBuilder.group({
         console.log(offerPage);
      },
       error:err => {console.error(err);}});        
-      /*complete : () => console.log('complete')}); */ 
   }
 
   /**
@@ -296,7 +297,6 @@ filterForm = this.formBuilder.group({
     this.highestPostCodeFilter,
     this.lowestYearFilter,
     this.highestYearFilter,
-    /*this.gearboxFilter,*/
     this.lowestGearboxFilter,
     this.highestGearboxFilter,
     this.lowestPriceFilter,
@@ -327,7 +327,6 @@ filterForm = this.formBuilder.group({
 
      },
       error:err => {console.error(err);}});        
-      /*complete : () => console.log('complete')});  */
   }
 
   /**
@@ -382,7 +381,6 @@ filterForm = this.formBuilder.group({
       this.highestYearFilter = '9999';
     }
   
-    /*this.gearboxFilter = filteringValues.gearbox; */
     if (filteringValues.gearbox > '' ){
       this.lowestGearboxFilter = filteringValues.gearbox;
       this.highestGearboxFilter = filteringValues.gearbox;

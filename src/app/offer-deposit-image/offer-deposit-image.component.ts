@@ -3,7 +3,6 @@ import { Component, OnInit } from '@angular/core';
 import { DataService } from '../data.service';
 import { ActivatedRoute, Router } from '@angular/router';
 
-import { Offer } from '../offer';
 
 @Component({
   selector: 'app-offer-deposit-image',
@@ -66,6 +65,9 @@ export class OfferDepositImageComponent implements OnInit {
     }
   }
 
+  /**
+   * button navigates to next component in the offer deposit process (equipment component)
+   */
   onClickNavigate(){
     this.router.navigate(['/offerDepositEquipment', this.offerIdOnUse]);
   }

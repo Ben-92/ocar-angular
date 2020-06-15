@@ -57,27 +57,43 @@ export class BoardUserComponent implements OnInit {
   this.userDetailObs = this.dataService.getUserDetail(this.userId);
   } 
 
+  /**
+   * retrieving data from a specific offer
+   * @param offerId id of the offer to retrieve
+   */
   onConsult(offerId){
     this.router.navigate(['/offerDetail', offerId]);
   }
 
 
+  /**
+   * ipdating offer data 
+   * @param offerId id of the offer to update
+   */
   onUpdate(offerId){
     this.router.navigate(['/update', offerId]);
   }
 
 
+  /**
+   * delete an offer
+   * @param offerIdToDelete id of the offer to delete
+   */
   onDelete(offerIdToDelete){
     this.dataService.deleteOffer(offerIdToDelete)
     .subscribe( {
-      next: savedOffer => {console.log(savedOffer);
+      next: savedOffer => {
                 this.message = "Annonce supprimée";
                 this.userDetailObs = this.dataService.getUserDetail(this.userId);},
       error:err => {console.error(err);
                     this.message = "Erreur lors de la suppression de l'annonce";}});
   }
 
-  /* calculate the money received by the seller, after site commission */
+  /**
+   * calculate the money received by the seller, after site commission
+   * @param finalPrice price after commission rate deduced
+   * @param commissionRate commission rate parameter
+   */
   priceReceivedBySeller(finalPrice, commissionRate){
     let commissionInEuros = (finalPrice * commissionRate)/100;
     let moneyToSeller = finalPrice - commissionInEuros ;

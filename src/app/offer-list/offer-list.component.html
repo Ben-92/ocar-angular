@@ -7,7 +7,7 @@
 <!--filter form to select offers on some criteria-->
 <form [formGroup]="filterForm" (ngSubmit)="onFilter(filterForm.value)">  
     
-    <div class="filter-form">
+    <div id="filter-form">
 
             <div class="filter-form-elt">
               <label for="dpt-code">Région où se trouve le véhicule:</label>
@@ -53,17 +53,6 @@
               </select>
             </div>
 
-        
-           <!-- <p>Boite de vitesse :</p>
-            <div class="filter-form-elt-radio">
-        
-              <input type="radio" id="manualChoice" formControlName="gearbox" value="Manuelle">
-              <label for="manualChoice">Manuelle</label>
-              
-              <input type="radio" id="autoChoice" formControlName="gearbox" value="Automatique">
-              <label for="autoChoice">Automatique</label>
-            
-            </div> -->
 
             <div class="filter-form-elt">
               <label>Boite de vitesse</label>
@@ -109,7 +98,7 @@
 
         
             <div class="filter-form-elt">
-                <button class="submit-button" type="submit">Filtrer les annonces</button> 
+                <button id="submit-button" type="submit">Filtrer les annonces</button> 
             </div>
         
           </div>
@@ -127,8 +116,8 @@
 </div>
 
 <!--displaying sort choices-->
-<div class="sort-nb-offer-choices">
-  <div *ngIf="contentTotalOffers > 0" class="sort-choice">
+<div id="sort-nb-offer-choices">
+  <div *ngIf="contentTotalOffers > 0" id="sort-choice">
     <label>Afficher en premier : </label>
     <select #sortChoice (change)="onSortSelectChange(sortChoice.value)">
     <option value="dateDESC">Annonces récentes</option>
@@ -141,7 +130,7 @@
   </div>
 
   <!--displaying number of offer per page choices-->
-  <div *ngIf="contentTotalOffers > 0" class="nb-offers-choice">
+  <div *ngIf="contentTotalOffers > 0" id="nb-offers-choice">
     <label>Annonces par page : </label>
     <select #offersPerPageChoice (change)="onNbOffersPerPageChange(offersPerPageChoice.value)">
     <option value="3">3</option>
@@ -156,8 +145,8 @@
 <!--displaying list of offers retrieved from database-->
 <div id="offer-list" >
       <div  *ngFor="let offer of pageContent">
-          <a class="offer-list-result" [routerLink]="['offerDetail', offer.id]">
-          <div class="offer-list-text">
+          <a id="offer-list-result" [routerLink]="['offerDetail', offer.id]">
+          <div id="offer-list-text">
             <p><strong>{{offer.carBrand}} {{offer.carModel}}</strong></p>
             <p id="price"><strong>{{offer.price | currency:'EUR':'symbol':'1.0-0'}}</strong></p>
             <p>{{offer.postalCode}}</p>

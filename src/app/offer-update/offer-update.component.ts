@@ -8,7 +8,7 @@ import { FormBuilder, Validators, FormGroup, FormArray, FormControl } from '@ang
 import {tap} from 'rxjs/operators';
 
 import { Offer } from '../offer';
-/*import { ModelApi } from '../model-api';*/
+
 
 @Component({
   selector: 'app-offer-update',
@@ -28,7 +28,7 @@ export class OfferUpdateComponent implements OnInit {
 
   /* data lists retrieved from data service */
   yearList = this.dataService.years;
-  /*equipmentList = this.dataService.equipments;*/
+
   equipmentList;
 
   equipmentForm: FormGroup; 
@@ -53,8 +53,10 @@ export class OfferUpdateComponent implements OnInit {
   /* image file of a car */
   selectedFile : File;
 
+  /* brand code of the brand selected by the user */
   brandCodigoSelected;
 
+  /* brand name of the brand selected by the user */
   brandNomeSelected;
 
   hasBrandchanged = false;
@@ -75,7 +77,6 @@ export class OfferUpdateComponent implements OnInit {
     price: ['', [Validators.required, Validators.pattern('[0-9]*')]],
     date:''
   })
-
 
 
   constructor(/*private router: Router,*/
@@ -113,13 +114,10 @@ export class OfferUpdateComponent implements OnInit {
     this.dataService.getEquipmentList()
     .subscribe( {
       next: value  => {this.equipmentList = value;
-                      /* console.log('equipmentList: ');
-                      console.log(this.equipmentList)*/
                       this.reloadPage(); },
       error:err => {console.error(err); 
                     }});
 
-      /*this.reloadPage(); */
 
  
   } 
@@ -151,25 +149,16 @@ export class OfferUpdateComponent implements OnInit {
     this.offerToSendToBack.gearbox = this.depositForm.get('gearbox').value;
     this.offerToSendToBack.outerColor = this.depositForm.get('outerColor').value;
     this.offerToSendToBack.fourWheelDrive = this.depositForm.get('fourWheelDrive').value;
-
     this.offerToSendToBack.description = offerUpdated.description;
-    /*this.offerToSendToBack.fourWheelDrive = offerUpdated.fourWheelDrive; */
-    /*this.offerToSendToBack.outerColor = offerUpdated.outerColor;*/
-    /*this.offerToSendToBack.gearbox = offerUpdated.gearbox;*/
     this.offerToSendToBack.postalCode = offerUpdated.postalCode;
-    /*this.offerToSendToBack.year = offerUpdated.year;*/
-
     this.offerToSendToBack.price = offerUpdated.price;
 
 
-  //  /*updating carBrand field with the option selected by the user */
-  //  this.offerToSendToBack.carBrand = this.brandNomeSelected;
-
     this.dataService.updateOffer(this.offerIdOnUse, this.offerToSendToBack)
         .subscribe( {
-          next: savedOffer => {console.log(savedOffer);
+          next: savedOffer => {
                             this.generalInfoMessage = "Infos générales mises à jour";},
-          error:err => {console.error(err);
+          error:err => {
                         this.generalInfoMessage = "Erreur : infos générales non mises à jour";},
           complete : () => {this.reloadPage();}}); 
   }
@@ -206,10 +195,10 @@ export class OfferUpdateComponent implements OnInit {
 
     this.dataService.deleteImage(imageIdToDelete)
     .subscribe( {
-      next: savedImage => {console.log(savedImage);
+      next: savedImage => {
                 this.imageMessage = "photo supprimée";
                 },
-      error:err => {console.error(err);
+      error:err => {
                     this.imageMessage = "Erreur lors de la suppression de la photo";},
       complete : () => {this.reloadPage();}});
 
@@ -230,8 +219,8 @@ export class OfferUpdateComponent implements OnInit {
 
     this.dataService.updateEquipmentToDb(this.offerIdOnUse,  selectedEquipmentLabels)
     .subscribe({
-      next : img => { console.log('next: put equipment') },
-      error:err => {console.error(err);
+      next : equip => { console.log('next: put equipment') },
+      error:err => {
                     this.equipmentMessage = "Erreur : equipement non mis à jour";},
       complete : () => {this.equipmentMessage = "Equipement mis à jour !";
                         this.reloadPage();} 
@@ -310,8 +299,6 @@ export class OfferUpdateComponent implements OnInit {
    */
   private addCheckboxes() {
 
-    console.log('addCheckboxes');
-
     this.equipmentList.forEach((equipmentItem, equipmentIndex) => {
       this.shoulBeChecked = false;
       this.offerEquipment.forEach((offerEquipmentItem, offerEquipmentIndex) => {
@@ -332,6 +319,10 @@ export class OfferUpdateComponent implements OnInit {
     });
   }
 
+  /**
+   * return info if template has to display the equipment type. typically, when its value changes
+   * @param equipmentListType type of the equipment displayed
+   */
   hasToDisplay(equipmentListType){
     if (equipmentListType != this.equipmentListTypeSaved){
       this.equipmentListTypeSaved = equipmentListType;
