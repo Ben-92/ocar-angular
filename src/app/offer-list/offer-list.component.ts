@@ -243,7 +243,7 @@ filterForm = this.formBuilder.group({
       ) 
     .subscribe( {
       next: listOfModelsAPI  => { 
-                          console.log(listOfModelsAPI);
+                          console.log('next listOfModelsAPI');
                         },
       error:err => {console.error(err);
                     }});
@@ -278,7 +278,7 @@ filterForm = this.formBuilder.group({
     )
     .subscribe( {
       next: (offerPage) => {
-        console.log(offerPage);
+        console.log('next offerPage');
      },
       error:err => {console.error(err);}});        
   }
@@ -323,7 +323,7 @@ filterForm = this.formBuilder.group({
     )
     .subscribe( {
       next: (offerPage) => {
-        console.log(offerPage);
+        console.log('next offerPage');
 
      },
       error:err => {console.error(err);}});        

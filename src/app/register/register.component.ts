@@ -25,7 +25,7 @@ export class RegisterComponent implements OnInit {
   ngOnInit() {
 
     this.sourceURL = this.route.snapshot.queryParams.sourceURL;
-    console.log(this.sourceURL);
+
   }
 
   /**
@@ -49,7 +49,6 @@ export class RegisterComponent implements OnInit {
   }
 
   onGoBack() {
-    console.log('onGoBack');
 
     if (this.sourceURL > '') {
       this.router.navigate([this.sourceURL]);

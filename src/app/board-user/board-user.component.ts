@@ -38,8 +38,6 @@ export class BoardUserComponent implements OnInit {
 
   ngOnInit() {
 
-    console.log('board user ngOnInit');
-
     this.httpClient.get("../../assets/param.json")
     .subscribe(paramData => {this.jsonParamData = paramData;
       this.commissionRateParam = this.jsonParamData.commissionRate;
@@ -51,7 +49,6 @@ export class BoardUserComponent implements OnInit {
   this.currentUser = this.tokenStorageService.getUser();
   this.userId = this.currentUser.id;
 
-  console.log(this.userId);
 
   /*get an observable containing the data of a user*/
   this.userDetailObs = this.dataService.getUserDetail(this.userId);

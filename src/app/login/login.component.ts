@@ -86,7 +86,6 @@ constructor(private authService: AuthService,
   
   onGoBack() {
     if (this.sourceURL > '') {
-      console.log(this.sourceURL);
       this.router.navigate([this.sourceURL]);
     } else {
       this.router.navigate(['']); 

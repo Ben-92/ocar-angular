@@ -146,7 +146,7 @@ export class OfferDepositComponent implements OnInit {
         .pipe(
           tap ((offerCreated:Offer) => {
           this.offerIdCreated = offerCreated.id;
-          console.log(this.offerIdCreated)}) 
+          }) 
         )
         .subscribe( {
           next: savedOffer => {
@@ -199,7 +199,7 @@ export class OfferDepositComponent implements OnInit {
       ) 
     .subscribe( {
       next: listOfModelsAPI  => { 
-                          console.log(listOfModelsAPI);
+                          console.log('next listOfModelsAPI');
                         },
       error:err => {console.error(err);
                     this.message = "Erreur lors du chargement des modèles";}});

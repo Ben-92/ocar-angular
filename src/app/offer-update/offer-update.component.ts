@@ -233,8 +233,6 @@ export class OfferUpdateComponent implements OnInit {
    */
   reloadPage(){
 
-    console.log('reloadPage');
-
     /*redefining the formGroup because of the reload */
     this.equipmentForm = this.formBuilder.group({
       equipmentsFormArray: new FormArray([])

@@ -34,7 +34,6 @@ export class OfferDepositEquipmentComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router) {
 
-    console.log('deposit equipment constructor');  
       this.equipmentForm = this.formBuilder.group({
         equipmentsFormArray: new FormArray([])
       });
@@ -48,14 +47,10 @@ export class OfferDepositEquipmentComponent implements OnInit {
   */
   ngOnInit() {
 
-    console.log('deposit equipment ngOnInit'); 
-
     /*get an observable containing the equipments */
     this.dataService.getEquipmentList()
     .subscribe( {
       next: value  => {this.equipmentList = value;
-                       console.log('equipmentList: ');
-                      console.log(this.equipmentList)
                       this.addCheckboxes(); },
       error:err => {console.error(err); 
                     }});
