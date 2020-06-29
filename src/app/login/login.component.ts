@@ -35,11 +35,8 @@ constructor(private authService: AuthService,
   */
   ngOnInit() {
 
-    console.log('ngoninit login');
-
     this.sourceURL = this.route.snapshot.queryParams.sourceURL;
 
-    console.log(this.sourceURL);
 
     if (this.sourceURL > ''){
       this.autoDisplayLoginForm = true;
@@ -82,9 +79,10 @@ constructor(private authService: AuthService,
     );
   }
 
+  /*
   reloadPage() {
     window.location.reload();
-  }
+  }*/
   
   onGoBack() {
     if (this.sourceURL > '') {

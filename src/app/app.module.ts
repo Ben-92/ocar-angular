@@ -37,6 +37,7 @@ import { LoanCalculatorComponent } from './loan-calculator/loan-calculator.compo
 
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -78,7 +79,7 @@ import { LoanCalculatorComponent } from './loan-calculator/loan-calculator.compo
       { path: 'profile', component: ProfileComponent },
       { path: 'user', component: BoardUserComponent },
       { path: 'mod', component: BoardModeratorComponent },
-      { path: 'admin', component: BoardAdminComponent },
+      { path: 'admin', component: BoardAdminComponent }
     ]),
   ],
   providers: [DataService,

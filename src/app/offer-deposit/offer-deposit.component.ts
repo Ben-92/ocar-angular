@@ -93,6 +93,15 @@ export class OfferDepositComponent implements OnInit {
   }
 
   /**
+   * navigating towards register page, with this component go-back url 
+   */
+  onRegisterchoice(){
+
+    /* route towards login form with return URL in parameter */
+    this.router.navigate(['/register'], {queryParams : {sourceURL:'/deposit'}})
+  }
+
+  /**
    * navigating towards login page, with this component go-back url 
    */
   onLoginchoice(){
@@ -135,14 +144,14 @@ export class OfferDepositComponent implements OnInit {
      */
     this.dataService.addOfferToUser(this.userIdCreatingOffer, offerDeposit)
         .pipe(
-          tap ((value:Offer) => {
-          this.offerIdCreated = value.id;
+          tap ((offerCreated:Offer) => {
+          this.offerIdCreated = offerCreated.id;
           console.log(this.offerIdCreated)}) 
         )
         .subscribe( {
-          next: savedOffer => {console.log(savedOffer);
+          next: savedOffer => {
                               this.router.navigate(['/offerDepositImage', this.offerIdCreated]);},
-          error:err => {console.error(err);
+          error:err => {
                         this.message = "Erreur : annonce non enregistrée";}});
 
   }

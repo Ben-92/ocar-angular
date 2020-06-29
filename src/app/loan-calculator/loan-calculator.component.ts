@@ -47,6 +47,13 @@ export class LoanCalculatorComponent implements OnInit {
   /**
    * route towards login form with return URL in parameter
    */
+  onRegisterchoice(){
+    this.router.navigate(['/register'], {queryParams : {sourceURL:'/loanCalculator'+'/'+this.offerIdDetail }})
+  }
+
+  /**
+   * route towards login form with return URL in parameter
+   */
   onLoginchoice(){
     this.router.navigate(['/login'], {queryParams : {sourceURL:'/loanCalculator'+'/'+this.offerIdDetail }})
   }

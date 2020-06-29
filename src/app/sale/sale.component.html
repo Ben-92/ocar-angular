@@ -2,11 +2,12 @@
 <div *ngIf="!isLoggedIn" class="if-not-connected">
         <p>Connectez-vous ou inscrivez-vous pour accéder aux options d'achat</p>
         <button (click)="onLoginchoice()" class="if-not-connected-button">Se connecter</button> 
-        <button routerLink="/register" class="if-not-connected-button">S'inscrire</button> <!--address starting with / : absolute route--> 
+		<!--<button routerLink="/register" class="if-not-connected-button">S'inscrire</button> --> <!--address starting with / : absolute route--> 
+		<button (click)="onRegisterchoice()" class="if-not-connected-button">S'inscrire</button>
 </div>
 
 <!--price negociation form, displayed only to connected users-->
-<form [formGroup]="buyForm" [ngClass]="{'is-noDisplayed': (!isLoggedIn), 'is-blurred':(isFinalPriceValidated || buyerIsSeller) }"  (ngSubmit)="onBuy(buyForm.value)">
+<form [formGroup]="buyForm" [ngClass]="{'is-noDisplayed': (!isLoggedIn), 'is-blurred':(isFinalPriceValidated || buyerIsSeller || isSaleCompleted) }"  (ngSubmit)="onBuy(buyForm.value)">
 
 	<div id="buy-form">
 			<div class="buy-form-elt">
@@ -33,7 +34,7 @@
 </form>
 
 <!--Paypal and cash option, displayed only to connected users-->
-<div [ngClass]="{'is-blurred': (!isLoggedIn || !isFinalPriceValidated || buyerIsSeller) }"> 
+<div [ngClass]="{'is-blurred': (!isLoggedIn || !isFinalPriceValidated || buyerIsSeller || isSaleCompleted) }"> 
 	<div id="payment-choices">
 		<div id="paypal-button-container" ></div>
 		<button (click)="onCash()">Paiement en direct (espèces/chèque)</button> 

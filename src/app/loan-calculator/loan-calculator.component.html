@@ -2,7 +2,8 @@
 <div *ngIf="!isLoggedIn" class="if-not-connected">
     <p>Connectez-vous ou inscrivez-vous pour effectuer une simulation de crédit</p>
     <button (click)="onLoginchoice()" class="if-not-connected-button">Se connecter</button> 
-    <button routerLink="/register" class="if-not-connected-button">S'inscrire</button> <!--address starting with / : absolute route--> 
+    <!-- <button routerLink="/register" class="if-not-connected-button">S'inscrire</button> --> <!--address starting with / : absolute route-->
+    <button (click)="onRegisterchoice()" class="if-not-connected-button">S'inscrire</button>
 </div>
 
 <div [ngClass]="{'is-blurred': !isLoggedIn}"> 

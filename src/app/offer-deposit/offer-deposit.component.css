@@ -3,7 +3,7 @@
 /*******************************************************************/
 
 /*center the h1 titles and the advice at the beginning of the page */
-#advice {
+#advice, #message {
     text-align: center;
 }
 

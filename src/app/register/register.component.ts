@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { AuthService } from '../_services/auth.service';
 
-import { Router} from '@angular/router'; 
+import { Router, ActivatedRoute} from '@angular/router'; 
 
 @Component({
   selector: 'app-register',
@@ -16,10 +16,16 @@ export class RegisterComponent implements OnInit {
   isSignUpFailed = false;
   errorMessage = '';
 
+  sourceURL;
+
   constructor(private authService: AuthService,
-              private router: Router) { }
+              private router: Router,
+              private route: ActivatedRoute) { }
 
   ngOnInit() {
+
+    this.sourceURL = this.route.snapshot.queryParams.sourceURL;
+    console.log(this.sourceURL);
   }
 
   /**
@@ -31,7 +37,9 @@ export class RegisterComponent implements OnInit {
 
         this.isSuccessful = true;
         this.isSignUpFailed = false;
-        this.router.navigate(['']); 
+        /*this.router.navigate(['']); */
+
+        this.onGoBack();
       },
       err => {
         this.errorMessage = err.error.message;
@@ -39,5 +47,16 @@ export class RegisterComponent implements OnInit {
       }
     );
   }
+
+  onGoBack() {
+    console.log('onGoBack');
+
+    if (this.sourceURL > '') {
+      this.router.navigate([this.sourceURL]);
+    } else {
+      this.router.navigate(['']); 
+    }
+
+  } 
 
 }

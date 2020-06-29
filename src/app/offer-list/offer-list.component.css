@@ -321,8 +321,6 @@ li {
 labels and inputs are displayed in column and at full screen width */
 @media screen and (max-width: 767px) {
     
-
-    
     
     .filter-form-elt {
         flex-direction: column;
@@ -340,8 +338,11 @@ labels and inputs are displayed in column and at full screen width */
     }
 
     #sort-nb-offer-choices select{
-        width:30%;
+        width:50%;
 
+    }
+    #nb-offers-choice select {
+        width:35%;
     }
 
     #sort-choice, #nb-offers-choice {

@@ -45,6 +45,9 @@ export class SaleComponent implements OnInit{
   /*true if the user who wants to buy is the seller */
   buyerIsSeller = false;
 
+  /*true is sale if completed */
+  isSaleCompleted = false;
+
   /* user Object connected */
   loggedUserBuyer: any;
 
@@ -80,7 +83,6 @@ export class SaleComponent implements OnInit{
               private httpClient: HttpClient) { }
 
   ngOnInit() {
-    console.log('ngOnit Sale');
 
     this.httpClient.get("../../assets/param.json")
       .subscribe(paramData => this.jsonParamData = paramData);
@@ -145,9 +147,15 @@ export class SaleComponent implements OnInit{
         return actions.order.capture().then(function(details) {
           // This function shows a transaction success message to your buyer.
           alert('Merci pour votre achat ' + details.payer.name.given_name); 
+          
         });
       }
     }).render('#paypal-button-container');
+  }
+
+  onRegisterchoice(){
+    /* route towards register form with return URL in parameter */
+    this.router.navigate(['/register'], {queryParams : {sourceURL:'/sale'+'/'+this.offerIdDetail }})
   }
 
   onLoginchoice(){
@@ -173,10 +181,10 @@ export class SaleComponent implements OnInit{
             .pipe(
               tap ((value:Sale) => {
               this.saleIdCreated = value.id;
-              console.log(this.saleIdCreated)}) 
+              }) 
             )
             .subscribe( {
-              next: savedSale => {console.log(savedSale);
+              next: savedSale => {
                                   this.isFinalPriceValidated = true;
                                   this.message = "Veuillez choisir un mode de paiement pour cet achat de " + buyData.finalPrice + " euros";},
               error:err => {console.error(err);
@@ -185,7 +193,7 @@ export class SaleComponent implements OnInit{
 
 
   onCash() {
-    
+    this.isSaleCompleted = true;
   }
 
 }
