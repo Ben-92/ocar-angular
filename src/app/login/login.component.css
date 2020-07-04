@@ -1,7 +1,7 @@
 
 /* full page background image */
 #back img {
-    position: absolute; /*so that the image may be positionned out of the flow */
+    /*position: absolute;*/ /*so that the image may be positionned out of the flow */
     z-index: 0; /*comes with position absolute - image is behind login form*/
     /*min-height: 100%; */ /*fill the browser vertically */
     min-width: 1024px;  /*image won't reduce less than 1024 px when responsive*/
@@ -20,7 +20,7 @@
   .form-item img {
 
     width : 100%;;
-    height : auto;
+    height : auto; 
 
   }
 
