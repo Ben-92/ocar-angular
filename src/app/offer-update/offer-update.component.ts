@@ -122,7 +122,6 @@ export class OfferUpdateComponent implements OnInit {
  
   } 
 
-
   /**
    * update (PUT) the offer general information
    * @param offerUpdated offer objec receive from the template form updated by the user

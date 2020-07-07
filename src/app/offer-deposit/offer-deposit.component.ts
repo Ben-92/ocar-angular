@@ -176,7 +176,7 @@ export class OfferDepositComponent implements OnInit {
    */
   onCarBrandChange(carBrandOptionValue){
 
-    /*enable selct car model when car brand is selected */
+    /*enable select car model when car brand is selected */
     this.depositForm.get('carModel').enable();
 
     const optionValue = carBrandOptionValue.target.value;
